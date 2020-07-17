@@ -1,0 +1,20 @@
+.breadcrumb {
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 600;
+
+  a {
+  	color: $c-body-text;
+  }
+
+  @include bp(lap) {
+    text-align: left;    
+  }
+
+
+  &::before {
+		@extend .fas;
+		content: fa-content($fa-var-chevron-left);
+		margin-right: 3px;
+	}
+}

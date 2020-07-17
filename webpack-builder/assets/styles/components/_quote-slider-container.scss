@@ -1,0 +1,172 @@
+$mobile-snappoint: '450px';
+
+.quote-slider-container {
+
+	position: relative;
+	overflow: visible;
+
+	padding: 0px 15px;
+
+	@include bp($mobile-snappoint) {
+		padding: 0px 40px;
+	}
+
+
+	.controls {
+		overflow: visible;
+	    margin: 0;
+	    padding: 0;
+	    list-style: none;
+	    position: absolute;
+	    left: 0;    
+	    width: 100%;    
+	    top: 40%;
+	    transform: translatey(-40%);
+	    display: flex;
+	    align-items: center;    
+	    justify-content: space-between;
+	    color: $dark_grey;
+	    
+	    &:focus {
+	        outline: none;
+	    }
+
+	    li:hover {
+	        cursor: pointer;        
+	    }
+
+	    .prev {
+	    	display: block;
+	    	color: $dark_grey;
+
+    		height: 50px;
+	    	width: 20px;
+
+	    	@include bp($mobile-snappoint) {
+		    	height: 60px;
+		    	width: 30px;
+		    }
+	    	background-image: url('../images/prev.svg');
+	    	background-repeat: no-repeat;
+
+	    	&:focus {
+     			outline: 0;
+     			box-shadow: none;
+     		}
+	    }
+
+	    .next {
+	    	display: block;
+	    	color: $dark_grey;
+	    	
+	    	height: 50px;
+	    	width: 20px;
+
+	    	@include bp($mobile-snappoint) {
+		    	height: 60px;
+		    	width: 30px;
+		    }
+	    	background-image: url('../images/next.svg');
+	    	background-repeat: no-repeat;
+
+	    	&:focus {
+     			outline: 0;
+     			box-shadow: none;
+     		}
+	    }
+
+	}
+
+
+
+	.quote-slider {
+		
+		//background-color: green;
+
+
+		// On IE11/Edge display flex conflicts with the tiny slider and the box height does not auto grow
+		// so we set a max height fort these browsers instead - see below.
+
+		// Check for not IE
+		@supports not (-ms-ime-align:auto)  {
+			display: flex;
+			justify-content: space-between;
+		}
+
+
+		.quote {
+
+			
+			// On IE11/Edge display flex conflicts with the tiny slider and the box height does not auto grow
+			// so we set a max height fort these browsers instead - see below.
+
+			// Check for not IE
+			@supports not (-ms-ime-align:auto)  {
+				display: flex;
+				justify-content: space-between;
+				flex-direction: column;
+			}
+
+
+			&__container {
+				background-color: $brand-yellow;
+
+				display: flex;
+			    flex-direction: column;
+			    justify-content: center;
+
+				&--grey
+				{
+					background-color: $c-quote_panel_alt;
+				}
+
+				
+				margin: 0 auto;
+
+				width: 90%;
+				height: calc(100%-91px);
+				height: 100%;
+
+				padding: 20px 15px;
+
+				@include bp($mobile-snappoint) {
+					padding: 60px 40px;
+				}
+				
+
+
+				&__content {
+					padding-bottom: 10px;
+				}
+
+				&__by {
+					display: block;
+					margin: 0 auto;
+					color: $black;
+					font-weight: bold;
+				}
+
+				
+				
+			}
+
+
+			&__tag {
+
+				width: 90%;
+				margin: 0 auto;
+			
+				img {
+			 		display: block;
+			 		width: 100%;
+			 	}
+
+			}
+
+		}
+	}
+
+
+}
+
+

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>WP - BoilerPlate Notes</title>
+	<link rel="stylesheet" href="wp-admin/css/install.css?ver=20100228" type="text/css" />
+</head>
+<body>
+
+<div style="background-color: black; padding: 10px 10px 0px;">
+	<img style="width: 75px;" alt="leap london" src="wp-content/themes/gb-wp-boilerplate/assets/images/leap-logo.svg" />
+</div>
+
+
+<h2 style="text-align: center">WP Boiler Plate</h2>
+	
+
+<h3>Introduction</h3>
+
+<p>This boiler plate allows you to quickly create an empty Wordpress project with all the build scripts we use in place.  The project is a blank empty canvas to work with.  It contains all the standard plugins, functions usually required.  There are directories of library code that is often used in projects that can be used if required, to make the development of sites quicker if required.</p>
+
+<p style="text-align: right">&#8212; Nick Morley - Oct 2019</p>
+<br/>
+
+
+<p>
+	<b>Contents</b>
+
+	<ul>
+	<li><a href="#setup">Setup</a></li>
+	<li><a href="#webpack">WebPack</li>
+	<li><a href="#defaultplugins">Default Plugins</li>
+	</ul>
+</p>
+
+
+
+
+<a id="setup" name="setup"></a>
+<h2>Setup</h2>
+
+<p>
+	<ul>
+		<li>Take a clone of the site from the Github repo.  You have probably already done this, if you are reading this!</li>
+		<li>Create an empty database</li>
+		<li>Modify your wp-config.php to connect to your new database, you can change the wp-content and theme directory to match your project.  You will need to change the settings in the top of the wp-config file accordingly.  You can setup new database prefixes in your wp-config file if you would like.</li>
+		<li>When you first run the site, your standard empty database tables will be created for you.</li>
+	</ul>
+</p>
+
+
+<br/>
+<a id="webpack" name="webpack"></a>
+<h2>Webpack</h2>
+
+<p>Webpack based compiler for SASS and JS that outputs to a Wordpress theme folder and can be cleanly removed from a development site for production.</p>
+
+<ol>
+	<li>Note the webpack-builder folder in the site's root folder.</li>
+	<li>In the terminal navigate to the webpack-builder folder.</li>
+	<li>Run 'npm install'</li>
+	<li>Edit the '.env' file and change the 'PUBLIC_PATH_ROOT' variable to the path of your Wordpress themes folder.</li>
+	<li>Change 'PUBLIC_FOLDER_NAME' to your folder in your theme where the assets are to created.</li>
+	<li>In the terminal run 'npm run build' to compile all assets for production or 'npm run watch' to run a development build that watches out for file changes. Live reload plugin is also supported.</li>
+</ol>
+
+
+
+<p>There are a few things to take note of with this build process.</p>
+
+<ul>
+	<li>Webpack clears down the output assets folder completely on each build which means you do not have any redundent images or scripts in the public section of your site.</li>
+	<li>The Webpack main script that runs is webpack.config.js.  You will see this takes assets/index.js as its inital source file to process.  This links to the main scss file.</li>
+	<li>It extracts all the images referenced in the css includes them in the project. Any images used in the HTML directly have to be included in the the index.js file as an include for example "import favIcon from './images/favicon.png';"</li>
+	<li>The build script compresses images and provides a warning, if some images are larger than they should be.</li>
+</ul>
+
+
+<br/>
+<a id="defaultplugins" name="defaultplugins"></a>
+<h2>Default Plugins</h2>
+
+<ul>
+	<li>Advanced Custom Fields</li>
+	<li>Advanced Custom Fields - Repeater Field</li>
+	<li>Classic Editor</li>
+	<li>iThemes Security</li>
+	<li>Gravity Forms (Licence key in 1password)</li>
+	<li>SEO Yoast</li>
+</ul>
+
+
+<p>Note: ACF plugins can be replaced with AFC Pro if additonal features are required. The licence for this is in 1password. All plugins are included but not activated so they can be removed, activated if required.</p>
+
+<p>Other plugins that are sometimes used and are useful are as follows;
+
+<ul>
+	<li>Simple Custom Posts Order </li>
+	<li>WP Mail SMTP</li>
+</ul>
+
+
+</body>
+</html>

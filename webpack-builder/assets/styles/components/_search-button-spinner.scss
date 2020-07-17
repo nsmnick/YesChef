@@ -1,0 +1,21 @@
+.search-button-spinner {
+
+	&::before {
+		@extend .fas;
+		content: fa-content($fa-var-spinner) !important;
+		animation: loading_spinner .9s linear infinite;
+		margin-right: 10px;
+	}
+
+}
+
+
+
+@keyframes loading_spinner {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}

@@ -1,0 +1,258 @@
+.generic-dialog {
+	
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+
+	
+	&__group {
+
+		position: relative;	
+	
+
+		&__keywords {
+			
+			flex-basis: 100%;
+			margin-bottom: 15px;
+
+			@include bp(lap) {
+				flex-basis: 32%;
+			}
+
+
+			margin-bottom: 15px;
+		}
+
+		&__select {
+
+			flex-basis: 100%;
+			margin-bottom: 15px;
+
+			@include bp(lap) {
+				flex-basis: 32%;
+			}
+
+
+			&:after {
+
+				display: block;
+				content: "";
+				background-image: url('../images/menu-arrow.svg');
+				background-repeat: no-repeat;
+				width: 12px;
+				height: 12px;
+				position: absolute;		
+				font-size: 20px;
+				font-weight: 400;
+//				position: absolute;
+				top: calc(50% + 4px);
+				right: 20px;
+				transform: translateY(-50%);
+				pointer-events: none;
+			}
+
+		}
+
+
+		&__button {
+
+			flex-basis: 100%;
+			margin-bottom: 15px;
+
+			@include bp(lap) {
+				flex-basis: 32%;
+				margin-bottom: 0px;
+			}
+
+
+			&--search {	
+
+				// order: 1;
+				// @include bp(lap) {
+				// 	order: 2;
+				// }
+
+			}
+
+			&--clear {
+				
+				flex-basis: 100% !important;
+				text-align: right;
+
+				// order: 2;
+				// @include bp(lap) {
+				// 	order: 1;
+				// }
+				
+			}
+
+		}
+
+
+
+		// Fields
+
+
+		&__label {
+			font-weight: 400;
+			font-size: 16px;
+			height: 100%;
+			position: absolute;
+			top: 0px;
+			left: 0;
+			line-height: 50px;
+			padding: 0 15px;
+			transition: transform .3s;
+			user-select: none;
+			pointer-events: none;
+			color: $c-body-text;
+		}
+
+		&__input,
+		&__select {
+			color: $c-body-text;
+			appearance: none;
+			display: block;
+			width: 100%;
+			height: 50px;
+			background-color: $white;
+			border: 0;
+			border-radius: 0;
+			padding: 0 6px;
+			transition: border-color .3s linear;
+			text-overflow: ellipsis;
+			padding-left: 15px;
+
+			&:focus {
+				outline: 0;
+				border-color: $white;
+			}
+		}
+
+		&__select {
+			font-family: $font-family;
+			font-weight: 400;
+			font-size: 16px;
+			cursor: pointer;
+			position: relative;
+			padding-left: 15px;
+			padding-right: 20px;
+
+			// IE11 remove select arrow.
+			&::-ms-expand {
+				display: none;
+			}
+
+			option {
+			}
+		}
+
+		&__input {
+			&--dirty,
+			&:focus {
+				+ .generic-dialog__group__label {
+					transform: translate3d(-20%, -70%, 0) scale3d(.8, .8, 1) translateZ(1px);
+				}
+			}
+		}
+
+
+		&__search-button {
+
+			width: 100%;
+
+			line-height: 1em;
+			padding: 16px 14px;
+			white-space: nowrap;		
+			transition: all .1s ease-in-out;
+
+			font-weight: 600;
+			cursor: pointer;
+			font-size: 14px;
+		
+			position: relative;
+
+			
+
+			background-color: $c-search-button; 
+			border: solid 2px $c-search-button; 
+			color: white;
+			
+			&::before {
+				@extend .fas;
+				content: fa-content($fa-var-search);
+				margin-right: 10px;
+			}
+
+			&:hover {
+				background-color: $c-search-button-hover;
+				border: solid 2px $c-search-button-hover; 
+				color: white;
+				transition: all .2s ease-in-out;
+			}
+
+			&:focus {
+				outline: 0;
+			}
+
+		}
+
+		&__clear-button {
+
+			width: auto;
+			//background-color: red !important;
+
+			text-align: center;
+
+			@include bp(lap) {
+				text-align: right;
+			}
+
+			line-height: 1em;
+			padding: 10px 14px;
+			white-space: nowrap;		
+			transition: all .1s ease-in-out;
+
+			font-weight: 600;
+			cursor: pointer;
+			font-size: 14px;
+			line-height: 18px;
+		
+			position: relative;
+
+
+			background-color: inherit;
+			border: none;
+			color: $c-body-text;
+			position: relative;
+			padding-left: 25px;
+			
+			&::before {
+				@extend .fas;
+				content: fa-content($fa-var-times);
+				font-size: 18px;
+				margin-right: 10px;
+				
+				@include bp(lap) {
+					position: absolute;
+					right: 90px;
+					top: 10px;
+				}
+			}
+
+			&:focus {
+				outline: 0;
+			}
+
+		}
+
+
+
+
+	}
+
+
+	
+
+
+}

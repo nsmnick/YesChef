@@ -1,0 +1,15 @@
+{
+    "name": "nsm/nsm-job-feeds",
+    "authors": [
+        {
+            "name": "Kn4ppster",
+            "email": "nick@nsmdigital.com"
+        }
+    ],
+    "require": {
+        "ezyang/htmlpurifier": "^4.10"
+    },
+    "autoload": {
+         "psr-4": {"nsm\\nsmJobsFeed\\": "src/classes"}
+    }
+}

@@ -1,0 +1,163 @@
+$mobile-snap: 900px;
+$lap-snap: 1100px;
+
+.generic-results {
+
+
+	&__count {
+		border-top: 4px solid $white;
+		padding-top: 40px;
+		margin-bottom: 20px;
+		font-size: 14px;
+		font-weight: 600;
+
+		padding-left: 0px;
+
+		@include bp(lap) {
+			padding-left: 5px;
+		}
+	}
+
+
+	&__list {
+
+		display: block;
+		width: 100%;
+
+		@include bp($mobile-snap) {
+			display: flex;
+			flex-wrap: wrap;
+		}
+
+		@include bp($lap-snap) {
+			display: flex;
+			flex-wrap: wrap;
+		}
+
+		&__article {
+
+			
+			flex: 0 0 calc(100% - 20px);
+			display: flex;
+			flex-direction: column;
+			margin: 0 60px 80px;
+			margin-left: 0px;
+			margin-right: 0px;
+			transition: opacity .3s linear;
+
+
+			@include bp($mobile-snap) {
+				flex: 0 0 calc(50% - 40px);
+				margin-right: 80px;
+
+				// &:nth-child(2n)
+				// {	
+				// 	border-right: none;
+				// }
+
+				&:nth-child(3n)
+				{
+					margin-right: 0px;
+				}
+
+
+			}
+
+			@include bp($lap-snap) {
+				flex: 0 0 calc(33.33% -40px);
+
+				margin-right: 60px;
+
+				// &:nth-child(2n)
+				// {
+				// 	border-right: none;
+				// }
+
+				&:nth-child(3n)
+				{
+					margin-right: 0px;
+				}
+
+			}
+
+			&__category {
+				background-color: $mid-grey;
+				padding: 5px;
+				color: $white;
+				font-size: 12px;
+				text-transform: uppercase;
+				text-align: center;
+				font-weight: 600;
+			}
+
+			&__image {
+				padding-bottom: 66.66%;
+				background-color: #ccc;
+				background-position: center;
+				background-repeat: no-repeat;
+				background-size: cover;
+
+				position: relative;
+				overflow: hidden;
+
+				&::after {
+					content: '';
+					display: block;
+					position: absolute;
+					top: 0;
+					bottom: 0;
+					left: 0;
+					right: 0;
+					background: linear-gradient(0deg,rgba(0,0,0,.35),transparent 75%);
+					opacity: 1;
+					transition: opacity .3s linear;
+					z-index: 10;
+				}
+
+				&:hover {
+					&::after {
+						opacity: 0;
+					}
+				}
+
+
+			}
+
+			&__content {
+				flex-grow: 1;
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+				color: $c-body-text;
+				font-size: 14px;
+				line-height: 1.4em;
+				padding: 20px;
+			}
+			
+			a {
+				width: 100%
+			}
+
+			&__title {
+				color: $c-body-text;
+				text-align: center;
+				font-size: 24px;
+				line-height: 1.3em;
+				margin: 0 0 10px;
+			}
+
+			&__excerpt {
+				text-align: center;
+				color: $c-body-text;
+				font-size: 14px;
+				flex-grow: 1;
+			}
+
+			
+		}
+
+		
+
+	}
+	
+}

@@ -1,0 +1,22 @@
+
+.container {
+	display: block;
+	width: auto;
+	float: none;
+	margin: 0 auto;
+	overflow: auto;
+	padding: 0px 5px;
+
+	@include bp(lap) {
+		max-width: 1540px;
+		padding: 0px 100px;
+
+		&--narrow-1000 {
+			max-width: 1000px;
+		}
+
+		&--narrow-800 {
+			max-width: 800px;
+		}
+	}
+}

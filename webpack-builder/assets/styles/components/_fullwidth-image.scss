@@ -1,0 +1,24 @@
+
+$mobile_image_snap: 600px;
+
+.fullwidth-image {
+
+	&__desktop {
+
+		display: none;
+		@include bp($mobile_image_snap) {
+			display: block;
+		}
+
+	}
+
+	&__mobile {
+
+		display: block;
+		@include bp($mobile_image_snap) {
+			display: none;
+		}
+		
+	}
+
+}

@@ -1,0 +1,139 @@
+@charset 'UTF-8';
+// Settings
+@import 'setup/setup';
+// Tools
+@import 'tools/tools';
+
+$background-color: #dbdbdb;
+
+
+* {
+	transition: all 0.3s ease;
+}
+
+:focus {
+	outline: 0!important;
+}
+
+body.login {
+
+	@include bp(lap) {
+		padding: 100px 0;
+	}
+	font-family: "Helvetica Neue", Helvetica, Arial;
+	line-height: 1.5;
+	background: $background-color;
+}
+
+body.login #login a {
+	font-weight: bold;
+	text-decoration: none;
+	color: #666!important;
+}
+
+body.login #login a:hover {
+	color: #999!important;
+}
+
+
+
+body.login #login {
+
+	width: auto;
+	height: 100vh;
+	padding: 60px 30px 30px;
+	background: #fff;
+
+	@include bp(lap) {
+		width: 480px !important;
+		height: auto;
+		margin: auto;
+		padding: 30px;
+
+		border: 2px solid #333;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	}
+	
+}
+
+
+a:hover {
+	color: #fff !important;
+}
+
+body.login h1 a {
+	background: url('../images/leap-logo.jpg') center center no-repeat transparent;
+	background-size: 120px;
+	width: 120px;
+	height: 80px;
+	margin: 0 auto;
+}
+
+body.login form#loginform {
+	padding: 30px;
+	margin-left: 0;
+	background: none;
+	border: none;
+	border-radius: 5px;
+	box-shadow: none;
+	background-color: #f4f4f4;
+
+}
+
+
+#login form p {
+	line-height: 24px;
+}
+
+form#loginform input[type="text"], form#loginform input[type="password"] {
+	font-family: "Helvetica Neue", Helvetica, Arial;
+	border: 1px solid #999;
+	background: #f5f5f5;
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+
+form#loginform p.submit input[type="submit"], .login .button-primary {
+	padding: 5px 10px;
+	margin-top: 4px;
+	//box-shadow:inset 0px 1px 0px 0px #999;
+	//background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #666), color-stop(1, #333) );
+	//background:-moz-linear-gradient( center top, #666 5%, #333 100% );
+	//filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#666', endColorstr='#333');
+	background-color:#333;
+	border-radius:5px;
+	border:1px solid #000;
+	color: #fff;
+	line-height: 1;
+	text-shadow:0px 1px 0px #000;
+	text-transform: uppercase;
+}
+
+.button-primary:hover {
+	background-color: #555 !important;
+}
+
+p#backtoblog {display: none;}
+
+p#nav {text-align: center; text-shadow: none!important;}
+
+.message {
+	margin-top: 20px !important;
+	border: none !important;
+	box-shadow: none !important;
+	text-align: center !important;
+	background-color: #f5f5f5 !important;
+	border-radius: 5px !important;
+	//color: white !important;
+}
+
+#lostpasswordform {
+	padding: 30px;
+	margin-left: 0;
+	background: none;
+	border: none;
+	border-radius: 5px;
+	box-shadow: none;
+	background-color: #f5f5f5;
+	box-shadow: none;
+}

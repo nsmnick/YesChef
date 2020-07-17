@@ -1,0 +1,16 @@
+TO DO
+
+DESIGNS
+https://www.figma.com/file/8KQzOhmu1Mn47VvZzqE6XT/Yes-Chef---v2?node-id=0%3A1
+
+
+Detail Page
+Form Page
+Home Page Hero resize
+Link up all links
+remove all old code
+resolve modal popup on additional items page
+Navigation hovers
+fades and transitions
+Emails
+

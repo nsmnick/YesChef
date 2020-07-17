@@ -1,0 +1,48 @@
+$two-column-snap: 800px;
+
+.form-panel-container {
+
+	display: block;
+	width: 100%;
+	text-align: center;
+
+
+	@include bp($two-column-snap) {
+		display: flex;
+		justify-content: space-between;
+	}
+
+
+
+
+	&__col1 {
+
+		display: block;
+		width: 100%;
+		margin-bottom: 50px;
+		text-align: left;
+
+		@include bp($two-column-snap) {
+			flex: 0 0 35%;
+			margin-bottom: 0px;
+		}
+			
+
+	}
+
+	&__col2 {
+
+		display: block;
+		width: 100%;
+		margin-bottom: 50px;
+		text-align: left;
+
+		@include bp($two-column-snap) {
+			flex: 0 0 60%;
+			margin-bottom: 0px;
+		}
+				
+
+	}
+	
+}

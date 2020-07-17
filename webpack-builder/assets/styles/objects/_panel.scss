@@ -1,0 +1,30 @@
+
+.panel {
+	padding: 50px 10px;
+	position: relative;
+	background-color: $teal;
+
+	@include bp(lap) {
+		padding: 70px 0px;
+	}
+
+	&.no-bottom {
+		
+		padding-bottom: 0px;
+		@include bp(lap) {
+			padding-bottom: 0px;
+		}
+
+	}
+
+
+	&.small-top {
+		
+		padding-top: 30px;
+		@include bp(lap) {
+			padding-top: 40px;
+		}
+
+	}
+
+}

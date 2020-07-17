@@ -1,0 +1,133 @@
+$mobile-snap1: 980px;
+$mobile-snap2: 980px;
+
+
+
+.section-container {
+	
+	display: block;
+	width: 100%;
+
+	@include bp($mobile-snap1) {
+		display: flex;
+		justify-content: space-between;
+		text-align: left;
+	}
+
+	&__col1 {
+
+		display: block;
+		width: 100%;
+
+		font-size: 14px;
+	
+		@include bp($mobile-snap1) {
+			flex: 0 0 66.66%;
+		}
+
+		padding: 20px;
+		text-align: left;
+
+		&--heading {
+			background-color: $brand_yellow;
+			text-align: center;
+			padding-bottom: 0px;
+
+			@include bp($mobile-snap1) {
+				text-align: left;
+				padding-bottom: 20px;
+			}
+
+			h3 {
+				margin-bottom: 0px;
+			}
+
+			&--grey {
+				background-color: $mid_grey;
+
+				h3 {
+					color: $brand_yellow;
+				}
+			}
+
+			
+		}
+
+
+		// Two Columns
+
+		.two-cols-container {
+
+			display: block;
+			width: 100%;
+			//background-color: green;
+
+			@include bp($mobile-snap1) {
+				display: flex;
+				justify-content: space-between;
+			//	background-color: blue;
+			}
+
+			&__col {
+
+				flex: 0 0 50%;
+				margin-bottom: 0px;
+
+			//	background-color: red;
+
+				ul.styled-list {
+					margin-left: 0px;
+			//		background-color: yellow;
+
+					li {
+						margin-bottom: 0px;
+					}
+				}
+			}
+
+
+		
+
+		}
+
+
+
+
+
+	}
+
+	&__col2 {
+
+		display: none;
+		width: 100%;
+		
+		@include bp($mobile-snap1) {
+			flex: 0 0 33.33%;
+			display: block;
+		}
+		padding: 20px;
+		text-align: center;
+
+		img {
+			max-width: 250px;
+		}
+
+		&--heading {
+			background-color: $brand_yellow;
+			text-align: center;
+
+			display: block;
+			width: 100%;
+
+			@include bp($mobile-snap1) {
+				text-align: right;
+			}
+
+			&--grey {
+				background-color: $mid_grey;
+			}
+		}
+
+	}
+
+}

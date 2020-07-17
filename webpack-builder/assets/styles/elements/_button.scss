@@ -1,0 +1,103 @@
+
+
+button.button, a.button {
+
+	display: inline-block;
+	text-align: center;
+
+	line-height: 1em;
+	padding: 20px 28px;
+	white-space: nowrap;	
+	text-decoration: none;
+	user-select: none;
+	transition: all .2s ease-in-out;
+
+	background-color: inherit;
+	border: 3px solid #EAF0CE;
+	box-sizing: border-box;
+	box-shadow: 0px 3px 0px #EAF0CE;
+	border-radius: 6px;
+	color: $white;
+	text-transform: uppercase;
+	font-weight: 600;
+	cursor: pointer;
+	font-size: 17px;
+	position: relative;
+	margin-bottom: 3px;
+
+
+
+	 // background-image: linear-gradient(#0a8583, #0a8583);
+	 //  background-position: 50% 50%;
+	 //  background-repeat: no-repeat;
+	 //  background-size: 0% 100%;
+	 //  transition: background-size .5s, color .5s;
+
+	
+	&:hover {
+		background: $white;
+		border: solid 3px #fff;
+		color: $teal;
+		transition: all .3s ease-in-out;
+		//background-size: 100% 100%;
+	}
+
+
+	&--dark-blue
+	{
+		color: $teal;
+		border: 3px solid $dark_blue;
+		box-shadow: 0px 3px 0px $dark_blue;
+
+		&:hover {
+			background: $white;
+			border: solid 3px #fff;
+			box-shadow: 0px 3px 0px $white;
+			color: $teal;
+			transition: all .3s ease-in-out;
+		}
+
+	}
+
+	
+	
+	&:focus {
+		outline: 0;
+	}
+
+
+	&.center {
+		margin: 0 auto;
+	}
+
+
+
+	&--view-details
+	{
+		width: 100%;
+		background: $white;
+		border: 3px solid $slate2;
+		border-radius: 6px;
+		box-shadow: none;
+		//font-family: Lato;
+		font-weight: bold;
+		font-size: 13px;
+		line-height: 100%;
+		text-align: center;
+		text-transform: uppercase;
+		color: $blue;
+
+		&:hover {
+			background: $slate2;
+			border: 3px solid $slate2;
+			//color: $white;
+			transition: all .3s ease-in-out;
+			//background-size: 100% 100%;
+		}
+
+	}
+
+}
+
+
+

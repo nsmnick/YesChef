@@ -1,0 +1,43 @@
+$two-column-snap: 800px;
+
+.site-wide-two-cols-container {
+
+	display: block;
+	width: 100%;
+	
+
+
+	@include bp($two-column-snap) {
+		display: flex;
+		justify-content: space-between;
+	}
+
+
+
+	&__col1 {
+
+		display: block;
+		width: 100%;
+		text-align: left;
+		color: $white;
+		text-align: center;
+
+		@include bp($two-column-snap) {
+			text-align: left;
+		}
+				
+		
+		.button {
+			margin-top: 30px;
+		}
+
+	}
+
+	&__col2 {
+
+		@include bp($two-column-snap) {
+			flex: 0 0 40%;
+		}
+	}
+	
+}

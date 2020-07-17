@@ -1,0 +1,349 @@
+$footerdetails-snap1: '1350px';
+$footerdetails-snap2: '1170px';
+
+
+.page-footer {
+
+  	background-color: $darker_blue;
+  	padding-bottom: 10px !important;
+
+
+
+  	&:before {
+
+		content:""; 
+	  	position: absolute;
+
+	  	background-image: url('../images/blue-panel-top-divider.svg');
+	  	background-size: cover;
+	  	background-repeat: no-repeat;
+	  	z-index:20; 
+	  	left:0px;
+	  	top:0px;
+	  	right: 0px;
+	  	width: 100%;
+	  	height: 25px;
+
+	};
+  	
+
+
+
+
+	.footer-container {
+
+		display: block;
+		width: 100%;
+		
+
+		@include bp($footerdetails-snap2) {				
+			display: flex;
+			justify-content: space-between;
+			
+		}
+
+		&__col1 {
+
+			display: block;
+			width: 100%;
+			margin-bottom: 30px;
+
+			@include bp($footerdetails-snap2) {				
+				flex: 0 0 46%;
+				margin-bottom: 0px;
+			}
+
+			.logo-container {
+				
+				display: block;
+				width: 100%;
+				margin-bottom: 10px;
+
+				@include bp($footerdetails-snap2) {				
+					display: flex;
+					justify-content: space-between;
+				}
+
+				&__image {
+
+					text-align: center;
+
+					@include bp($footerdetails-snap2) {	
+						margin-right: 40px;
+						text-align: left;
+					}
+
+					.footer-logo {
+
+						display: block;
+						
+						padding-top: 0px;
+
+						// This is set here as the header does not have a footer so the menu can rest on hero bannner
+						//padding-bottom: $header-padding;
+
+						background-image: url('../images/yeschef-logo.svg');
+						background-size: contain;
+						background-repeat: no-repeat;
+
+						width: 160px;
+						height: 160px;
+
+						margin: 0 auto;
+						margin-bottom: 20px;
+
+						@include bp($footerdetails-snap2) {	
+							margin: none;
+							margin-bottom: 0px;
+						}
+
+
+
+					
+					}
+				}
+
+				&__content {
+
+					p {
+
+						text-align: center;
+
+						@include bp($footerdetails-snap2) {	
+							text-align: left;
+						}
+
+						font-size: 16px;
+						line-height: 1.5;
+						font-style: italic;
+						color: $white;
+
+						&.by {
+
+							font-style: normal;
+							opacity: .4;
+						}
+					}
+				}
+
+			}
+
+		}
+
+		&__col2 {
+
+			display: block;
+			width: 100%;
+
+			@include bp($footerdetails-snap2) {				
+				flex: 0 0 50%;
+			}
+
+
+			.address-container {
+
+
+				@include bp($footerdetails-snap1) {
+					display: flex;
+					justify-content: space-between;
+					align-items: flex-end;
+				}
+
+				background-color: $dark_blue;
+				border-radius: 3px;
+
+				color: $soft_green;
+				font-size: 16px;
+				padding: 20px;
+
+				&__address {
+
+					display: block;
+					p {font-size: 16px; margin-bottom: 20px;}
+					p {text-align: center;}
+					padding-right: 0px;
+					// @include bp($footerdetails-snap2) {
+					// 	display: block;
+					// 	p {font-size: 16px; margin-bottom: 20px;}
+					// 	p {text-align: right;}
+					// }
+
+					@include bp($footerdetails-snap1) {
+						flex: 1 0 180px;
+						max-width: 180px;
+						p { text-align: left; font-size: 16px; margin-bottom: 0px;}
+						padding-right: 10px;
+					}
+				//	background-color: red;
+
+					
+					
+				}
+
+				&__contact {
+					
+					text-align: center;
+					a {text-align: center; color: $soft_green;}
+					margin-bottom: 20px;
+
+					// @include bp($footerdetails-snap2) {
+					// 	text-align: right;
+					// 	a {text-align: right; color: $soft_green;}
+					// 	margin-bottom: 20px;
+					
+					// }
+
+					@include bp($footerdetails-snap1) {
+						flex: 1 1 160px;
+						text-align: left;
+						a { text-align: left; color: $soft_green;}
+						margin-bottom: 0px;
+					
+
+					}
+					
+				}
+
+				&__social {
+
+				//	background-color: green;
+					
+					display: flex;
+					justify-content: center;
+
+					// @include bp($footerdetails-snap2) {
+					// 	display: flex;
+					// 	justify-content: flex-end;
+					// }
+					
+
+					@include bp($footerdetails-snap1) {
+						flex: 0 0 100px;
+					}
+
+					.social-container {
+
+						display: flex;
+						justify-content: space-between;
+						flex-wrap: wrap;
+						width: 100px;
+
+						&__icon {
+
+							a { display: block; width: 100%; height: 100%; }
+							background-color: $darker_blue;
+							border-radius: 3px;
+							background-size:  auto 14px;
+							background-repeat: no-repeat;
+							background-position: center;
+							height: 35px;
+
+							&__facebook {
+								flex: 0 0 100%;							
+								background-image: url('../images/icon-facebook.svg');
+								margin-bottom: 10px;
+
+							
+							}
+
+							&__instagram {
+								flex: 0 0 46%;
+								background-image: url('../images/icon-instagram.svg');
+							}
+
+							&__twitter {
+								flex: 0 0 46%;
+								background-image: url('../images/icon-twitter.svg');
+
+							}
+
+						}
+						
+
+					}
+					
+				}
+			}
+
+
+			.footer-menu {
+
+		  			text-align: center;
+		  			margin-top: 15px;
+
+		  			li { 
+						display: inline-block; 
+						margin-left: 20px; 
+						&:first-child { margin-left: 0; }
+						
+						a { color: $soft_green; text-transform: uppercase;  font-size: 10px;  }
+
+					}
+
+		  			@include bp($footerdetails-snap2) {
+						text-align: right;
+					}
+					
+
+					
+			}
+
+		}
+	}
+
+
+
+	
+
+
+  	.footer-bottom {
+
+  		font-size: 12px;
+  		color: $white;
+  		line-height: 1.4;
+  		background-color: $darker_blue;
+  		width: 100%;
+  		padding-top: 20px;
+
+
+
+  		
+
+
+  		&__container {
+
+  			display: flex;
+	  		justify-content: flex-end;
+
+	  		
+
+	  		&__by {
+
+
+	  			display: block;
+	  			padding-top: 2px;
+	  	//		background-color: green;
+  				width: 70px;
+  				text-align: right;
+  				opacity: .4;
+
+	  			&__logo {
+	  				background-image: url('../images/nsmDigitalLogo-white.png');	
+	  				background-size:  contain;
+	  				background-position: right;
+					background-repeat: no-repeat;
+					width: 85px;
+					height: 20px;
+					opacity: .8;
+			//		background-color: blue;
+	  			}
+
+	  		}
+
+  		}
+  		
+
+  	}
+	
+}
+

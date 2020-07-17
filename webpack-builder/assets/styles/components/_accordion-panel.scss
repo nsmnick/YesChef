@@ -1,0 +1,81 @@
+
+.accordion {
+
+	display: block;
+	width: 100%;
+
+
+	background-color: $white;	
+
+	
+
+
+	cursor: pointer;
+	padding: 20px 30px 4px;
+	width: 100%;
+	text-align: left;
+	border: none;
+	outline: none;
+	transition: 0.4s;
+	z-index: 4;
+	position: relative;
+	padding-right: 60px;
+
+
+	&:after {
+	    content: "";
+
+
+	    background-size: 20px;
+	    background-position: center;
+	    background-repeat: no-repeat;
+	    height: 40px;
+	    width: 40px;
+	    display: block;
+	    right: 15px;
+	    top: 15px;
+	    position: absolute;
+	    transition: all 0.2s ease-out;
+	  }
+
+	  &.active {
+
+		&:after {
+		  transform: rotate(180deg);
+		  transition: all 0.2s ease-out;
+		}
+	}
+
+
+}
+
+
+.accordion-panel {
+	  padding: 0;
+	  max-height: 0;
+	  overflow: hidden;
+	  transition: max-height 0.2s ease-out;
+	  margin-bottom: 10px;
+	  position: relative;
+	  z-index: 4;
+	  border: solid 3px $black;
+	  opacity: 0;
+	  transition: all 0.2s ease-out;
+	  
+	  &.active {
+	  	transition: all 0.2s ease-out;
+	  	opacity: 1;
+	  }
+
+	  margin-top: -2px;
+
+
+	  &__inner {
+	    padding: 30px;
+	    background: $white;
+	    display: block;
+	    text-align: left;
+	  }
+	}
+
+

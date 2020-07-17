@@ -1,0 +1,117 @@
+/* Style the buttons that are used to open and close the accordion panel */
+.accordion {
+  background-color: $white;
+  cursor: pointer;
+  padding: 20px 40px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+  color: $brand;
+  
+  font-family: $primary-font-bold-italic;
+  letter-spacing: 0.2rem;
+  z-index: 4;
+  position: relative;
+  padding-right: 60px;
+
+  // font-size: 1.5rem;
+  // line-height: 1.7rem;
+  
+  font-size: 1rem;
+  line-height: 1.4rem;
+
+  @include max-screen($laptop-breakpoint) {
+    font-size: 1rem;
+    line-height: 1.4rem;
+    padding: 20px 60px 20px 20px;
+
+  }
+
+  @include max-screen($tablet-breakpoint) {
+    font-size: .8rem;
+    line-height: 1.4rem;
+    padding: 20px 60px 20px 20px;
+
+  }
+
+  &:after {
+    content: "";
+    background-image: url("../img/icon-arrow.png");
+    background-size: 20px;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 40px;
+    width: 40px;
+    display: block;
+    right: 15px;
+    top: 20px;
+    position: absolute;
+  }
+
+  &.active {
+
+    &:after {
+      transform: rotate(90deg);
+    }
+  }
+
+  &--faq {
+    letter-spacing: initial;
+    background: $grey-light;
+    color: $black;
+    font-family: $primary-font;
+
+    &:after {
+      content: "+";
+      background-image: none;
+      color: $brand;
+      font-family: Arial, sans-serif;
+      font-size: 2rem;
+      text-align: center;
+      position: absolute;
+      top: 20px;
+      right: 15px;
+    }
+
+    &.active {
+
+      &:after {
+        content: "-";
+        transform: initial;
+        font-size: 2rem;
+      }
+    }
+  }
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+  padding: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 4;
+  margin-top: -2px;
+
+  &__inner {
+    padding: 40px;
+    background: $white;
+    display: block;
+
+
+
+    &--faq {
+      background: $grey-light;
+    }
+
+     ul {
+        margin: 0 0 0 60px;
+        list-style-type: disc;
+        margin-bottom: 20px;
+      }
+  }
+}

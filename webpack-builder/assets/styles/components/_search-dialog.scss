@@ -1,0 +1,91 @@
+.search-dialog {
+	
+	//border: solid 5px blue;
+
+	max-width: 800px;
+	margin: 0 auto;
+
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+
+	
+	&__group {
+
+		position: relative;	
+	
+		flex-basis: 100%;
+		margin-bottom: 15px;
+
+		@include bp(lap) {
+			flex-basis: 48%;
+		}
+
+		@include bp(1100px) {
+			flex-basis: 23%;
+		}
+
+	
+
+
+		
+		// Fields
+
+
+		&__label {
+
+			display: block;
+			font-size: 14px;
+			color: $soft_green;
+			text-align: left;
+		}
+
+		&__select {
+			color: $darker_blue;
+			//appearance: none;
+			display: block;
+			width: 100%;
+			height: 50px;
+			background: #F6F9EC;
+			border: 2px solid #274F6B;
+			border-radius: 6px;
+			padding: 6px;
+			font-weight: 400;
+			font-size: 14px;
+
+			// &:focus {
+			// 	outline: 0;
+			// 	border-color: $white;
+			// }
+		}
+
+
+	}
+
+
+	&__loader {
+
+		width: 100%;
+		height: 30px;
+		line-height: 1em;
+		transition: all .1s ease-in-out;
+		font-weight: 600;
+		cursor: pointer;
+		font-size: 26px;
+
+		position: relative;
+
+		color: $soft_green;
+		text-align: center;
+
+		&:focus {
+			outline: 0;
+		}
+
+	}
+
+
+	
+
+
+}

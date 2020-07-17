@@ -1,0 +1,256 @@
+$header-padding: 20px;
+$pre-header-snap: '600px';
+
+
+
+.home-bg-image {
+	position: absolute;
+	height: 950px;
+	width: 100%;
+
+	background-image: url('../images/home-hero-bg.png');
+	background-size: contain;
+	background-position: 100% 0px;
+	background-repeat: no-repeat;
+	//background-color: red;
+	z-index: -1;
+}
+
+
+
+
+
+
+.page-header {
+	
+	//height: 154px;
+	width: 100%;
+	position: relative;
+	
+	&.bottom-green {
+		&:after {
+
+			content:""; /* with class ModalCarrot ??*/
+		  	position: absolute;
+
+		  	background-image: url('../images/header-bottom-bg.svg');
+		  	//background-color: red;
+		  	background-size: cover;
+		  	background-repeat: no-repeat;
+		  	z-index:100000; /*a number that's more than the modal box*/
+		  	left:0px;
+		  	bottom:-25px;
+		  	right: 0px;
+		  	width: 100%;
+		  	height: 25px;
+
+		};
+	}
+	
+	overflow: visible;
+
+	.container {
+		overflow: visible;		
+	}
+
+
+	.header-container {
+
+		display: flex;
+		justify-content: space-between;
+		padding-top: $header-padding;
+
+		align-items: center;
+
+
+
+		&__left {
+			flex: 0 0 auto;
+			width: 210px;
+
+			.site-header-logo {
+				display: block;
+				
+				padding-top: 0px;
+
+				// This is set here as the header does not have a footer so the menu can rest on hero bannner
+				padding-bottom: $header-padding;
+
+				background-image: url('../images/yeschef-logo.svg');
+				background-size: contain;
+				background-repeat: no-repeat;
+
+				width: 140px;
+				height: 140px;
+
+//				background-color: red;
+
+
+			}
+
+		}
+
+
+		&__center {
+			flex: 0 1 100%;
+			text-align: center;
+		}
+
+		&__right {
+			
+			
+			flex: 0 1 auto;
+		//	background-color: red;
+
+			
+			
+		}
+	
+	}
+
+
+
+
+
+	&__main-menu {
+
+		// Mobile Menu
+
+		//background-color: color('main_nav_overlay_color');
+		background-color: $teal; //$c_mobilemenu_background;
+
+		position: fixed;
+		top: 0px;
+		bottom: 0;
+		left: 100%;
+		width: 100%;
+		z-index: 9999;
+		padding-top: 80px;
+		//padding: 40px 0;
+		overflow: auto;
+		transition: left .2s ease-out;
+
+		@include bp($menu-snap) {
+			background-color: transparent;
+		//	background-color: blue;
+			position: static;
+			display: flex;
+			justify-content: center;
+			//align-items: center;
+			padding-top: 5px;
+			overflow: visible;
+			height: auto;
+		}
+
+		&--open {
+			//width: calc(100%-50px);
+			width: 100%;
+			//transform: translateX(0);
+    		//box-shadow: 2px 2px 28px #000;
+    		//box-shadow: -13px 3px 14px -10px rgba(0,0,0,0.5);
+			//left: 50px;
+			left: 0px;
+		}
+	}
+
+
+	&__menu-button-container {
+
+		// display: flex;
+		// justify-content: flex-end;
+		// align-items: center;
+		// height: 100%;
+		z-index: 10000;
+
+		display: block;
+
+		@include bp($menu-snap) {
+			display: none;
+		}
+
+	}
+
+
+	.hamburger-toggle {
+
+		position: absolute;
+			top: 0px;
+			right: 0px;
+			width: 30px;
+			height: 30px;
+			transition-duration: 0.5s;
+			z-index: 99999;
+			
+		  
+			&__left,
+			&__right {
+				transition-duration: 0.5s;
+				position: absolute;
+				height: 4px;
+				width: 15px;
+				top: 15px;
+				background-color: $black;
+
+				&:before,
+				&:after {
+					transition-duration: 0.5s;
+					position: absolute;
+					height: 4px;
+					width: 15px;
+					background-color: $black;
+					content: "";
+				}
+
+				&:before {
+					top: -10px;
+				}
+
+				&:after {
+					top: 10px;
+				}
+			}
+
+			&__left {
+				left: 0px; 
+			}
+
+			&__right {
+				left: 15px;
+			}
+
+			&:hover{
+		      cursor: pointer;
+		    } 
+
+		    @include bp($menu-snap) {
+		    	display: none;
+		    }
+
+	}
+
+	.js-mobile-menu-open { 
+
+		.hamburger-toggle__left,
+		.hamburger-toggle__right {
+			transition-duration: 0.5s;
+			background: transparent !important;
+
+		}
+
+		.hamburger-toggle__left {
+			
+			&:before { background-color: $white; transform: rotateZ(45deg) scaleX(1.4) translate(2px, 2px); }
+			&:after { background-color: $white; transform: rotateZ(-45deg) scaleX(1.4) translate(2px, -2px); }
+		}
+
+		.hamburger-toggle__right {
+			&:before { background-color: $white; transform: rotateZ(-45deg) scaleX(1.4) translate(-2px, 2px); }
+			&:after { background-color: $white; transform: rotateZ(45deg) scaleX(1.4) translate(-2px, -2px); }
+		}
+	}
+
+
+	
+}
+
+

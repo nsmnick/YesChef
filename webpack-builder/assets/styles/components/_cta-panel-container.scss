@@ -1,0 +1,77 @@
+$cta-mobile-snappoint: 800px;
+
+.cta-panel-container {
+
+
+	display: block;
+
+	@include bp($cta-mobile-snappoint) {
+		display: flex;
+		justify-content: space-between;
+	}
+
+
+	&__col1 {
+		
+		display: block;
+		width: 100%;
+
+		img {
+			display: block;
+			width: 80%;
+			max-width: 300px;
+			margin: 0 auto;
+		}
+
+		margin-bottom: 40px;
+		
+		@include bp($cta-mobile-snappoint) {
+			flex: 0 0 50%;
+			//background-color: yellow;
+			margin-bottom: 0px;
+			img {
+				display: block;
+				width: 80%;
+			}
+		}
+
+
+	}
+
+
+	&__col2 {
+		
+		display: block;
+		width: 100%;
+
+		@include bp($cta-mobile-snappoint) {
+			flex: 0 0 50%;
+		//	background-color: red;
+			padding-left: 40px;
+			text-align: left;
+
+		}
+
+
+		.intro {
+	//		color: $white;
+			font-weight: bold;
+		}
+
+		.cta {
+			margin-top: 30px;
+		}
+
+		
+		
+	}
+
+
+
+
+
+
+}
+
+
+

@@ -7,72 +7,6 @@
 	//
 
 
-	// Used as main heading in each panel, colours overriden in panel
-
-	// h2 {		
-		
-	// 	&.small {
-	// 		font-size: 23px;
-	// 		margin-bottom: 50px;
-	// 	}
-
-	// }
-
-
-	// h3 {		
-		
-	// 	&.small {
-	// 		font-size: 18px;
-	// 	}
-
-	// 	&.white {
-	// 		color: $white;
-	// 	}
-
-	// }
-
-	// .section-heading-icon {
-	// 	display: block;
-	// 	max-width: 200px;		
-	// 	margin: 0px auto 30px;
-
-	// 	img {
-	// 		width: 100%;
-	// 		display: block;
-	// 	}
-	// }
-
-	// .section-intro-container {
-
-	// 	&--narrow {
-	// 		max-width: 700px;
-	// 	}
-
-	// 	margin: 0 auto 50px;
-
-
-	// 	// Used as main intro in each panel, colours overriden in panel
-	// 	.section-intro {
-	// 		display: block;
-	// 		font-weight: 500;
-	// 		margin: 0 auto; 		
-	// 		font-size: 17px;
-
-	// 		&--m-bottom {
-	// 			margin-bottom: 20px;
-	// 		}
-	// 	}
-
-	// 	.section-intro-content {
-	// 		display: block;
-	// 		margin: 0 auto;
-	// 	}
-
-
-	// }
-	
-
-
 
 	h2 {
 		color: $white;
@@ -80,6 +14,10 @@
 		font-size: 50px;
 		position: relative;
 		margin-bottom: 60px;
+
+		&.no-margin {
+			margin-bottom: 0px;			
+		}
 
 		&.with-stars {
 			margin-bottom: 100px;
@@ -89,15 +27,15 @@
 		&.with-stars {
 			&:after {
 
-				content:""; /* with class ModalCarrot ??*/
+				content:"";
 			  	position: absolute;
 
 			  	background-image: url('../images/stars-light-blue.svg');
 			  	background-size: cover;
 			  	background-repeat: no-repeat;
-			  	//z-index:20; /*a number that's more than the modal box*/
+			  	//z-index:20; 
 			  	margin-left: auto; 
-					margin-right: auto; 
+				margin-right: auto; 
 			  	bottom: -50px;		
 			  	left: 0;
 			  	right: 0;	  	
@@ -111,13 +49,13 @@
 		&.with-green-stars {
 			&:after {
 
-				content:""; /* with class ModalCarrot ??*/
+				content:"";
 			  	position: absolute;
 
 			  	background-image: url('../images/stars-light-green.svg');
 			  	background-size: cover;
 			  	background-repeat: no-repeat;
-			  	//z-index:20; /*a number that's more than the modal box*/
+			  	//z-index:20; 
 			  	margin-left: auto; 
 					margin-right: auto; 
 			  	bottom: -50px;		
@@ -159,21 +97,32 @@
 		&.bottom-green {
 			&:after {
 
-				content:""; /* with class ModalCarrot ??*/
+				content:"";
 			  	position: absolute;
 
 			  	background-image: url('../images/header-bottom-bg.svg');
-			  	//background-color: red;
 			  	background-size: cover;
 			  	background-repeat: no-repeat;
-			  	z-index:100000; /*a number that's more than the modal box*/
+			  	z-index:1000; 
 			  	left:0px;
-			  	bottom:-25px;
+			  	
 			  	right: 0px;
 			  	width: 100%;
-			  	height: 25px;
+			  	
+			  	height: 10px;
+				bottom:-10px;
+
+				@include bp(lap) {		
+					height: 25px;
+					bottom:-25px;
+				}
+
+
 
 			};
+
+
+
 		}
 
 		&--white {
@@ -190,18 +139,24 @@
 
 			&:after {
 
-				content:""; /* with class ModalCarrot ??*/
+				content:"";
 			  	position: absolute;
 
 			  	background-image: url('../images/white-green-panel-bottom-divider.svg');
 			  	background-size: cover;
 			  	background-repeat: no-repeat;
-			  	z-index:100000; /*a number that's more than the modal box*/
+			  	z-index:1000; 
 			  	left:0px;
-			  	bottom:-25px;
 			  	right: 0px;
 			  	width: 100%;
-			  	height: 25px;
+			  	
+			  	height: 10px;
+				bottom:-10px;
+
+				@include bp(lap) {		
+					height: 25px;
+					bottom:-25px;
+				}
 
 			};
 
@@ -214,35 +169,46 @@
 
 			&:before {
 
-				content:""; /* with class ModalCarrot ??*/
+				content:"";
 			  	position: absolute;
 
 			  	background-image: url('../images/blue-panel-top-divider.svg');
 			  	background-size: cover;
 			  	background-repeat: no-repeat;
-			  	z-index:100000; /*a number that's more than the modal box*/
+			  	z-index:1000; 
 			  	left:0px;
 			  	top:0px;
 			  	right: 0px;
 			  	width: 100%;
-			  	height: 25px;
+			  	height: 10px;
+				
+				@include bp(lap) {		
+					height: 25px;
+				}
 
 			};
 
 			&:after {
 
-				content:""; /* with class ModalCarrot ??*/
+				content:"";
 			  	position: absolute;
 
 			  	background-image: url('../images/blue-panel-bottom-divider.svg');
 			  	background-size: cover;
 			  	background-repeat: no-repeat;
-			  	z-index:100000; /*a number that's more than the modal box*/
+			  	z-index:1000; 
 			  	left:0px;
-			  	bottom:-25px;
 			  	right: 0px;
 			  	width: 100%;
 			  	height: 25px;
+
+			  	height: 10px;
+				bottom:-10px;
+
+				@include bp(lap) {		
+					height: 25px;
+					bottom:-25px;
+				}
 
 			};
 
@@ -257,35 +223,48 @@
 
 			&:before {
 
-				content:""; /* with class ModalCarrot ??*/
+				content:"";
 			  	position: absolute;
 
 			  	background-image: url('../images/purple-panel-top-divider.svg');
 			  	background-size: cover;
 			  	background-repeat: no-repeat;
-			  	z-index:100000; /*a number that's more than the modal box*/
+			  	z-index:1000; 
 			  	left:0px;
 			  	top:0px;
 			  	right: 0px;
 			  	width: 100%;
-			  	height: 25px;
+			  	
+			  	height: 10px;
+				
+				@include bp(lap) {		
+					height: 25px;
+				}
+
+
 
 			};
 
 			&:after {
 
-				content:""; /* with class ModalCarrot ??*/
+				content:"";
 			  	position: absolute;
 
 			  	background-image: url('../images/purple-panel-bottom-divider.svg');
 			  	background-size: cover;
 			  	background-repeat: no-repeat;
-			  	z-index:100000; /*a number that's more than the modal box*/
+			  	z-index:1000; 
 			  	left:0px;
-			  	bottom:-25px;
 			  	right: 0px;
 			  	width: 100%;
-			  	height: 25px;
+			  	
+			  	height: 10px;
+				bottom:-10px;
+
+				@include bp(lap) {		
+					height: 25px;
+					bottom:-25px;
+				}
 
 			};
 
@@ -308,19 +287,25 @@
 
 			&:before {
 
-				content:""; /* with class ModalCarrot ??*/
+				content:"";
 			  	position: absolute;
 
 			  	background-image: url('../images/soft-green-panel-top-divider.svg');
 
 			  	background-size: cover;
 			  	background-repeat: no-repeat;
-			  	z-index:100000; /*a number that's more than the modal box*/
+			  	z-index:1000; 
 			  	left:0px;
 			  	top:0px;
 			  	right: 0px;
 			  	width: 100%;
-			  	height: 25px;
+			  	
+			  	height: 10px;
+				
+				@include bp(lap) {		
+					height: 25px;
+				}
+				
 
 			};
 
@@ -332,18 +317,24 @@
 
 			&:after {
 
-				content:""; /* with class ModalCarrot ??*/
+				content:"";
 			  	position: absolute;
 
 			  	background-image: url('../images/soft-green-panel-bottom-divider.svg');
 			  	background-size: cover;
 			  	background-repeat: no-repeat;
-			  	z-index:100000; /*a number that's more than the modal box*/
+			  	z-index:1000; 
 			  	left:0px;
-			  	bottom:-25px;
 			  	right: 0px;
 			  	width: 100%;
-			  	height: 25px;
+			  	
+			  	height: 10px;
+				bottom:-10px;
+
+				@include bp(lap) {		
+					height: 25px;
+					bottom:-25px;
+				}
 
 			};
 
@@ -412,1115 +403,7 @@
 		font-weight: bold;
 	}
 
-	// &__site-wide-panel {
-
-	// 	background-repeat: no-repeat;
-	// 	background-size: cover;
-	// 	background-position: center;
-
-	// 	filter: grayscale(.8);
-	// 	@include bp(800px) {
-	// 		filter: grayscale(0);
-	// 	}
-	// }
-
-
-	// &__two-cols {
-
-	// 	background-color: $brand-yellow;
-	// 	text-align: center;
-		
-	// 	&--white {	
-	// 		background-color: $white;	
-	// 	}
-
-
-	// 	&--light-yellow {	
-	// 		background-color: $brand_light_yellow;	
-	// 	}
-
-	// 	&--yellow{
-			
-	// 		background-color: $brand-yellow;	
-
-	// 		h2 {
-	// 			color: $white;
-	// 		}
-
-	// 	}
-
-	// 	h2.pre-heading {
-	// 		text-transform: uppercase;
-	// 		font-size: 20px;
-	// 		font-weight: 500;
-	// 		margin-bottom: 20px;
-	// 	}
-
-	// 	&--top-content{
-	// 		margin-bottom: 80px;
-	// 	}
-
-	// 	&--bottom-content {
-
-	// 	}
-
-	// }
-
-
-	// $two-column-background-snap: 600px;
-	// &__two-cols-background {
-
-	// 	background-repeat: no-repeat;
-	// 	background-size: cover;
-	// 	background-position: center;
-
-
-	// 	h2 {
-	// 		color: $white;
-	// 		font-weight: 500;
-	// 		text-align: center;
-
-	// 		@include bp($two-column-background-snap) {
-	// 			text-align: left;
-	// 		}
-	// 	}
-
-	// 	.intro {
-
-	// 		max-width: 100%;
-	// 		text-align: center;
-
-	// 		@include bp($two-column-background-snap) {
-	// 			max-width: 50%;
-	// 			text-align: left;
-	// 		}
-	// 		color: $white;
-	// 	}
-
-
-
-	// }
-
-	// &__two-cols-60-40 {
-
-	// 	background-color: $white;	
-	// 	text-align: center;
-		
-	// 	background-repeat: no-repeat;
-	// 	background-position: 100% 0px;
-	// 	background-size: 40%;
-	// 	background-image: url('../images/white-bg-corner-left.jpg');
-	// 	background-position: 0% 0px;
-
-
-	// }
-
-
-
-
-
-	// &__form-panel {
-
-	// 	background-color: $brand-yellow;
-	// 	text-align: center;
-		
-	// 	&--white {	
-	// 		background-color: $white;	
-	// 	}
-
-
-	// 	&--light-yellow {	
-	// 		background-color: $brand_light_yellow;	
-	// 	}
-
-	// 	&--yellow{
-			
-	// 		background-color: $brand-yellow;	
-
-	// 		h2 {
-	// 			color: $white;
-	// 		}
-
-	// 	}
-
-	// 	&--top-content{
-	// 		margin-bottom: 80px;
-	// 	}
-
-	// 	&--bottom-content {
-
-	// 	}
-
-	// }
-
-
-
-
-
-
-	// &__three-cols {
-
-	// 	background-color: $brand-yellow;
-	// 	text-align: center;
-		
-	// 	background-image: url('../images/yellow-bg-corner.jpg');
-	// 	background-repeat: no-repeat;
-	// 	background-position: 100% 0px;
-	// 	background-size: 40%;
-		
-	// 	// This was in place as an overlap for home page hero banner
-	// 	// @include bp(lap) {
-	// 	// 	margin-top: -20px;
-	// 	// 	z-index: 100;
-	// 	// }
-
-
-	// 	&--white {	
-
-	// 		background-color: $white;	
-
-	// 		&--left {
-	// 			background-image: url('../images/white-bg-corner-left.jpg');
-	// 			background-position: 0% 0px;
-	// 		}
-
-	// 		&--right {
-				
-	// 			background-image: url('../images/white-bg-corner-right.jpg');
-	// 			background-position: 100% 0px;
-	// 		}
-
-	// 	}
-
-
-	// 	&--grey {	
-
-	// 		background-color: $mid-grey;	
-
-	// 		&--left {
-	// 			background-image: url('../images/grey-bg-corner-left.jpg');
-	// 			background-position: 0% 0px;
-	// 		}
-
-	// 		&--right {
-				
-	// 			background-image: url('../images/grey-bg-corner-right.jpg');
-	// 			background-position: 100% 0px;
-	// 		}
-
-	// 		h2 {
-	// 			color: $white;
-	// 		}
-
-	// 		h3 {
-	// 			color: $brand-yellow;
-	// 		}
-
-	// 	}
-
-	// 	&--yellow{
-			
-	// 		background-color: $brand-yellow;	
-
-	// 		h2 {
-	// 			color: $white;
-	// 		}
-
-	// 		&--left {
-				
-	// 			background-image: url('../images/yellow-bg-corner-left.jpg');
-	// 			background-position: 0% 0px;
-	// 		}
-
-	// 		&--right {
-	// 			background-image: url('../images/yellow-bg-corner-right.jpg');
-	// 			background-position: 100% 0px;
-	// 		}
-	// 	}
-
-
-	// }
-
-
-	// &__three-circle-image-panel {
-
-	// 	background-color: $mid_grey;
-
-
-	// 	background-repeat: no-repeat;
-	// 	background-position: center;
-	// 	background-size: cover;
-
-	// 	text-align: center;
-
-	// 	color: $white;
-
-	// 	padding: 80px 10px;
-	// 	@include bp(860px) {
-	// 		padding: 100px 0px;
-	// 	}
-	// }
-
-
-	// &__cta-panel {
-
-	// 	text-align: center;
-
-
-	// 	&--yellow{
-	// 		background-color: $brand-yellow;
-
-	// 		h2 {
-	// 			color: $mid_grey;
-	// 		}
-
-	// 		.intro {
-	// 			color: $mid_grey;
-	// 		}
-
-	// 	}
-
-	// 	&--grey {
-	// 		background-color: $mid_grey;
-
-	// 		h2 {
-	// 			color: $white;
-	// 		}
-
-	// 		.intro {
-	// 			color: $white;
-	// 		}
-	// 	}
-
-
-		
-		
-
-		
-
-		
-
-	// }
-
-
-
-
-
-	// &__accordion-panel {
-
-	// 	background-color: $brand-yellow;
-	// 	text-align: center;
-		
-
-	// 	&--pale-yellow {	
-	// 		background-color: $pale_yellow;	
-	// 	}
-
-	// 	&--pale-grey {	
-
-	// 		background-color: $lighter_grey;	
-
-	// 	}
-
-	// 	&--white {	
-
-	// 		background-color: $white;	
-
-	// 		background-repeat: no-repeat;
-	// 		background-position: 100% 0px;
-	// 		background-size: 40%;
-	// 		background-image: url('../images/white-bg-corner-right.jpg');
-
-	// 	}
-
 	
-
-	// }
-
-
-
-
-
-	// &__content-panel {
-
-	// 	text-align: center;
-	// 	background-repeat: no-repeat;
-	// 	background-position: 0px 0px;
-	// 	background-size: 40%;
-
-
-	// 	// .container {
-	// 	// 	&.yellow-top-border {
-	// 	// 		border-top: solid 3px $brand-yellow;
-	// 	// 	}
-	// 	// }
-
-	// 	&--white {	
-
-	// 		background-color: $white;	
-
-	// 		&--left {
-	// 			background-image: url('../images/white-bg-corner-left.jpg');
-	// 			background-position: 0% 0px;
-	// 		}
-
-	// 		&--right {
-				
-	// 			background-image: url('../images/white-bg-corner-right.jpg');
-	// 			background-position: 100% 0px;
-	// 		}
-
-	// 	}
-
-	// 	&--yellow{
-			
-	// 		background-color: $brand-yellow;	
-
-	// 		h2 {
-	// 			color: $white;
-	// 		}
-
-	// 		&--left {
-				
-	// 			background-image: url('../images/yellow-bg-corner-left.jpg');
-	// 			background-position: 0% 0px;
-	// 		}
-
-	// 		&--right {
-	// 			background-image: url('../images/yellow-bg-corner-right.jpg');
-	// 			background-position: 100% 0px;
-	// 		}
-	// 	}
-
-
-	// 	&--no-top {
-
-	// 		padding-top: 0px;
-
-	// 		@include bp(lap) {
-	// 			padding-top: 0px;
-	// 		}
-
-	// 	}
-
-
-		
-		
-
-		
-
-		
-
-	// }
-
-
-
-
-	// &__content-sections-panel {
-
-	// 	text-align: center;
-	// 	background-repeat: no-repeat;
-	// 	background-position: 0px 0px;
-	// 	background-size: 40%;
-	// 	background-image: url('../images/white-bg-corner-left.jpg');
-	// 	background-position: 0% 0px;
-
-	// 	background-color: $white;	
-		
-
-		
-
-	// }
-
-
-
-
-
-	// &__wobbly-cols {
-
-	// 	background-color: $white;
-	// 	text-align: center;
-	// 	background-repeat: no-repeat;
-	// 	background-size: 40%;
-		
-	// 	&--white {	
-
-	// 		background-color: $white;	
-
-	// 		&--left {
-	// 			background-image: url('../images/white-bg-corner-left.jpg');
-	// 			background-position: 0% 0px;
-	// 		}
-
-	// 		&--right {
-				
-	// 			background-image: url('../images/white-bg-corner-right.jpg');
-	// 			background-position: 100% 0px;
-	// 		}
-
-	// 	}
-
-	// 	&--yellow{
-			
-	// 		background-color: $brand-yellow;	
-
-	// 		h2 {
-	// 			color: $white;
-	// 		}
-
-	// 		&--left {
-				
-	// 			background-image: url('../images/yellow-bg-corner-left.jpg');
-	// 			background-position: 0% 0px;
-	// 		}
-
-	// 		&--right {
-	// 			background-image: url('../images/yellow-bg-corner-right.jpg');
-	// 			background-position: 100% 0px;
-	// 		}
-	// 	}
-
-
-
-	// 	h3 {
-	// 		text-align: center;
-	// 		margin-bottom: 30px;		
-	// 	}
-
-
-	// }
-
-
-
-
-
-	// &__image-content-slider-panel {
-
-	// 	background-color: $mid_grey;
-
-	// 	.container {
-	// 		display: block;
-	// 		width: auto;
-	// 		float: none;
-	// 		margin: 0 auto;
-	// 		overflow: auto;
-	// 		padding: 0px 0px;
-	// 		//background-color: red;
-
-	// 		@include bp('1000px') {
-	// 			max-width: 1450px;
-	// 			padding: 0px 40px;
-	// 			//background-color: green;
-	// 		}
-
-	// 		@include bp('1165px') {
-	// 			max-width: 1450px;
-	// 			padding: 0px 40px;
-	// 			//background-color: blue;
-	// 		}
-	// 	}
-
-		
-
-	// }
-
-
-
-
-
-
-
-
-
-	// &__disc-cols {
-
-	// 	background-color: $brand-yellow;
-	// 	text-align: center;
-
-	// 	&--image {
-	// 		background-image: url('../images/climate-bg.jpg');
-	// 		background-repeat: no-repeat;
-	// 		background-position: center;
-	// 		background-size: cover;
-
-	// 		h2 {
-	// 			color: $white;
-	// 		}
-
-	// 		.section-intro {
-	// 			color: $white;
-	// 		}
-	// 	}
-
-	// 	&--white {
-	// 		background-color: $white;
-
-	// 		background-repeat: no-repeat;
-	// 		background-size: 40%;
-
-
-	// 		&--left {
-				
-	// 			background-image: url('../images/white-bg-corner-left.jpg');
-	// 			background-position: 0% 0px;
-	// 		}
-
-	// 		&--right {
-	// 			background-image: url('../images/white-bg-corner-right.jpg');
-	// 			background-position: 100% 0px;
-	// 		}
-
-	// 		.section-intro {
-	// 			color: $c-body-text;
-	// 		}
-	// 	}
-
-	// 	&--no-top {
-
-	// 		padding-top: 0px;
-
-	// 		@include bp(lap) {
-	// 			padding-top: 0px;
-	// 		}
-
-	// 	}
-
-
-	
-		
-
-		
-
-	// }
-
-
-
-
-	// &__multi-cols-panel {
-
-
-	// 	background-color: $white;
-	// 	text-align: center;
-
-	// 	background-image: url('../images/white-bg-corner.jpg');
-	// 	background-repeat: no-repeat;
-	// 	background-position: 0px 0px;
-	// 	background-size: 40%;
-		
-	
-	// 	h2 {
-	// 		margin-bottom: 40px;
-	// 	}
-
-	// }
-
-
-
-
-	// &__team-cols-panel {
-
-
-	// 	background-color: $white;
-	// 	text-align: center;
-
-	// 	background-image: url('../images/white-bg-corner.jpg');
-	// 	background-repeat: no-repeat;
-	// 	background-position: 0px 0px;
-	// 	background-size: 40%;
-		
-	
-	// 	h2 {
-	// 		margin-bottom: 40px;
-	// 	}
-
-	// 	.container {
-	// 		overflow: visible;
-	// 	}
-
-
-	// 	hr {
-	// 		background-color: $brand_yellow;
-	// 		border: solid 1px $brand_yellow;
-	// 	}
-
-
-
-
-	// }
-
-
-
-
-
-
-	// &__content-image-panel {
-
-	// 	background-color: $mid_grey;
-	// 	text-align: center;
-
-	// 	h2 {
-	// 		color: $white;
-	// 		margin-bottom: 40px;
-	// 	}
-
-	// }
-
-
-
-
-
-
-
-	// &__job-search {
-	// 	background-color: $brand-yellow;
-	// 	text-align: center;
-		
-	// 	background-image: url('../images/yellow-bg-corner-right.jpg');
-	// 	background-position: 100% 0px;
-	// 	background-repeat: no-repeat;
-	// 	background-size: 40%;
-
-	// 	h2 {
-	// 		color: $white;
-	// 	}
-
-	// }
-
-
-
-
-	// &__job-results {
-	// 	background-color: $brand-yellow;
-
-	// 	padding: 0px 5px 50px;
-
-	// 	@include bp(lap) {
-	// 		padding: 0px 0px 70px;
-	// 	}
-	
-
-
-
-	// }
-
-	// &__job-detail {
-		
-	// 	background-color: $white;
-		
-	// 	.content-container {
-
-	// 		max-width: 900px;
-	// 		margin: 0 auto;
-
-	// 		h2 {
-	// 		font-size: 28px;
-	// 		margin-top: 40px;
-	// 		text-transform: none;
-			
-	// 		}
-
-	// 		h3 {
-	// 			font-size: 18px;
-	// 			margin-top: 30px;
-	// 		}
-	// 	}
-
-		
-	// }
-
-
-	// &__policy-detail {
-		
-	// 	background-color: $white;
-		
-	// 	.content-container {
-
-	// 		max-width: 900px;
-	// 		margin: 0 auto;
-
-	// 		h2 {
-	// 		font-size: 20px;
-	// 		margin-top: 40px;
-	// 		text-transform: none;
-			
-	// 		}
-
-	// 		h3 {
-	// 			font-size: 16px;
-	// 			margin-top: 30px;
-	// 		}
-	// 	}
-
-		
-	// }
-
-
-	// &__job-application {
-		
-	// 	background-color: $mid_grey;;
-	// 	text-align: center;
-
-	// 	.content-container {
-
-	// 		max-width: 900px;
-	// 		margin: 0 auto;
-
-	// 		h3 {
-	// 			font-size: 36px;
-	// 			margin-top: 30px;
-	// 			font-weight: 900;
-	// 			color: $brand-yellow;
-
-	// 		}
-
-	// 		.intro {
-	// 			color: white;
-	// 			font-weight: 600;
-	// 			color: $white;
-
-	// 		}
-	// 	}
-
-
-	// }
-
-
-
-	// // This is used for news and case studies
-	// // This is the same snap point as the internal news hero
-	// $lap_snap: 925px;
-
-	// &__news-detail {
-	// 	background-color: $white;
-
-	// 	background-repeat: no-repeat;
-	// 	background-size: 40%;
-	// 	background-image: url('../images/white-bg-corner-right.jpg');
-	// 	background-position: 100% 0px;
-
-
-	// 	.content-container {
-
-	// 		margin-top: 60px;
-
-	// 		display: block;
-
-	// 		@include bp($lap_snap) {
-	// 			display: flex;
-	// 			justify-content: space-between;
-	// 		}
-
-	// 		&__col1 {
-
-	// 			display: block;
-	// 			width: 100%;
-	// 			margin-right: 0px;
-	// 			margin-bottom: 40px;
-
-	// 			@include bp($lap_snap) {
-	// 				flex: 1 1 auto;
-	// 				margin-right: 50px;
-	// 				margin-bottom: 0px;
-	// 			}
-	// 			//background-color: red;
-				
-	// 		}
-
-	// 		&__col2 {
-				
-	// 			display: block;
-	// 			width: 100%;
-
-	// 			@include bp($lap_snap) {
-	// 				flex: 0 0 300px;
-	// 				width: 300px;
-	// 			}
-
-				
-	// 			//background-color: green;
-	// 		}
-	// 	}
-
-	// }
-
-
-
-	// &__more-articles {
-
-
-	// 	background-color: $white;
-
-
-	// }
-
-
-	
-
-
-
-	// &__generic-search {
-	// 	background-color: $brand-yellow;
-	// 	text-align: center;
-		
-	// 	h2 {
-	// 		color: $white;
-	// 	}
-
-	// }
-
-
-
-	// &__generic-results {
-	// 	background-color: $white;
-
-	// 	// padding: 0px 5px 50px;
-
-	// 	// @include bp(lap) {
-	// 	// 	padding: 0px 0px 70px;
-	// 	// }
-	
-
-
-
-	// }
-
-
-
-
-	// &__four-cols {
-
-
-	// 	text-align: center;
-	// 	background-color: $white;
-	// 	background-repeat: no-repeat;
-	// 	background-size: 40%;
-
-	// 	&--white {	
-
-	// 		background-color: $white;
-
-	// 		// h2 {
-	// 		// 	color: $dark_grey;
-	// 		// }		
-
-	// 		&--left {
-	// 			background-image: url('../images/white-bg-corner-left.jpg');
-	// 			background-position: 0% 0px;
-	// 		}
-
-	// 		&--right {
-				
-	// 			background-image: url('../images/white-bg-corner-right.jpg');
-	// 			background-position: 100% 0px;
-	// 		}
-
-	// 	}
-
-	// 	&--yellow{
-			
-	// 		background-color: $brand-yellow;	
-
-	// 		h2 {
-	// 			color: $white;
-	// 		}
-
-	// 		&--left {
-				
-	// 			background-image: url('../images/yellow-bg-corner-left.jpg');
-	// 			background-position: 0% 0px;
-	// 		}
-
-	// 		&--right {
-	// 			background-image: url('../images/yellow-bg-corner-right.jpg');
-	// 			background-position: 100% 0px;
-	// 		}
-	// 	}
-
-
-	// 	&--grey{
-			
-	// 		background-color: $mid-grey;	
-
-	// 		h2 {
-	// 			color: $white;
-	// 		}
-
-	// 		h3 {
-	// 			color: $brand-yellow;
-	// 			margin-bottom: 20px;
-	// 		}
-
-	// 		.section-intro {
-	// 			color: $white;
-	// 		}
-
-			
-
-	// 		&--left {
-	// 			background-image: url('../images/grey-bg-corner-left.jpg');
-	// 			background-position: 0% 0px;
-	// 		}
-
-	// 		&--right {
-				
-	// 			background-image: url('../images/grey-bg-corner-right.jpg');
-	// 			background-position: 100% 0px;
-	// 		}
-	// 	}
-	
-		
-
-	// }
-
-
-
-
-
-
-	// &__two-cols-icon-panel {
-
-
-	// 	text-align: center;
-	// 	background-color: $white;
-	// 	background-repeat: no-repeat;
-	// 	background-size: 40%;
-
-	// 	&--white {	
-
-	// 		background-color: $white;
-
-	// 		// h2 {
-	// 		// 	color: $dark_grey;
-	// 		// }		
-
-	// 		&--left {
-	// 			background-image: url('../images/white-bg-corner-left.jpg');
-	// 			background-position: 0% 0px;
-	// 		}
-
-	// 		&--right {
-				
-	// 			background-image: url('../images/white-bg-corner-right.jpg');
-	// 			background-position: 100% 0px;
-	// 		}
-
-	// 	}
-
-	// 	&--yellow{
-			
-	// 		background-color: $brand-yellow;	
-
-	// 		h2 {
-	// 			color: $mid_grey;
-	// 		}
-
-	// 		&--left {
-				
-	// 			background-image: url('../images/yellow-bg-corner-left.jpg');
-	// 			background-position: 0% 0px;
-	// 		}
-
-	// 		&--right {
-	// 			background-image: url('../images/yellow-bg-corner-right.jpg');
-	// 			background-position: 100% 0px;
-	// 		}
-	// 	}
-	
-		
-
-	// }
-
-
-
-
-	
-
-
-	
-
-
-	// &__sliding_block_panel {
-
-		
-	// 	background-image: url('../images/white-bg-corner.jpg');
-	// 	background-repeat: no-repeat;
-	// 	background-position: 0px 0px;
-	// 	background-size: 40%;
-
-	// 	text-align: center;
-	// 	background-color: $white;
-	
-	// 	h1 {
-	// 		font-size: 36px;
-	// 	}
-
-
-	// 	.container {
-
-	// 		padding: 0px 5px;
-
-	// 		@include bp(lap) {
-	// 			padding: 0px 100px;
-	// 		}
-	// 	}
-
-
-	// }
-
-
-
-
-
-	// &__sliding_quote_panel {
-
-		
-	// 	background-color: $mid_grey;
-	// 	text-align: center;
-		
-	
-	// 	h1 {
-	// 		font-size: 36px;
-	// 	}
-
-	// 	.container {
-
-	// 		padding: 0px 5px;
-
-	// 		@include bp(lap) {
-	// 			padding: 0px 100px;
-	// 		}
-	// 	}
-
-	// }
-
-
-
-	
-
-
-	// $stats-mobile-snappoint: 1300px;
-	// &__stats-panel {
-
-	// 	background-color: $mid_grey;
-	// 	text-align: left;
-
-	// 	background-repeat: no-repeat;
-	// 	background-position: 100% 0px;
-	// 	background-attachment: fixed;
-
-	// 	h2 {
-	// 		color: $white;
-	// 		margin-bottom: 40px;
-	// 	}
-
-	// 	background-size: 0 0;
-
-	// 	@include bp($stats-mobile-snappoint) {
-	// 		background-size: contain;
-	// 	}
-
-	// }
-
 
 
 }

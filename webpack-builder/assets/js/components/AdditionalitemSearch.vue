@@ -9,14 +9,39 @@
 			<div class="container">
 
 				<div id="job-results">
-					<additionalitem-search-results :additionalitems="additionalitems"></additionalitem-search-results>
+					<additionalitem-search-results :additionalitems="additionalitems" @showModalx="showModalx"></additionalitem-search-results>
 				</div>
 
 			</div>
 
 		</section>
 
+
+		<div id="additionalitem-modalxx">
+			<div class="modal" v-if="show" @click="hideModal">
+				<div class="modal__container" @click.stop>
+					<a class="modal__close" href="#" @click.prevent="hideModal"></a>
+
+					<div class="modal__wrapper">
+						<div class="modal__additionalitem">
+							
+							<h3 class="modal__additionalitem__title">{{ title }}</h3>
+
+						</div>
+
+						<div class="modal__bio" v-html="content"></div>
+					</div>
+
+				</div>
+			</div>
 		</div>
+		
+
+	</div>
+
+
+			
+
 
 
 </template>
@@ -43,6 +68,9 @@ export default {
 			, total: 0
 			, total_pages: 0
 			, loading: false
+			, show: false
+			, title: ''
+			, content: ''
 		}
 	}
 	, computed: {
@@ -90,6 +118,19 @@ export default {
 			
 
 			});
+		},
+		showModalx(title,content)
+		{
+		//	console.log('parent yes');
+			this.title = title;
+			this.content = content;
+			document.body.style.overflow = 'hidden';
+			this.show = true;
+		},
+		hideModal()
+		{
+			document.body.style.overflow = 'auto';
+			this.show = false;
 		}
 
 		

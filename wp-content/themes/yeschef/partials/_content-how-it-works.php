@@ -4,16 +4,16 @@
 	$bg_bottom_class = ($bottom=='green' ? '' : ' bottom-blue');
 
 ?>
-<section class="panel content content__panel content__panel--soft-dark-green<?php echo $bg_top_class;?><?php echo $bg_bottom_class;?>">
+<section id="how-it-works" class="panel content content__panel content__panel--soft-dark-green<?php echo $bg_top_class;?><?php echo $bg_bottom_class;?>">
 
 	<div class="container">
 
 
-		<h2><?php echo get_option('hit_title',''); ?></h2>
+		<h2 class="animate-fade"><?php echo get_option('hit_title',''); ?></h2>
 
 		
 		
-		<div class="four-cols-container">								
+		<div class="four-cols-container animate">								
 
 			<div class="four-cols-container__col">
 

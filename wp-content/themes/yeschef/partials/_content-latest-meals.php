@@ -4,7 +4,7 @@
 	<div class="container">
 
 
-		<h2 class="with-stars"><?php echo get_field('heading'); ?></h2>
+		<h2 class="with-stars animate-fade"><?php echo get_field('heading'); ?></h2>
 
 		
 		<?php
@@ -12,7 +12,7 @@
 		{
 		?>
 			
-			<div class="three-cols-container">								
+			<div class="three-cols-container animate">								
 			<?php
 			while ( have_rows('meals') ) : the_row(); 
 
@@ -103,7 +103,7 @@
 		
 		<br/>
 		<br/>
-		<a class="button">View all recipes and meals</a>
+		<a href="/recipes-meals/" class="button">View all recipes and meals</a>
 
 	</div>
 		

@@ -6,6 +6,7 @@ $black: #000000;
 $teal: #008482;
 $dark_teal: #0C6463;
 $soft_green: #EAF0CE;
+$light_green: #F6F9EC;
 $soft_dark_green: #DCE3B9;
 
 $blue: #1E6597;
@@ -39,36 +40,4 @@ $warning_orange: #f3a849;
 
 
 
-// Generic Colours
-$c-body-text: $mid_grey;
-$c-body-dark_text: $dark_grey2;
-
-// Header
-$c-header_banner_background:					$dark_grey;
-$c-header_internal_banner_background: 			$dark_grey1;
-$c-header_internal_subpage_banner_background: 	$brand_yellow;
-
-
-// Menu
-$c-main-menu-text:				$soft_green;
-$c_main_menu_text_hover: 		$brand_yellow;
-
-$c_main_menu_mobile_text:		$soft_green;
-
-$c_submenu_background: 			$white;
-$c_submenu_background_hover: 	$black;
-$c_submenu_text: 				$black;
-$c_submenu_background-border:	$white;
-
-$c_mobilemenu_background:		$black;
-$c_mobilesubmenu_background:	$dark_grey;
-$c_mobilesubmenu_mobile_background_border:		$dark_grey;
-
-
-$c-quote_panel_alt:				$lighter_grey;
-
-$c-search-button:		$mid_grey;
-$c-search-button-hover:	$mid_grey1;
-
-$c-search-results_panel:	$brand_light_yellow;
 

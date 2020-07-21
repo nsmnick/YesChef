@@ -4,17 +4,12 @@ import './styles/styles.scss';
 
 // Scripts
 import './js/script.js';
-//import './js/jquery.viewportchecker.js';
+import './js/jquery.viewportchecker.js';
 import './js/cookie-accept.js';
 
 // Vue Components
 import './js/meals-search.js';
 import './js/additionalitems-search.js';
-
-
-// import './js/jobs-search-dialog-include.js';
-// import './js/news-search.js';
-// import './js/case-studies-search.js';
 import './js/additionalitem-modal.js';
 
 
@@ -38,11 +33,3 @@ import icon_prep_sg from './images/icon_prep_sg.svg';
 
 
 
-
-
-jQuery(window).ready(function($) {
-	
-
-
-
-});

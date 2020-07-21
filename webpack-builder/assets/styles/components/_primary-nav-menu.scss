@@ -11,7 +11,7 @@
 	}
 
 	> .menu-item {
-		color: $c_main_menu_mobile_text;
+		color: $soft_green;
 		font-size: 16px;
 		text-transform: uppercase;
 		line-height: 1em;
@@ -28,7 +28,7 @@
 		@include bp($menu-snap) {
 			font-size: 16px;
 			text-align: left;
-			color: $c_main_menu_text;
+			color: $soft_green;
 			margin: 0px 0px;
 			padding-top: 5px;
 			padding-bottom: 25px;
@@ -107,13 +107,13 @@
 			display: block;
 			//background-color: yellow;
 
-			color: $c_main_menu_mobile_text;
+			color: $soft_green;
 			padding: 15px 20px;
 			position: relative;
 			transition: color .3s linear;
 
 			@include bp($menu-snap) {
-				color: $c_main_menu_text;
+				color: $soft_green;
 				padding: 0 15px;
 
 			}
@@ -123,10 +123,22 @@
 		&:hover {
 			> a {
 				
-				color: $white;
-
+				
 				@include bp($menu-snap) {
-					color: $white;
+				
+					&::before {
+	
+						position: absolute;
+					    top: -35px;
+					    width: auto;
+					    height: 20px;
+					    width: 40px;
+					    left: 50%;
+					    margin-left:-25px;
+					    z-index: 999999;
+						content: url('../images/stars-light-blue.svg');
+
+					}
 
 				}
 			}
@@ -175,77 +187,77 @@
 			}
 		}
 
-		.sub-menu {
-			display: none;
+		// .sub-menu {
+		// 	display: none;
 			
-			// Mobile
-			background-color: $c_mobilesubmenu_background;
-			color: $white;
-			min-width: 10em;
+		// 	// Mobile
+		// 	background-color: $c_mobilesubmenu_background;
+		// 	color: $white;
+		// 	min-width: 10em;
 
-			@include bp($menu-snap) {
+		// 	@include bp($menu-snap) {
 
-				background-color: $c_submenu_background;
+		// 		background-color: $c_submenu_background;
 
-				color: $c_submenu_text;
-				position: absolute;
-				top: 154PX; //calc(100% -12px);
-				left: 0;
-				right: 0;
-				width: 100%;
-				background-color: rgba(0,0,0,.5);
-				z-index: 999;
-				text-align: center;
+		// 		color: $c_submenu_text;
+		// 		position: absolute;
+		// 		top: 154PX; //calc(100% -12px);
+		// 		left: 0;
+		// 		right: 0;
+		// 		width: 100%;
+		// 		background-color: rgba(0,0,0,.5);
+		// 		z-index: 999;
+		// 		text-align: center;
 
-				margin: 0px;
+		// 		margin: 0px;
 
-			 	li {
-			 		box-sizing: none !important;
-			 	}
-			}
+		// 	 	li {
+		// 	 		box-sizing: none !important;
+		// 	 	}
+		// 	}
 	
-			> .menu-item {
+		// 	> .menu-item {
 				
-				white-space: nowrap;
-				border-bottom: solid 1px $c_mobilesubmenu_mobile_background_border;
+		// 		white-space: nowrap;
+		// 		border-bottom: solid 1px $c_mobilesubmenu_mobile_background_border;
 
-				@include bp($menu-snap) {
-					display: inline-block;
-					margin: 0px;
-					padding: 0px;
-					box-sizing: none !important;
-				}
+		// 		@include bp($menu-snap) {
+		// 			display: inline-block;
+		// 			margin: 0px;
+		// 			padding: 0px;
+		// 			box-sizing: none !important;
+		// 		}
 
 				
 	
-				> a {
-					display: block;
-					color: $white;
-					padding: 15px 20px;
+		// 		> a {
+		// 			display: block;
+		// 			color: $white;
+		// 			padding: 15px 20px;
 		
-					@include bp($menu-snap) {
-						color: $white;
-						display: inline-block;
-						margin: 0px;
-						padding: 40px 20px;
+		// 			@include bp($menu-snap) {
+		// 				color: $white;
+		// 				display: inline-block;
+		// 				margin: 0px;
+		// 				padding: 40px 20px;
 
 						
-					}
+		// 			}
 
-					&:hover {
+		// 			&:hover {
 						
-						color: $c_main_menu_text_hover;
+		// 				color: $soft_green_hover;
 
-						@include bp($menu-snap) {
+		// 				@include bp($menu-snap) {
 
-							background-color: $black;
-							color: $white;
-						}
-					}
+		// 					background-color: $black;
+		// 					color: $white;
+		// 				}
+		// 			}
 
-				}
+		// 		}
 
-			}
-		}
+		// 	}
+		// }
 	}
 }

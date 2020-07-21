@@ -30,9 +30,9 @@ define('DB_USER', 'root');
 define('DB_PASSWORD', 'root');
 
 // STG
-// define('DB_NAME', 'nsmdigit_amber');
-// define('DB_USER', 'nsmdigit_amber');
-// define('DB_PASSWORD', 'A&f-gah(WO0v');
+// define('DB_NAME', 'nsmdigit_yeschef');
+// define('DB_USER', 'nsmdigit_yeschef');
+// define('DB_PASSWORD', 'V%7kGQsITl7V');
 
 
 

@@ -4,13 +4,48 @@ $pre-header-snap: '600px';
 
 
 .home-bg-image {
+	
 	position: absolute;
-	height: 950px;
-	width: 100%;
+	height: 340px;
+	//width: 100%;
+	//margin-top: 50px;
+	top: 115px;
+	
+	left: 5px;
+	right: 5px;
+	//background-color: red;
+	//height: auto;
 
-	background-image: url('../images/home-hero-bg.png');
+
+	@include bp(900px) {
+		top: 0px;
+		padding-top: 165px;
+		height: 600px;
+	}
+
+	@include bp(1000px) {
+		height: 700px;
+	}
+
+	
+	@include bp(1200px) {
+		height: 900px;
+	}	
+
+	@include bp(1500px) {
+		height: 900px;
+	}
+
+
+
+	background-image: url('../images/home-hero-mobile-bg.png');
+	background-position: 50% 0px;
+
+	@include bp(900px) {
+		background-image: url('../images/home-hero-bg.png');
+		background-position: 100% 0px;
+	}
 	background-size: contain;
-	background-position: 100% 0px;
 	background-repeat: no-repeat;
 	//background-color: red;
 	z-index: -1;
@@ -100,6 +135,13 @@ $pre-header-snap: '600px';
 			
 			
 			flex: 0 1 auto;
+			align-self: flex-start;
+ 			margin-top: 10px;
+
+ 			@include bp($menu-snap) {
+ 				margin-top: 25px;
+ 			}
+
 		//	background-color: red;
 
 			
@@ -128,7 +170,7 @@ $pre-header-snap: '600px';
 		padding-top: 80px;
 		//padding: 40px 0;
 		overflow: auto;
-		transition: left .2s ease-out;
+		transition: left .1s ease-out;
 
 		@include bp($menu-snap) {
 			background-color: transparent;
@@ -150,6 +192,7 @@ $pre-header-snap: '600px';
     		//box-shadow: -13px 3px 14px -10px rgba(0,0,0,0.5);
 			//left: 50px;
 			left: 0px;
+
 		}
 	}
 
@@ -170,83 +213,131 @@ $pre-header-snap: '600px';
 
 	}
 
+	.place-order-button {
 
-	.hamburger-toggle {
-
-		position: absolute;
-			top: 0px;
-			right: 0px;
-			width: 30px;
-			height: 30px;
-			transition-duration: 0.5s;
-			z-index: 99999;
-			
-		  
-			&__left,
-			&__right {
-				transition-duration: 0.5s;
-				position: absolute;
-				height: 4px;
-				width: 15px;
-				top: 15px;
-				background-color: $black;
-
-				&:before,
-				&:after {
-					transition-duration: 0.5s;
-					position: absolute;
-					height: 4px;
-					width: 15px;
-					background-color: $black;
-					content: "";
-				}
-
-				&:before {
-					top: -10px;
-				}
-
-				&:after {
-					top: 10px;
-				}
-			}
-
-			&__left {
-				left: 0px; 
-			}
-
-			&__right {
-				left: 15px;
-			}
-
-			&:hover{
-		      cursor: pointer;
-		    } 
-
-		    @include bp($menu-snap) {
-		    	display: none;
-		    }
+		display: none;
+		
+		@include bp($menu-snap) {
+		    display: block;
+	    }
 
 	}
 
+	.mobile-toggle-menu {
+
+		display: block;
+		
+		@include bp($menu-snap) {
+			display: none;
+	    }
+
+	}
+
+	.mobile-toggle-menu-close {
+
+		z-index: 999999999999;
+		display: none;
+		
+		@include bp($menu-snap) {
+			display: none;
+	    }
+
+
+	    background: url('../images/icon-close.svg') no-repeat center $teal;
+		background-size: 14px 14px;
+		width: 50px;
+		height: 50px;
+		border: 3px solid $soft_green; //color('purple-20');
+		border-radius: 50%;
+		position: fixed;
+		top: 30px;
+		right: 20px;
+		//box-shadow: 0px 8px 20px rgba(206, 173, 200, 0.5);
+		user-select: none;
+
+	}
+
+
+
+	// .hamburger-toggle {
+
+	// 	position: absolute;
+	// 		top: 0px;
+	// 		right: 0px;
+	// 		width: 30px;
+	// 		height: 30px;
+	// 		transition-duration: 0.5s;
+	// 		z-index: 99999;
+			
+		  
+	// 		&__left,
+	// 		&__right {
+	// 			transition-duration: 0.5s;
+	// 			position: absolute;
+	// 			height: 4px;
+	// 			width: 15px;
+	// 			top: 15px;
+	// 			background-color: $black;
+
+	// 			&:before,
+	// 			&:after {
+	// 				transition-duration: 0.5s;
+	// 				position: absolute;
+	// 				height: 4px;
+	// 				width: 15px;
+	// 				background-color: $black;
+	// 				content: "";
+	// 			}
+
+	// 			&:before {
+	// 				top: -10px;
+	// 			}
+
+	// 			&:after {
+	// 				top: 10px;
+	// 			}
+	// 		}
+
+	// 		&__left {
+	// 			left: 0px; 
+	// 		}
+
+	// 		&__right {
+	// 			left: 15px;
+	// 		}
+
+	// 		&:hover{
+	// 	      cursor: pointer;
+	// 	    } 
+
+	// 	    @include bp($menu-snap) {
+	// 	    	display: none;
+	// 	    }
+
+	// }
+
 	.js-mobile-menu-open { 
 
-		.hamburger-toggle__left,
-		.hamburger-toggle__right {
-			transition-duration: 0.5s;
-			background: transparent !important;
+		// .mobile-toggle-menu {
 
-		}
+		// }
+		// .hamburger-toggle__left,
+		// .hamburger-toggle__right {
+		// 	transition-duration: 0.5s;
+		// 	background: transparent !important;
 
-		.hamburger-toggle__left {
+		// }
+
+		// .hamburger-toggle__left {
 			
-			&:before { background-color: $white; transform: rotateZ(45deg) scaleX(1.4) translate(2px, 2px); }
-			&:after { background-color: $white; transform: rotateZ(-45deg) scaleX(1.4) translate(2px, -2px); }
-		}
+		// 	&:before { background-color: $white; transform: rotateZ(45deg) scaleX(1.4) translate(2px, 2px); }
+		// 	&:after { background-color: $white; transform: rotateZ(-45deg) scaleX(1.4) translate(2px, -2px); }
+		// }
 
-		.hamburger-toggle__right {
-			&:before { background-color: $white; transform: rotateZ(-45deg) scaleX(1.4) translate(-2px, 2px); }
-			&:after { background-color: $white; transform: rotateZ(45deg) scaleX(1.4) translate(-2px, -2px); }
-		}
+		// .hamburger-toggle__right {
+		// 	&:before { background-color: $white; transform: rotateZ(-45deg) scaleX(1.4) translate(-2px, 2px); }
+		// 	&:after { background-color: $white; transform: rotateZ(45deg) scaleX(1.4) translate(-2px, -2px); }
+		// }
 	}
 
 

@@ -5,62 +5,61 @@
 
 	@include bp(lap) {
 		display: block;
-		max-width: 600px;
+		max-width: 800px;
 		margin: 0 auto;
 		
 	}
 
 	
-	.privacy-text {
-		margin-top: 40px;
-		color: $white;
-
-		&.light-bg {
-			color: $c-body-text;
-
-			a {
-				color: $c-body-text;
-			}
-		}
-
-		a {
-			color: $white;
-			text-decoration: underline;
-		}
-	}
-
 	.gform_footer.top_label {
-		padding-right: 15px !important;
+		
+		margin-top: 50px !important;
+		//padding-right: 15px !important;
 		text-align: center !important;
 		@include bp(lap) {
 			text-align: center !important;
+			margin-top: 50px !important;
 		}
 
 	}
 
 	.gform_button.button {
+		
 
-		display: block;
 
-		background-color: $brand_yellow;
-		border: solid 2px $brand_yellow;
-		color: white;
-		font-weight: bold;
-		padding: 10px 60px;
-		font-family: $heading-font-family;
+		display: inline-block;
+		text-align: center;
+
+		line-height: 1em;
+		padding: 20px 28px;
+		white-space: nowrap;	
+		text-decoration: none;
+		user-select: none;
+		transition: all .3s ease-in-out;
+
+		background-color: $soft_green;
+		border: 3px solid $blue;
+		box-sizing: border-box;
+		box-shadow: 0px 3px 0px $blue;
+		border-radius: 6px;
+		color: $blue;
+		text-transform: uppercase;
+		font-weight: 600;
 		cursor: pointer;
-		width: auto !important;
-		font-size: 16px !important;
-		font-weight: 500 !important;
-		color: $c-body-text !important;
-		margin: 0 auto !important;
+		font-size: 17px;
+		position: relative;
+		margin-bottom: 3px;
 
+		
 		&:hover {
-			border: solid 2px $brand_yellow;
-			background-color: $white;
-			color: $brand_yellow;
+			
+			box-shadow: 0px 3px 0px $blue;
+			background: $blue;
+			border: solid 3px $blue;
+			color: $white;
 			transition: all .2s ease-in-out;
 		}
+
 		&:focus {
 			outline: 0;
 		}
@@ -68,20 +67,20 @@
 	}
 
 
-	.light-bg {
-		.gform_button.button {
-			background-color: $mid-grey !important;
-			border: solid 2px $mid-grey !important;
-			color: $white !important;
-		}
+	// .light-bg {
+	// 	.gform_button.button {
+	// 		background-color: $mid-grey !important;
+	// 		border: solid 2px $mid-grey !important;
+	// 		color: $white !important;
+	// 	}
 
-		.gform_footer.top_label {
+	// 	.gform_footer.top_label {
 
-			@include bp(lap) {
-				text-align: left !important;
-			}
-		}
-	}
+	// 		@include bp(lap) {
+	// 			text-align: left !important;
+	// 		}
+	// 	}
+	// }
 
 		
 	// Error Fields	
@@ -96,6 +95,7 @@
 		font-weight: 500 !important;
 		padding: 16px !important;
 		max-width: calc(100% - 16px)!important;
+		margin-top: 100px !important;
 	}
 
 	.validation_message {
@@ -130,12 +130,26 @@
 
 
 	.gform_confirmation_wrapper {
-		margin-top: 30px !important;
-		background-color: $white !important;
-		border: solid 1px $c-body-text !important;
+		margin-top: 0px !important;
+		color: $soft_green;
 		padding: 20px;
 		border-radius: 5px;
-		text-align: center
+		text-align: center;
+
+		.heading {
+			color: $white;
+			font-weight: bold;
+			margin-bottom: 10px;
+			margin-top: 30px;
+
+			&:first-child {
+				margin-top: 0px;
+			}
+		}
+
+		p {
+			margin-bottom: 0px;
+		}
 	}
 	// Confirmation Message
 	.gform_confirmation_message {
@@ -147,23 +161,6 @@
 
 		position: relative;
 
-// 		&:after {
-
-// 			display: block;
-// 			content: "";
-// 			background-image: url('../images/menu-arrow.svg');
-// 			background-repeat: no-repeat;
-// 			width: 12px;
-// 			height: 12px;
-// 			position: absolute;		
-// 			font-size: 20px;
-// 			font-weight: 400;
-// //				position: absolute;
-// 			top: calc(50% + 4px);
-// 			right: 20px;
-// 			transform: translateY(-50%);
-// 			pointer-events: none;
-// 		}
 
 	}
 	
@@ -175,7 +172,19 @@
 	.gform_wrapper
 	{
 
-		
+		.gsection {
+
+    		border-bottom: 1px solid $soft_green !important;
+    		margin-bottom: 10px !important;
+    	}
+
+		.gsection_title {
+			padding-top: 30px !important;
+			font-family: $font-family;
+			font-size: 14px !important;
+			text-transform: uppercase !important;
+		}
+
 
 		.gfield
 		{
@@ -183,7 +192,7 @@
 
 			.gfield_label {
 				margin-top: 8px !important;
-				color: $white !important;
+				color: $teal !important;
 				font-weight: 600 !important;
 				font-size: 14px !important;
 			}
@@ -200,6 +209,7 @@
 				font-size: 17px !important;	
 				color: $warning-red !important;
 				font-weight: 700 !important;
+				display: none;
 			}
 
 			.gfield_description {
@@ -212,33 +222,60 @@
 				color: $white !important;	
 			}
 
+			.gfield_radio {
+				> li {
+					width: 50%;
+					display: block !important; 
+					width: 100%;
+
+					@include bp(640px) {
+						display: inline-block !important; 
+						width: 50%;
+					}
+				}
+			}
+
+			.radio-lb {
+				display: block;
+				font-size: 12px;
+				//background-color: red;
+			}
+
+			.gfield_checkbox {
+
+				@include bp(lap) {
+					columns: 2;
+				}
+			}
+
 
 			input:not([type=radio]):not([type=checkbox]):not([type=submit]):not([type=button]):not([type=image]):not([type=file]), 
 			select, 
 			textarea,  {
-				background-color: $white;
-				border: solid 1px $white !important;
+				background-color: $light_green !important;
+				border: solid 1px $teal !important;
 				padding: 10px !important;
 				font-size: 15px !important;
-				color: #333 !important;
-				font-weight: 700 !important;
+				color: $darker_blue !important;
+				font-weight: 400 !important;
 				width: 100% !important;
+				border-radius: 6px !important; 
 			}
 
 			select {
-				background-color: $white !important;
-				border: solid 1px $white !important;
+				background-color: $light_green !important;
+				border: solid 1px $teal !important;
 				padding: 5px !important;
 				height: 40px !important;
 				max-height: 40px !important;
 				text-indent: 3px;
 				font-size: 15px !important;
-				color: #333 !important;
-				font-weight: 700 !important;
+				color: $darker_blue !important;
+				font-weight: 400 !important;
 				width: 100% !important;
 				-webkit-appearance:none !important;
 				appearance:none !important;
-				border-radius: 0  !important;
+				border-radius: 6px !important;
 				//border: solid 3px red !important;
 
 
@@ -248,7 +285,7 @@
 				// display: inline-block;
 				height: 20px;
 				width: auto !important;
-				transform: scale(1.2);
+				//transform: scale(1.2);
 				margin-right: 10px;
 				margin-left: 10px;
 				overflow: visible;
@@ -260,7 +297,7 @@
 
 			input[type=checkbox] {
 				height: 20px;
-				transform: scale(1.2);
+				//transform: scale(1.2);
 				margin-right: 10px;
 				margin-left: 10px;
 				overflow: visible;
@@ -274,21 +311,6 @@
 
 
 
-			&.light-bg
-			{
-
-				.gfield_label {
-					color: $c-body-text !important;
-				}
-
-
-				input:not([type=radio]):not([type=checkbox]):not([type=submit]):not([type=button]):not([type=image]):not([type=file]), 
-				select, 
-				textarea,  {
-					border: solid 1px $white !important;
-				}
-			}
-
 			
 
 		}
@@ -296,9 +318,94 @@
 
 
 		
-		input[type=radio] + label { font-size: 14px; padding-top: 3px !important; color: $white !important;}
-		input[type=checkbox] + label { font-size: 14px; padding-top: 5px !important; color: $white !important;}
+		input[type=radio] + label { font-size: 14px; padding-top: 3px !important; color: $dark_blue !important;}
+		input[type=checkbox] + label { font-weight: bold; font-size: 14px; padding-top: 5px !important; color: $dark_blue !important;}
 
-				
-	}
+		input[type=checkbox] {
+
+
+			appearance: none !important;
+			outline: 0 !important;
+			box-shadow: none !important;
+			border: none !important;
+
+			&:before {
+				content: "";
+			    flex-shrink: 0;
+			    display: block;
+			    width: 20px;
+			    height: 20px;
+			    border: 2px solid $teal;
+			    background-color: $light_green;
+			    background-image: none;
+			    background-repeat: no-repeat;
+				background-position: 50%;
+			    background-size: 80%;
+			    margin-right: 10px;
+			    outline: 0 !important;
+			    box-shadow: none !important;
+			}
+
+
+			&:focus {
+				outline: 0 !important;
+				box-shadow: none !important;	
+			}
+
+		
+
+		}
+
+		input[type=checkbox]:checked:before {
+    		background-image: url('../images/icon-tick.svg');
+    		
+    		//background-color: red;
+
+		}
+
+
+		input[type=radio] {
+
+
+			appearance: none !important;
+			outline: 0 !important;
+			box-shadow: none !important;
+			border: none !important;
+
+			&:before {
+				content: "";
+			    flex-shrink: 0;
+			    display: block;
+			    width: 20px;
+			    height: 20px;
+			    border: 2px solid $teal;
+			    background-color: $light_green;
+			    background-repeat: no-repeat;
+			    background-position: 50%;
+			    background-size: 80%;
+			    margin-right: 10px;
+			    border-radius: 50%;
+			    outline: 0 !important;
+			    box-shadow: none !important;
+			}
+
+
+			&:focus {
+				outline: 0 !important;
+			    box-shadow: none !important;
+			}
+
+		
+
+		}
+
+		input[type=radio]:checked:before {
+    		background-image: url('../images/icon-tick.svg');
+    		//background-color: red;
+
+		}
+
+
+
+	}	
 }

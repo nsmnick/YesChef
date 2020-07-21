@@ -3,9 +3,9 @@
 
 	<div class="container container--narrow-800">
 
-		<h2 class="with-stars"><?php echo get_option('sp_title',''); ?></h2>
+		<h2 class="with-stars animate-fade"><?php echo get_option('sp_title',''); ?></h2>
 
-		<div class="two-cols-container">								
+		<div class="two-cols-container animate">								
 
 			<div class="two-cols-container__col">
 

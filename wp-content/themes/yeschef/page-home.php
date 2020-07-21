@@ -25,6 +25,8 @@ get_header();
 
 ?>	
 
+	<div id="additionalitem-modal"></div>
+
 
 <?php
 get_footer();

@@ -33,7 +33,7 @@ export default {
 	, mounted() {
 		let links = document.querySelectorAll('.additionalitem__link');
 
-		console.link(links);
+		console.log(links);
 
 		for (const link of links) {
 			link.addEventListener('click', (e) => {

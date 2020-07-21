@@ -101,57 +101,63 @@ while ( have_posts() ) : the_post();
 					$tabs_html = '';
 					$tabs_content_html = '';
 
+					if($ingredients_for_two && $ingredients_for_four)
+					{
 
-					$tabs_html .= '<a class="ingredients__tabs__tab ingredients__tabs__tab--left" href="#two-people">'
-								.'Ingredients for 2'
-								.'</a>';
+						
 
-					$tabs_content_html .= '<div id="two-people" class="ingredients__media__tab">';
-					$tabs_content_html .= '<div class="ingredients__media">';
+						$tabs_html .= '<a class="ingredients__tabs__tab ingredients__tabs__tab--left" href="#two-people">'
+									.'Ingredients for 2'
+									.'</a>';
 
-					$ingredients = $ingredients_for_two['ingredients'];
+						$tabs_content_html .= '<div id="two-people" class="ingredients__media__tab">';
+						$tabs_content_html .= '<div class="ingredients__media">';
 
-					$tabs_content_html .= '<ul class="ingredients">';					
-					foreach ($ingredients as $ingredient) {
-						$tabs_content_html .= '<li>'.$ingredient['ingredient'].'</li>';
+						$ingredients = $ingredients_for_two['ingredients'];
+
+						$tabs_content_html .= '<ul class="ingredients">';					
+						foreach ($ingredients as $ingredient) {
+							$tabs_content_html .= '<li>'.$ingredient['ingredient'].'</li>';
+						}
+						$tabs_content_html .= '</ul>';					
+
+						$tabs_content_html .= '<hr/>';
+						$tabs_content_html .= '<p class="footer-text">';
+						$tabs_content_html .= $ingredients_for_two['footer_text'];
+						$tabs_content_html .= '</p>';
+
+						$tabs_content_html .= '</div>';
+						$tabs_content_html .= '</div>';
+
+
+						
+						$tabs_html .= '<a class="ingredients__tabs__tab ingredients__tabs__tab--right" href="#four-people">'
+									.'Ingredients for 4'
+									.'</a>';
+
+						$tabs_content_html .= '<div id="four-people" class="ingredients__media__tab">';
+						$tabs_content_html .= '<div class="ingredients__media">';
+
+						$ingredients = $ingredients_for_four['ingredients'];
+
+						$tabs_content_html .= '<ul class="ingredients">';					
+						foreach ($ingredients as $ingredient) {
+							$tabs_content_html .= '<li>'.$ingredient['ingredient'].'</li>';
+						}
+						$tabs_content_html .= '</ul>';
+
+						$tabs_content_html .= '<hr/>';
+						$tabs_content_html .= '<p class="footer-text">';
+						$tabs_content_html .= $ingredients_for_four['footer_text'];
+						$tabs_content_html .= '</p>';
+
+						
+
+
+						$tabs_content_html .= '</div>';
+						$tabs_content_html .= '</div>';
+
 					}
-					$tabs_content_html .= '</ul>';					
-
-					$tabs_content_html .= '<hr/>';
-					$tabs_content_html .= '<p class="footer-text">';
-					$tabs_content_html .= $ingredients_for_two['footer_text'];
-					$tabs_content_html .= '</p>';
-
-					$tabs_content_html .= '</div>';
-					$tabs_content_html .= '</div>';
-
-
-					
-					$tabs_html .= '<a class="ingredients__tabs__tab ingredients__tabs__tab--right" href="#four-people">'
-								.'Ingredients for 4'
-								.'</a>';
-
-					$tabs_content_html .= '<div id="four-people" class="ingredients__media__tab">';
-					$tabs_content_html .= '<div class="ingredients__media">';
-
-					$ingredients = $ingredients_for_four['ingredients'];
-
-					$tabs_content_html .= '<ul class="ingredients">';					
-					foreach ($ingredients as $ingredient) {
-						$tabs_content_html .= '<li>'.$ingredient['ingredient'].'</li>';
-					}
-					$tabs_content_html .= '</ul>';
-
-					$tabs_content_html .= '<hr/>';
-					$tabs_content_html .= '<p class="footer-text">';
-					$tabs_content_html .= $ingredients_for_four['footer_text'];
-					$tabs_content_html .= '</p>';
-
-					
-
-
-					$tabs_content_html .= '</div>';
-					$tabs_content_html .= '</div>';
 		
 				?>
 
@@ -205,41 +211,43 @@ while ( have_posts() ) : the_post();
 
 					//echo print_r($recipe);
 
+					if($recipe)
+					{
+						foreach ($recipe as $step) {
+						?>
 
-					foreach ($recipe as $step) {
-					?>
+							<div class="step">
 
-						<div class="step">
-
-							<div class="step__images">
+								<div class="step__images">
 
 
-								<img src="<?php echo $step['images'][0]['image'];?>">
+									<img src="<?php echo $step['images'][0]['image'];?>">
 
-								<?php 
+									<?php 
 
-								
+									
 
-								if(count($step['images']) > 1)
-								{?>
-									<img class="last" src="<?php echo $step['images'][1]['image'];?>">
-								
-								<?php
-								}
+									if(count($step['images']) > 1)
+									{?>
+										<img class="last" src="<?php echo $step['images'][1]['image'];?>">
+									
+									<?php
+									}
 
-								?>
+									?>
+
+								</div>
+
+								<h3><?php echo $step['step_heading'];?></h3>
+
+								<p><?php echo $step['instructions'];?></p>
+
 
 							</div>
 
-							<h3><?php echo $step['step_heading'];?></h3>
 
-							<p><?php echo $step['instructions'];?></p>
-
-
-						</div>
-
-
-					<?php 	
+						<?php 	
+						}
 					}
 				?>
 

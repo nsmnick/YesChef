@@ -1,20 +1,16 @@
 <?php
 get_header(); ?>
 
-	<?php 
-	$heading = 'Oops! That page can&rsquo;t be found.';
-	include_once 'partials/_content-internal-static-hero.php';
-	?>
+	<section class="panel content content__panel no-bottom">
+		<div class="container container--narrow-1000">
+			<h2 class="animate-fade">Page Not Found</h2>
 
-	
-
-	<section class="panel content content__content-panel">
-		<div class="container">
-
-			<h4>Sorry, this page is does not exist or is no longer available.</h4>
-
-			<p>Please use the menu to find the page you are after.</p>
+			<p class="intro animate">Sorry, this page is does not exist or is no longer available.<br/>Please use the menu to find the page you are after.</p>
 			
+			<br/>
+			<br/>
+			<br/>
+			<br/>
 			<br/>
 			<br/>
 			<br/>
@@ -25,8 +21,7 @@ get_header(); ?>
 		</div>
 	</section>
 
-	<?php 
-	include_once 'partials/_content-cta-static-panel.php';
-	?>
+
+	
 
 <?php get_footer(); ?>

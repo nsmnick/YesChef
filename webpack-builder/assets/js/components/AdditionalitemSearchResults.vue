@@ -24,18 +24,16 @@
 	 		</div>
 
 		 		
-					
-					
-
 		 		<div class="meal-panel__content">
 		 			<h2 v-html="additionalitem.title.rendered"></h2>
 					<p class="price">{{additionalitem.price}}</p>
+
 				</div>
 
 			
 
 				<div class="meal-panel__cta">
-					<a href="#" :data-id="additionalitem.id" class="button button--view-details additionalitem__link">
+					<a href="#" :data-id="additionalitem.id" class="button button--view-details" @click="callmodal($event,additionalitem.title.rendered,additionalitem.content.rendered)">
 					View Details
 					</a>
 				</div>
@@ -90,26 +88,17 @@
 				let additionalitems = [...this.additionalitems];
 				return additionalitems;
 			}
-			// getDataArray() {
-			// 	return json_encode($array);
-						
-			// }
 		}
-		// , updated() {
-		// 	let links = document.querySelectorAll('.additionalitem__link');
-			
-		// 	console.log(links);
 
-		// 	for (const link of links) {
-		// 		link.addEventListener('click', (e) => {
-		// 			e.preventDefault();
-		// 				this.showModal(e.target.dataset.id);
-		// 		});
-		// 	}
-		// }
 		, methods: {
-			
-			beforeEnter(el) {
+			callmodal(event,title,content) {
+			//	console.log(title);
+
+				this.$emit('showModalx', title, content);
+			//	console.log('yes');
+				event.preventDefault();
+			}
+			, beforeEnter(el) {
 				el.style.opacity = 0;
 			}
 			, enter(el) {

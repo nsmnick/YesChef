@@ -1,7 +1,8 @@
 
 <section class="panel content content__three_image_cols">
 
-	<div class="container container--narrow-1000">
+	<!-- <div class="container container--narrow-1000"> -->
+	<div class="container">
 
 		
 		<?php
@@ -9,7 +10,7 @@
 		{
 		?>
 			
-			<div class="three-cols-images-container">								
+			<div class="three-cols-images-container animate-fade">								
 			<?php
 			while ( have_rows('cols') ) : the_row(); 
 

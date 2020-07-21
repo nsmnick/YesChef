@@ -5,11 +5,20 @@
 	float: none;
 	margin: 0 auto;
 	overflow: auto;
-	padding: 0px 5px;
+	padding: 0px 10px;
+
 
 	@include bp(lap) {
 		max-width: 1540px;
-		padding: 0px 100px;
+		padding: 0px 50px;
+
+		&--narrow-1400 {
+			max-width: 1400px;
+		}
+
+		&--narrow-1200 {
+			max-width: 1200px;
+		}
 
 		&--narrow-1000 {
 			max-width: 1000px;
@@ -18,5 +27,9 @@
 		&--narrow-800 {
 			max-width: 800px;
 		}
+	}
+
+	@include bp(1000px) {
+		padding: 0px 100px;
 	}
 }

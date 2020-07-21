@@ -10,7 +10,7 @@
 	
 	<section class="panel content content__panel no-bottom">
 		<div class="container">
-			<h2>Browse our recipes & meals</h2>
+			<h2 class="animate-fade">Browse our recipes & meals</h2>
 		</div>
 	</section>
 

@@ -4,7 +4,7 @@
 	<div class="container">
 
 
-		<h2 class="with-stars"><?php echo get_field('fai_heading'); ?></h2>
+		<h2 class="with-stars animate-fade"><?php echo get_field('fai_heading'); ?></h2>
 
 		<!-- <p class="intro"><?php //echo get_field('fai_intro'); ?></p> -->
 
@@ -14,7 +14,7 @@
 		{
 		?>
 			
-			<div class="three-cols-container">								
+			<div class="three-cols-container animate">								
 
 				<?php
 
@@ -97,11 +97,13 @@
 
 		<br/>
 		<br/>
-		<a class="button">View all our additional items</a>
+		<a href="/additional-items/" class="button">View all our additional items</a>
 
 	</div>
 
-	<div id="additionalitem-modal"></div>;
+	
 
 		
 </section>
+
+

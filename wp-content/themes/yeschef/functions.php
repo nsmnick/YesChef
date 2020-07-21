@@ -8,7 +8,7 @@ define('IMAGES', THEMEROOT.'/assets/images');
 
 // Frontend styles.
 function enqueue_style() {
-	wp_enqueue_style('core', THEMEROOT.'/assets/css/styles.min.css?v3', false);
+	wp_enqueue_style('core', THEMEROOT.'/assets/css/styles.min.css?v2', false);
 }
 add_action('wp_enqueue_scripts', 'enqueue_style');
 
@@ -18,9 +18,7 @@ function enqueue_scripts() {
 	wp_enqueue_script('jquery');
 
   wp_enqueue_script('custom-script1', 'https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.2.5/polyfill.min.js', array( 'jquery' ), false, true);
-
-	wp_enqueue_script('custom-script', THEMEROOT.'/assets/js/app.bundle.js?v10', array( 'jquery' ), false, true);
-  wp_enqueue_script('slider', 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js', array( 'jquery' ), false, true);
+	wp_enqueue_script('custom-script', THEMEROOT.'/assets/js/app.bundle.js?v11', array( 'jquery' ), false, true);
 }
 add_action('wp_enqueue_scripts', 'enqueue_scripts');
 
@@ -77,330 +75,167 @@ add_filter( 'register_post_type_args', 'wp1482371_custom_post_type_args', 20, 2 
 
 
 
-
-
-function checkRedirect() {
+add_filter( 'gform_pre_render_1', 'my_populate_checkbox' );
+function my_populate_checkbox( $form ) {
   
-  global $wpdb;
-
-  $parts = explode('/', $_SERVER['REQUEST_URI']);
-
-  if (isset($parts[2]) && $parts[1] == 'jobapply') {
-    
-    $index = $parts[2];
-
-    if (is_numeric($index)) {
-      $meta_value = $index;
-
-      $r = $wpdb->get_row("SELECT post_id FROM as_postmeta where meta_key ='job_ref' and meta_value = " . $meta_value . ' limit 1');
-
-      if ($r) {
-        wp_redirect(get_permalink($r->post_id));
-      }
-
-    }
-  }
-}
-add_action('wp', 'checkRedirect');
+  // Loop through form fields
 
 
-
-
-
-
-
-
-
-function get_backlink($posttype)
-{
-
-  switch ($posttype) {
-    case 'nsm_case_study_post':
-      return '<a href="' . site_url().'/case-studies/">Back to case studies</a>';
-      break;
-    
-    default:
-      return '<a href="' . site_url().'/industry-news/">Back to industry news</a>';
-      break;
-  }
-
-}
-
-function get_more_heading($posttype)
-{
-
-  switch ($posttype) {
-    case 'nsm_case_study_post':
-      return 'Read more case studies';
-      break;
-    
-    default:
-      return 'Read more news';
-      break;
-  }
-
-}
-
-
-
-function get_post_default_category($id, $posttype)
-{
-    
-    $category='';
-    $taxonomy = '';
-  
-    switch ($posttype) {
-      case 'nsm_case_study_post':
-      $taxonomy = 'nsm_cs_categories';
-      break;
-    
-    default:
-      $taxonomy = 'category';
-      break;
-    }
-
-    //echo $posttype;
-
-    $categories = get_the_terms($id,$taxonomy);
-    
-    if($categories) {
-      $category = $categories[0]->name;
-    }
-
-    return $category;
-}
-
-
-
-function get_related_articles($posttype)
-{
-
-
-  global $wpdb;
-
-  // $cat1_cats = (wp_get_post_terms( $postid, 'cat1_cats')); 
-  // $cat2_cats = (wp_get_post_terms( $postid, 'cat2_cats'));
-
-
-  // $tax_query = array();
-
-  // if($cat1_cats){
-  //   $params['cat1_cats'] = $cat1_cats[0]->term_taxonomy_id;
-  //   $tax_query[] = buildCategoriesSearch('cat1_cats',$params);
-  // }
-
-  // if($cat2_cats){
-  //   $params['cat2_cats'] = $cat2_cats[0]->term_taxonomy_id;
-  //   $tax_query[] = buildCategoriesSearch('cat2_cats',$params);
-  // }
-
-    
-
-  $args = array( 'posts_per_page' => 3
-      ,'post_status' => 'publish'
-      ,'post_type'=>$posttype
-//      ,'tax_query' =>$tax_query
-      ,'exclude' => array( $postid ) 
-      ,'orderby' => 'rand'
-      ,'order' => 'asc'
+  // Get published meals
+  $args = array(
+    'post_type' => 'nsm_meals',
+    'post_status' => 'publish'
   );
+ 
+  $pie_choices[] = array( 'text' => "No thanks, not this week", 'value' => "No thanks, not this week" );
 
-  $posts = get_posts($args);
+  $the_query = new WP_Query( $args );
 
-  return $posts;
+  while ( $the_query->have_posts() ) : $the_query->the_post();
 
-}
+    $meal_choices[] = array( 'text' => get_the_title(), 'value' => get_the_title() );
+
+    $pie_option = get_post_meta(get_the_ID(), 'lazy_day_pie_option');
+    if($pie_option) {
+      $content = get_the_title() . '  (' . get_post_meta(get_the_ID(), 'lay_day_pie_option_price', true) .')';
+      $pie_choices[] = array( 'text' => $content, 'value' => $content );
+    }
+
+  endwhile; 
 
 
-function add_application_form_question_fields($additional_questions) {
 
 
-    $additional_questions = unserialize($additional_questions);
+  // Get published meals
+  $args = array(
+    'post_type' => 'nsm_additional_items',
+    'post_status' => 'publish'
+  );
+ 
+  $the_query = new WP_Query( $args );
 
-    
+  while ( $the_query->have_posts() ) : $the_query->the_post();
 
-    foreach ($additional_questions as $question) {
+    $content = get_the_title() . '  (' . get_post_meta(get_the_ID(), 'price', true) .')';
+    $additional_items[] = array( 'text' => $content, 'value' => $content );
+
+  endwhile; 
+
+     
+
+
+  foreach( $form['fields'] as &$field ) {    
+
+
+    // If one of the meal options then set the options to these meals
+    if( 5 === $field->id || 6 === $field->id || 7 === $field->id || 8 === $field->id) {
       
-        $question_label = $question['question'];   
-
-       
-
-        $question_found = false;
-
-        $form = GFAPI::get_form( 2 );
-
-        // Check to see whether question exists in form
-        foreach($form['fields'] as $field)
-        {
-            if($question_label == $field['label'])
-            {
-                $question_found = true;
-                break;
-            }            
-        }         
-
-        if(!$question_found) {
-
-            // Create new form field
-
-            $new_field_id = $form['nextFieldId'];
-             $properties['type'] = 'radio';
-             $properties['id'] = $new_field_id;
-             $properties['label'] = $question_label;
-             $properties['default_value'] = 'N/A';
-             $properties['horizontal'] = true;
-             $properties['isRequired'] = true;
-
-             //echo print_r($question['answers']);
-
-             $choices = array();
-             foreach ($question['answers'] as $answer) {
-                $choices[] = array( 'text' => (string) $answer );
-             }
-
-             $properties['choices'] = $choices; //array( array( 'text' => 'choice1', 'value' => 1 ), array( 'text' => 'choice2', 'value' => 1 ));
-
-          
-             $field = GF_Fields::create( $properties );
-             $form['fields'][] = $field;
-        
-             GFAPI::update_form( $form );
-
-        }
-
+      $field->choices = $meal_choices;
+      
     }
 
-}
-
-
-add_filter( 'gform_pre_render_2', 'hide_fields' );
-function hide_fields($form) {
-
-
-  // Global $post;
-  // echo print_r($post);
-
-  $additional_questions = unserialize(get_post_meta(get_the_ID(),'questions',true));
- // echo print_r($additional_questions);
-
-  
-  foreach( $form['fields'] as $k => &$field )  {
-    
-    
-    if($field['type'] == 'radio')
-    {
-
-      $addition_question_found = false;
-
-      foreach ($additional_questions as $question) {
-              
-        $question_label = $question['question'];   
-
-        //if($field['label'] == $question_label && $question_label!='Do you hold a current SIA licence?')
-        if($field['label'] == $question_label)
-        {
-          $addition_question_found=true;
-          break;
-        }
-
-      }
-
-      if(!$addition_question_found) {
-
-          // Remove from form if not required.
-          //$field['visibility'] = 'administrative';
-           // $field['type'] = 'hidden';
-           // $field['default_value'] = 'N/A';
-          unset($form['fields'][$k]); 
-      }
-
+    if( 10 === $field->id || 11 === $field->id) {
+      
+      $field->choices = $pie_choices;
+      
     }
 
+    if( 13 === $field->id) {
+      
+      $field->choices = $additional_items;
+      
+    } 
+
+
+
+  } 
   
-
-  }
-
   return $form;
 
+} 
+
+
+
+
+
+
+add_filter( 'gform_field_value', 'populate_fields', 10, 3 );
+function populate_fields( $value, $field, $name ) {
+  
+     
+  // Populating fields from cookies if they exist for 
+
+    $values = array(
+      'order_name' => isset($_COOKIE["gf_order_name"]) ? $_COOKIE["gf_order_name"] : '',
+      'order_email' => isset($_COOKIE["gf_order_email"]) ? $_COOKIE["gf_order_email"] : '',
+      'order_phone' => isset($_COOKIE["gf_order_phone"]) ? $_COOKIE["gf_order_phone"] : '',
+      'order_postcode' => isset($_COOKIE["gf_order_postcode"]) ? $_COOKIE["gf_order_postcode"] : ''
+    );
+ 
+    return isset( $values[ $name ] ) ? $values[ $name ] : $value;
 }
 
 
 
 
-// This function has to 
 
-add_filter( 'gform_validation_2', 'skip_hidden_fields' );
-function skip_hidden_fields($validation_result)
-{
+add_action( 'gform_after_submission_1', 'set_form_cookies', 10, 2 );
+function set_form_cookies( $entry, $form ) {
   
-
-  $additional_questions = unserialize(get_post_meta(get_the_ID(),'questions',true));
-
-
-
-  $form = $validation_result['form'];
-
-  // reset this to true, and set it to false if either a required normal field fails or an additional question that should be asked does not have a value.
-  $validation_result['is_valid'] = true;
+    setcookie('gf_order_name', $entry['15'], time() + 1209600, '/' );
+    setcookie('gf_order_email', $entry['16'], time() + 1209600, '/' );
+    setcookie('gf_order_phone', $entry['17'], time() + 1209600, '/' );
+    setcookie('gf_order_postcode', $entry['18'], time() + 1209600, '/' );
+}
 
 
-  foreach( $form['fields'] as &$field ) {
+add_filter( 'gform_confirmation_1', 'custom_confirmation_message', 10, 4 );
+function custom_confirmation_message( $confirmation, $form, $entry, $ajax ) {
+    
+   
 
 
-    if ( $field['type'] != 'radio' && $field['failed_validation'] == true) {
-      $validation_result['is_valid'] = false;
-    }
-     
-    if ( $field['type'] == 'radio' ) {
+    $html = '<p class="heading">Order Number: ' . $entry['id'] . '</p>';
 
-      $addition_question_found = false;
+    $html .= '<p class="heading">Box size:</p><p>' . $entry['2'] . '</p>';
 
-        foreach ($additional_questions as $question) {
-              
-          $question_label = $question['question'];   
+    $html .= '<p class="heading">4 meal choices:</p><p>' . $entry['5'] . '</p><p>' . $entry['6'] . '</p><p>' . $entry['7'] . '</p><p>' . $entry['8'] . '</p>';
 
-//          if($field['label'] == $question_label && $question_label!='Do you hold a current SIA licence?')
-          if($field['label'] == $question_label)
-          {
-          
-            //  $data_str = print_r(  $field, true );
-            // error_log( $data_str );
-
-            // Question should be on form so check its valid.
-
-            if($field['failed_validation'] == true) {
-              $validation_result['is_valid'] = false;
-            }
-
-            $addition_question_found=true;
-            break;
-          }
-
-        }
-
-
-        // If addiiotnal question is not found in form then we can skip validation on this item as is 
-        // acutally hidden on form and does not need checking.
-        if(!$addition_question_found) {
-          
-          
-          $field['failed_validation'] = '';
-          $field['validation_message'] = '';
-
-          // $data_str = print_r(  $field, true );
-          // error_log( $data_str );
-
-          continue;
-
-        }
-        
+    if($entry['10'] != 'No thanks, not this week' || $entry['11'] != 'No thanks, not this week')
+    { 
+      $html .= '<p class="heading">Extra Lazy Day pies</p><p>Pie 1: ' . $entry['10'] . '</p><p>Pie 2: ' . $entry['11'] . '</p>';
     }
 
-  }
 
-  $validation_result['form'] = $form;
-  return $validation_result;
+   
+    
+    
+      $additional_items = '';
+     foreach( $entry as $key => $value ) {
+      
+        if(substr($key, 0, 3) == '13.')
+          if($value!='')
+            $additional_items .= '<p>' . $value . '</p>';      
+      }
 
+      
+      if($additional_items!='')
+      {
+        $additional_items = '<p class="heading">Additional Items</p>' . $additional_items;
+      }
+
+      $html .= $additional_items;
+
+       $html .= '<p class="heading">Contact Details</p><p>' . $entry['15'] . '</p><p>' . $entry['16'] . '</p><p>' . $entry['17'] . '</p><p>' . $entry['18'] . '</p>';
+
+
+    return str_replace("XXX", $html, $confirmation);
+}
+
+
+add_filter( 'gform_validation_message_1', 'change_message', 10, 2 );
+function change_message( $message, $form ) {
+    return '<div class="validation_error">There was a problem with your order.  Please review the highlighted fields.</div>';
 }
 
 

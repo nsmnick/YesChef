@@ -47,7 +47,7 @@
 
 		if(is_front_page() )
 		{
-			echo '<div class="home-bg-image"></div>';
+			echo '<div class="home-bg-image animate-fade"></div>';
 		}
 		?>
 
@@ -84,6 +84,8 @@
 									]);
 								?>
 
+								<li class="menu-item mobile"><a href="<?php echo site_url(); ?>/place-your-order">Order your box</a></li>
+
 							</ul>
 
 						</nav>
@@ -95,16 +97,12 @@
 
 					<div class="header-container__right">					
 						
-						<a class="button" href="/place-your-order">Order your box</a>
+						<a class="button place-order-button" href="/place-your-order">Order your box</a>
 
-						<div class="page-header__menu-button-container">
 
-							<div class="hamburger-toggle" data-menu="1">
-								<div class="hamburger-toggle__left"></div>
-								<div class="hamburger-toggle__right"></div>
-							</div>
-							
-						</div>
+						<a class="button mobile-toggle-menu" href="#">Menu</a>
+						<div class="mobile-toggle-menu-close"></div>
+					
 
 
 					</div>

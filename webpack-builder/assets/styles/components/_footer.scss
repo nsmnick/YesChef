@@ -22,7 +22,11 @@ $footerdetails-snap2: '1170px';
 	  	top:0px;
 	  	right: 0px;
 	  	width: 100%;
-	  	height: 25px;
+	  	height: 10px;
+				
+		@include bp(lap) {		
+			height: 25px;
+		}
 
 	};
   	

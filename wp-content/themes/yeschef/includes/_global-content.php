@@ -72,13 +72,13 @@ function my_global_text_edit() {
 	$global_fields['po_button_link'] = array('type'=>'text', 'label'=>'Button Link', 'value'=>'');
 
 
-	$global_fields['company_details_heading'] = array('type'=>'heading', 'label'=>'Company Details', 'value'=>'');
-	$global_fields['company_name'] = array('type'=>'text', 'label'=>'Company Name', 'value'=>'');
-	$global_fields['company_address'] = array('type'=>'textarea', 'label'=>'Company Address', 'value'=>'');
-	$global_fields['company_call_label'] = array('type'=>'text', 'label'=>'Phone Label', 'value'=>'');
-	$global_fields['company_call_number'] = array('type'=>'text', 'label'=>'Phone Number', 'value'=>'');
-	$global_fields['company_call_number_link'] = array('type'=>'text', 'label'=>'Phone Number (Link)', 'value'=>'');
-	$global_fields['company_email'] = array('type'=>'text', 'label'=>'Email Address', 'value'=>'');
+	// $global_fields['company_details_heading'] = array('type'=>'heading', 'label'=>'Company Details', 'value'=>'');
+	// $global_fields['company_name'] = array('type'=>'text', 'label'=>'Company Name', 'value'=>'');
+	// $global_fields['company_address'] = array('type'=>'textarea', 'label'=>'Company Address', 'value'=>'');
+	// $global_fields['company_call_label'] = array('type'=>'text', 'label'=>'Phone Label', 'value'=>'');
+	// $global_fields['company_call_number'] = array('type'=>'text', 'label'=>'Phone Number', 'value'=>'');
+	// $global_fields['company_call_number_link'] = array('type'=>'text', 'label'=>'Phone Number (Link)', 'value'=>'');
+	// $global_fields['company_email'] = array('type'=>'text', 'label'=>'Email Address', 'value'=>'');
 	$global_fields['sm_heading'] = array('type'=>'heading', 'label'=>'Social Media Links', 'value'=>'');
 	$global_fields['facebook_link'] = array('type'=>'text', 'label'=>'Facebook', 'value'=>'');
 	$global_fields['twitter_link'] = array('type'=>'text', 'label'=>'Twitter', 'value'=>'');
@@ -86,19 +86,6 @@ function my_global_text_edit() {
 	
 	$global_fields['copyright_heading'] = array('type'=>'heading', 'label'=>'Copyright Info', 'value'=>'');
 	$global_fields['copyright_message'] = array('type'=>'textarea', 'label'=>'Copyright Message', 'value'=>'');
-
-	$global_fields['site_wide_section_heading'] = array('type'=>'heading', 'label'=>'Site Wide Panel Content', 'value'=>'');
-	$global_fields['site_wide_background_image'] = array('type'=>'text', 'label'=>'Background Image', 'value'=>'');
-	$global_fields['site_wide_heading'] = array('type'=>'text', 'label'=>'Heading', 'value'=>'');
-	$global_fields['site_wide_intro'] = array('type'=>'textarea', 'label'=>'Intro', 'value'=>'');
-	$global_fields['site_wide_button_text'] = array('type'=>'text', 'label'=>'Button Text', 'value'=>'');
-	$global_fields['site_wide_button_link'] = array('type'=>'text', 'label'=>'Button Link', 'value'=>'');
-
-	$global_fields['static_cta_heading'] = array('type'=>'heading', 'label'=>'CTA info on dynamic pages', 'value'=>'');
-	$global_fields['static_cta_title'] = array('type'=>'text', 'label'=>'CTA Title', 'value'=>'');
-	$global_fields['static_cta_intro'] = array('type'=>'text', 'label'=>'CTA Intro', 'value'=>'');
-	$global_fields['static_cta_button_text'] = array('type'=>'text', 'label'=>'CTA Button Text', 'value'=>'');
-	$global_fields['static_cta_button_link'] = array('type'=>'text', 'label'=>'CTA Button Link', 'value'=>'');
 
 
 	

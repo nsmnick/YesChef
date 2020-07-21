@@ -4,9 +4,9 @@
 	<div class="container">
 
 
-		<h2 class="with-stars"><?php echo get_option('po_title',''); ?></h2>
+		<h2 class="with-stars animate-fade"><?php echo get_option('po_title',''); ?></h2>
 
-		<p class="intro"><?php echo get_option('po_intro',''); ?></p>
+		<p class="intro animate-fade"><?php echo get_option('po_intro',''); ?></p>
 
 		<a class="button" href="<?php echo get_option('po_button_link',''); ?>"><?php echo get_option('po_button_text',''); ?></a>
 

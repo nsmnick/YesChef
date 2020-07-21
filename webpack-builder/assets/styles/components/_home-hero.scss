@@ -1,46 +1,128 @@
 
 .home-hero {
 
-	min-height: 800px;
+
+	
 	
 	//background-color: red;
 
+	@include bp(900px) {
+		min-height: 450px;			
+	}
+
+	@include bp(1200px) {
+		min-height: 750px;			
+	}
+
+	@include bp(1500px) {
+		min-height: 750px;			
+	}
+
+	// @include bp(1600px) {
+	// 	min-height: 900px;			
+	// }
 	
 
 	.home-hero-container {
 
-		padding: 50px 0px 30px;
-
-		//background-color: yellow;
 		
-		display: flex;
-		justify-content: space-between;
+		padding: 270px 20px 0px;
+
+	//	background-color: green;
+		
+		display: block;
+
+		@include bp(900px) {
+			padding: 50px 0px 0px;
+			display: flex;
+			justify-content: space-between;
+		}
 
 		&__col1 {
-			flex: 0 0 60%;
+
+
+			display: block;
+
+			@include bp(900px) {
+				flex: 0 0 50%;
+			}
+
+			@include bp(1300px) {
+				flex: 0 0 60%;
+			}
 		//	background-color: yellow;
 
 			h1 { 
 				color: $white; 
-				font-size: 90px;
+				font-size: 38px;
+
+		//		background-color: yellow;
+				text-align: center;
+
+				@include bp(900px) {
+					//padding-top: 30px;
+					text-align: left;
+					font-size: 50px;
+		//			background-color: blue;
+				}
+
+				@include bp(1000px) {
+					//padding-top: 30px;
+					text-align: left;
+					font-size: 65px;
+		//			background-color: yellow;
+				}
+
+				@include bp(1300px) {
+					font-size: 80px;
+		//			background-color: red;
+				}
+
+				@include bp(1500px) {
+		//			background-color: green;
+					font-size: 90px;
+				}
 			}
 
 			h2 {
 				font-family: $subheading-font-family;
 				letter-spacing: -0.01em;
 				color: $soft-green;
-				font-size: 54px;
+				text-align: center;
+				font-size: 34px;
+
+				@include bp(900px) {
+					text-align: left;
+					font-size: 54px;
+				}
 
 			}
 
 			p {
 				font-size: 15px;
 				color: $soft_dark_green;
+
+				text-align: center;
+
+				@include bp(900px) {
+					text-align: left;
+				}
+
 			}
 		}
 
 		&__col2 {
-			flex: 0 0 40%;
+
+			display: block;
+		
+			@include bp(900px) {
+				flex: 0 0 50%;
+			}
+
+			@include bp(1300px) {
+				flex: 0 0 40%;
+			}
+			
 			//background-color: blue;	
 		}
 		

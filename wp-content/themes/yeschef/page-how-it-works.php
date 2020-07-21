@@ -10,9 +10,9 @@
 	
 	<section class="panel content content__panel no-bottom">
 		<div class="container container--narrow-1000">
-			<h2><?php echo get_field('heading');?></h2>
+			<h2 class="animate-fade"><?php echo get_field('heading');?></h2>
 
-			<p class="intro"><?php echo get_field('intro');?></p>
+			<p class="intro animate"><?php echo get_field('intro');?></p>
 
 		</div>
 	</section>
@@ -30,7 +30,7 @@
 				//(($c = !$c)?' class="odd"':'')
 
 					
-					echo '<div class="panel-content-container__row ">';
+					echo '<div class="panel-content-container__row animate-fade">';
 
 					$pos_class="";
 
@@ -84,12 +84,7 @@
 
 	<?php include_once 'partials/_content-order-first.php'; ?>
 
-	<?php 
-	$top='purple';
-	$bottom='blue';
-	include_once 'partials/_content-how-it-works.php'; 
-	?>
-
+	
 
 
 <?php

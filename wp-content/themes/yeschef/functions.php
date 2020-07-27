@@ -84,9 +84,12 @@ function my_populate_checkbox( $form ) {
   // Get published meals
   $args = array(
     'post_type' => 'nsm_meals',
-    'post_status' => 'publish'
+    'post_status' => 'publish',
+    'orderby' => 'title',
+    'order' => 'asc'
   );
  
+
   $pie_choices[] = array( 'text' => "No thanks, not this week", 'value' => "No thanks, not this week" );
 
   $the_query = new WP_Query( $args );
@@ -96,7 +99,10 @@ function my_populate_checkbox( $form ) {
     $meal_choices[] = array( 'text' => get_the_title(), 'value' => get_the_title() );
 
     $pie_option = get_post_meta(get_the_ID(), 'lazy_day_pie_option');
-    if($pie_option) {
+    
+
+
+    if(isset($pie_option ) && $pie_option[0] == 'Yes') {
       $content = get_the_title() . '  (' . get_post_meta(get_the_ID(), 'lay_day_pie_option_price', true) .')';
       $pie_choices[] = array( 'text' => $content, 'value' => $content );
     }
@@ -109,7 +115,9 @@ function my_populate_checkbox( $form ) {
   // Get published meals
   $args = array(
     'post_type' => 'nsm_additional_items',
-    'post_status' => 'publish'
+    'post_status' => 'publish',
+    'orderby' => 'title',
+    'order' => 'asc'
   );
  
   $the_query = new WP_Query( $args );
@@ -154,6 +162,17 @@ function my_populate_checkbox( $form ) {
 
 } 
 
+
+
+
+// Order by Date Posted 
+add_filter( 'rest_nsm_meals_query', function ( $query_vars, $request ) {
+
+  $query_vars['orderby'] = 'menu_order';
+  $query_vars['order'] = 'ASC';
+
+  return $query_vars;
+}, 10, 2);
 
 
 
@@ -245,6 +264,7 @@ include_once 'includes/_lockdown.php';
 include_once 'includes/_custom-login.php';
 
 include_once 'includes/_global-content.php';
+include_once 'includes/_meals_report.php';
 include_once 'includes/_init-menus.php';
 include_once 'includes/_init-sidebars.php';
 include_once 'includes/_register-custom-post-types.php';

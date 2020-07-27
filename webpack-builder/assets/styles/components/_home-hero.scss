@@ -90,6 +90,7 @@
 				color: $soft-green;
 				text-align: center;
 				font-size: 34px;
+				font-weight: 400;
 
 				@include bp(900px) {
 					text-align: left;

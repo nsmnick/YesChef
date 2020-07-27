@@ -93,6 +93,9 @@ jQuery(window).ready(function($) {
   		$('#page-subheading').css('color','white');
   		$('#page-subheading').css('font-size','18px');
   		$('#page-subheading').css('text-align','center');
+  		$('#print-order-button').show();
+
+  		
   		
     
 

@@ -14,7 +14,7 @@
 				</div>
 
 				<p><?php echo get_option('sp_col1_content',''); ?></p>
-				<p class="price"><?php echo get_option('sp_col2_price',''); ?></p>
+				<p class="price"><?php echo get_option('sp_col1_price',''); ?></p>
 
 			</div>
 

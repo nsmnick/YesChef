@@ -44,7 +44,7 @@ export default {
 			meals: []
 			, default_params: {
 				page: 1
-				, per_page: 5
+				, per_page: 50
 				, selected_nsm_meal_skill_level: 0
 				, selected_nsm_meal_type: 0
 				, selected_nsm_meal_food_type: 0

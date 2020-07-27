@@ -3,6 +3,7 @@ TO DO
 DESIGNS
 https://www.figma.com/file/8KQzOhmu1Mn47VvZzqE6XT/Yes-Chef---v2?node-id=0%3A1
 
+
 DONE: Detail Page
 DONE: Navigation hovers
 DONE: Home Page Hero resize
@@ -14,18 +15,31 @@ DONE: fades and transitions
 DONE: Form validation
 DONE: Form Thank you page.
 DONE: Emails
+DONE: Link up all links
+DONE: remove all old code
+DONE: Browser Testing
+DONE: CMS Login Logo
 
-
-Next Delivery Date.
-
+DONE: Next Delivery Date.
 Order report.  Check if Bee is happy to sign off an extra day for this.
 
-Link up all links
-remove all old code
-Browser Testing
+
+
+
+Done: 5. Upload content for all meals and lazy meals (Nick)
+8. Bug on lazy Day Pie option on booking form (Nick)
+10.  Order Summary Report to be built (Nick)
 
 
 
 
 
-CMS Login Logo
+1. Review all copy on site, and supply last snippets where Lorum Ipsum has been used in the titles. (Bee)
+2. Provide content for all additional items being displayed on the site. (Bee)
+3. Confirm email address to be used in footer, and for the booking forms to be sent to. (Bee)
+4. Provide calories categories - and let us know which category each meal and lazy meal fits into (Bee)
+
+6. Images:  The only images that are not good enough quality to show on the website are the Nutritional Information.  We can recreate these, if they can not be supplied or drop them from the site for launch. (Bee/Nick decision)
+7. Privacy Policy & Terms and Condition Text to be supplied (Bee)
+9. Provide Social Media Links in footer (Bee)
+11. Provide summary snippet text for Lazy Meals, strapline that is under image on listing page. (Bee)

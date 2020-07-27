@@ -20,9 +20,37 @@
 	<?php 
 
 		
-		// Create a new DateTime object
 		$date = new DateTime();
-		$date->modify('next tuesday');
+
+		//$datenow = $date;
+
+
+		// if date is Friday, Saturday, Sunday, Monday we get next tuesday + 1 otherwise get next tuesday.
+		$day = $date->format( 'N' );
+
+
+		if($day ==1 || $day == 5 || $day == 6 || $day ==7) // MON, FRI PM, SAT, SUN
+		{
+			// Check if it is friday AM
+
+			if($day == 5)
+			{
+				$hour = $date->format( 'H' );
+
+
+				if($hour >= 12)
+					$date->modify('next tuesday +1 week');	
+				else
+					$date->modify('next tuesday');			
+			} else {
+				$date->modify('next tuesday +1 week');		
+			}
+
+			
+		} else {
+			$date->modify('next tuesday');	
+		}
+
 
 
 		$heading = 'To be delivered ' . $date->format('l dS F');
@@ -30,6 +58,8 @@
 
 	<section class="panel content content__panel--white">
 		<div class="container">
+
+
 			<h2 id="page-subheading" class="with-green-stars animate-fade"><?php echo $heading; ?></h2>
 
 			<div class="form-container">
@@ -41,14 +71,21 @@
 
 				?>
 
-				<script>
-				
-				</script>
+		
 
 			</div>
+			
+
+			
 
 			
 		</div>
+
+		<div id="print-order-button">
+			<a href="javascript:window.print();" class="button">Print Order</a>
+		</div>
+
+		
 	</section>
 
 	

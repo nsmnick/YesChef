@@ -65,9 +65,10 @@
 			<div class="form-container">
 				<?php
 				//$simple_locations = get_custom_post_terms_simple(get_the_ID(), 'nsm_job_locations','');
-				//$field_values = array('job_ref'=>$jobref,'job_title'=>get_the_title(),'job_location'=>$simple_locations)
 				
-				gravity_form( 1, false, false, false, '', true );
+				$field_values = array('order_date'=>$date->format('Y/m/d'));
+				
+				gravity_form( 1, false, false, false, $field_values , true );
 
 				?>
 

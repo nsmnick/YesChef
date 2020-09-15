@@ -94,7 +94,7 @@
 		<div class="container">
 			<h2 class="with-stars animate-fade">Place an order by phone</h2>
 			<p class="place-order-intro animate-fade">If you’d prefer to place your order over the phone, you can call us on the number below.<br/>Please be sure to have your payment card ready.</p>
-			<p class="place-order-phone">01622 000 000</p>
+			<p class="place-order-phone"><a href="tel:<?php echo get_option('company_phone_link', true); ?>"><?php echo get_option('company_phone', true); ?></a></p>
 		</div>
 	</section>
 

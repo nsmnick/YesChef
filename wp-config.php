@@ -34,6 +34,10 @@ define('DB_PASSWORD', 'root');
 // define('DB_USER', 'nsmdigit_yeschef');
 // define('DB_PASSWORD', 'V%7kGQsITl7V');
 
+// LIVE
+// define('DB_NAME', 'dbpgc5sce68gm7');
+// define('DB_USER', 'uqqc5gt7fr433');
+// define('DB_PASSWORD', '1;wNi#34-1m6');
 
 
 

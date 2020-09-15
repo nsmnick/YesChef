@@ -4,11 +4,11 @@ jQuery(window).ready(function($) {
 	console.log('js loaded');
     
     // Cookie Notice
-	//	var cookieNotice = new CookieAccept();
+	var cookieNotice = new CookieAccept();
 
 
 
-	$('.mobile-toggle-menu').click (function(){
+	$('.mobile-toggle-menu').click (function(e){
 		$('.mobile-toggle-menu').css('opacity',0);
 		$('.mobile-toggle-menu-close').fadeIn();
 		$('#main-menu').toggleClass('page-header__main-menu--open');
@@ -16,7 +16,7 @@ jQuery(window).ready(function($) {
 		e.preventDefault();
 	});
 
-	$('.mobile-toggle-menu-close').click (function(){
+	$('.mobile-toggle-menu-close').click (function(e){
 		$('#main-menu').toggleClass('page-header__main-menu--open');
 		$('.mobile-toggle-menu-close').hide();
 		$('.mobile-toggle-menu').css('opacity',1);

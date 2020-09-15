@@ -206,7 +206,7 @@
 
 		for (var i = 0; i < scripts.length; i++) {
 		//scripts.forEach(function(el_script) {
-			el_script= scripts[i];
+			var el_script= scripts[i];
 
 			var src_path = el_script.getAttribute('src');
 			var el_new_src = document.createElement('script');

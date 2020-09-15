@@ -10,7 +10,21 @@
 	
 	<section class="panel content content__panel no-bottom">
 		<div class="container">
-			<h2 class="animate-fade">Browse our recipes & meals</h2>
+			
+			<?php 
+				$heading = get_field('heading');
+				$intro = get_field('intro');
+			?>
+
+			<h2 class="animate-fade"><?php echo $heading;?></h2>
+
+			<?php 
+			if($heading)
+			{
+				echo '<p class="animate">'.$intro.'.</p>';
+			}
+			?>
+
 		</div>
 	</section>
 

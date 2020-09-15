@@ -401,6 +401,14 @@
 	.place-order-phone {
 		font-size: 28px;
 		font-weight: bold;
+
+		a {
+			color: $soft_green;
+			
+			&:hover {
+				color: $light_green;
+			}
+		}
 	}
 
 	

@@ -15,9 +15,9 @@
 						</div>
 
 						<div class="logo-container__content">
-							<p>Fresh, local and delicious home cooking ingredients boxes delivered to your door weekly for you to prepare wholesome, balanced and fresh food for all the family.</p>
+							<p><?php echo get_option('top_text', true); ?></p>
 
-							<p class="by">Brought to you buy The Chequers Aylesford.</p>
+							<p class="by"><?php echo get_option('bottom_text', true); ?></p>
 						</div>
 					</div>
 
@@ -30,15 +30,13 @@
 						
 						<div class="address-container__address">
 							<p>
-								Chequers Inn,<br/>
-								63 High St, Aylesford,<br/>
-								ME20 7AY
+								<?php echo get_option('company_address', true); ?>
 							</p>
 						</div>
 
 						<div class="address-container__contact">
-							<a href="tel+441622717286">01622 717 286</a><br/>
-							<a href="mailto:info@thechequersaylesford.co.uk">info@thechequersaylesford.co.uk</a>
+							<a href="tel:<?php echo get_option('company_phone_link', true); ?>"><?php echo get_option('company_phone', true); ?></a><br/>
+							<a href="mailto:<?php echo get_option('company_email', true); ?>"><?php echo get_option('company_email', true); ?></a>
 						</div>
 
 						<div class="address-container__social">
@@ -46,16 +44,16 @@
 							<div class="social-container">
 								
 								<div class="social-container__icon social-container__icon__facebook">
-									<a href="#">&nbsp;</a>
+									<a href="<?php echo get_option('facebook_link', true); ?>">&nbsp;</a>
 								</div>
 
 								<div class="social-container__icon social-container__icon__instagram">
-									<a href="#">&nbsp;</a>
+									<a href="<?php echo get_option('instagram_link', true); ?>">&nbsp;</a>
 								</div>
 
-								<div class="social-container__icon social-container__icon__twitter">
+								<!-- <div class="social-container__icon social-container__icon__twitter">
 									<a href="#">&nbsp;</a>
-								</div>
+								</div> -->
 
 							</div>
 
@@ -106,13 +104,12 @@
 
 				<div class="footer-bottom__container">
 					<div class="footer-bottom__container__copyright">
-						<?php echo get_global_replace_date_field('copyright_message'); ;?>
 					</div>
 
 					<div class="footer-bottom__container__by">
 						Website by
 					</div>
-					<div class="footer-bottom__container__by__logo">&nbsp;</div>
+					<a href="https://nsmdigital.com" target="_blank" rel="noreferrer noopener"><div class="footer-bottom__container__by__logo">&nbsp;</div></a>
 				</div>
 
 			</div>
@@ -133,6 +130,16 @@
 
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177763557-1"></script>
+<script type="text/plain" cookie-accept>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-177763557-1');
+</script>
+
+
 
 
 

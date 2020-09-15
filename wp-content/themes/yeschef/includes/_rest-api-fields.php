@@ -18,7 +18,7 @@ function register_custom_rest_fields() {
 		],
 		'nsm_additional_items' => [
 			'price' => 'nsm_additionalitem_get_price'
-			,'featured_image' => 'get_rest_featured_image'
+			,'featured_image' => 'get_rest_featured_image_large'
 		]
 
 	];
@@ -126,6 +126,11 @@ function get_rest_featured_image_background( $object, $field_name, $request ) {
 }
 
 function get_rest_featured_image( $object, $field_name, $request ) {
+
+	return get_the_post_thumbnail_url($object['id'],'medium');
+}
+
+function get_rest_featured_image_large( $object, $field_name, $request ) {
 
 	return get_the_post_thumbnail_url($object['id']);
 }

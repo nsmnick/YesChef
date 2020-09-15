@@ -33,7 +33,7 @@ export default {
 	, mounted() {
 		let links = document.querySelectorAll('.additionalitem__link');
 
-		console.log(links);
+//		console.log(links);
 
 		for (const link of links) {
 			link.addEventListener('click', (e) => {
@@ -46,7 +46,7 @@ export default {
 
 	    showModal(id) {
 	    	
-	    	console.log('here');
+	//    	console.log('here');
 
 			let bio = this.data[id];
 			this.content = bio.content;

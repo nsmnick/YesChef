@@ -39,7 +39,9 @@
 	}
 	&__content {
 		font-size: 12px;
+		line-height: 1.4;
 		padding-right: 5px;
+		color: $dark_grey;
 
 		@include bp(lap) {
 			font-size: 14px;
@@ -63,7 +65,7 @@
 
 	&__allow, &__deny {
 	    display: block;
-	    background-color: $brand_yellow;
+	    background-color: $teal;
 	    color: #fff;
 	    border: 0;
 	    border-radius: 0;
@@ -93,6 +95,8 @@
 	}
 
 	&__content p {
+
+		color: $dark_grey;
     	margin-bottom: 0;
 		
 		@include bp(lap) {

@@ -28,6 +28,10 @@ function my_global_text_edit() {
 
 	$global_fields['hit_heading'] = array('type'=>'heading', 'label'=>'How it Works Panel', 'value'=>'');
 	$global_fields['hit_title'] = array('type'=>'text', 'label'=>'Heading', 'value'=>'');
+
+
+	$global_fields['hit_heading'] = array('type'=>'heading', 'label'=>'How it Works Panel', 'value'=>'');
+	$global_fields['hit_title'] = array('type'=>'text', 'label'=>'Heading', 'value'=>'');
 	
 	$global_fields['hit_col1_image'] = array('type'=>'text', 'label'=>'Col1 Image', 'value'=>'');
 	$global_fields['hit_col1_heading'] = array('type'=>'text', 'label'=>'Col1 Heading', 'value'=>'');
@@ -82,10 +86,16 @@ function my_global_text_edit() {
 	$global_fields['sm_heading'] = array('type'=>'heading', 'label'=>'Social Media Links', 'value'=>'');
 	$global_fields['facebook_link'] = array('type'=>'text', 'label'=>'Facebook', 'value'=>'');
 	$global_fields['twitter_link'] = array('type'=>'text', 'label'=>'Twitter', 'value'=>'');
-	$global_fields['linkedin_link'] = array('type'=>'text', 'label'=>'LinkedIn', 'value'=>'');
+	$global_fields['instagram_link'] = array('type'=>'text', 'label'=>'Instagram', 'value'=>'');
 	
-	$global_fields['copyright_heading'] = array('type'=>'heading', 'label'=>'Copyright Info', 'value'=>'');
-	$global_fields['copyright_message'] = array('type'=>'textarea', 'label'=>'Copyright Message', 'value'=>'');
+	$global_fields['Footer_heading'] = array('type'=>'heading', 'label'=>'Footer', 'value'=>'');
+	$global_fields['top_text'] = array('type'=>'textarea', 'label'=>'Left Top Text', 'value'=>'');
+	$global_fields['bottom_text'] = array('type'=>'textarea', 'label'=>'Left Bottom Text', 'value'=>'');
+
+	$global_fields['company_address'] = array('type'=>'textarea', 'label'=>'Company Address', 'value'=>'');
+	$global_fields['company_email'] = array('type'=>'text', 'label'=>'Company Email', 'value'=>'');
+	$global_fields['company_phone'] = array('type'=>'text', 'label'=>'Company Phone', 'value'=>'');
+	$global_fields['company_phone_link'] = array('type'=>'text', 'label'=>'Company Phone Link', 'value'=>'');
 
 
 	

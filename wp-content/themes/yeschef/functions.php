@@ -8,7 +8,7 @@ define('IMAGES', THEMEROOT.'/assets/images');
 
 // Frontend styles.
 function enqueue_style() {
-	wp_enqueue_style('core', THEMEROOT.'/assets/css/styles.min.css?v2', false);
+	wp_enqueue_style('core', THEMEROOT.'/assets/css/styles.min.css?v6', false);
 }
 add_action('wp_enqueue_scripts', 'enqueue_style');
 
@@ -18,7 +18,7 @@ function enqueue_scripts() {
 	wp_enqueue_script('jquery');
 
   wp_enqueue_script('custom-script1', 'https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.2.5/polyfill.min.js', array( 'jquery' ), false, true);
-	wp_enqueue_script('custom-script', THEMEROOT.'/assets/js/app.bundle.js?v11', array( 'jquery' ), false, true);
+	wp_enqueue_script('custom-script', THEMEROOT.'/assets/js/app.bundle.js?v4', array( 'jquery' ), false, true);
 }
 add_action('wp_enqueue_scripts', 'enqueue_scripts');
 
@@ -76,6 +76,7 @@ add_filter( 'register_post_type_args', 'wp1482371_custom_post_type_args', 20, 2 
 
 
 add_filter( 'gform_pre_render_1', 'my_populate_checkbox' );
+add_filter( 'gform_admin_pre_render_1', 'my_populate_checkbox' );
 function my_populate_checkbox( $form ) {
   
   // Loop through form fields
@@ -86,7 +87,8 @@ function my_populate_checkbox( $form ) {
     'post_type' => 'nsm_meals',
     'post_status' => 'publish',
     'orderby' => 'title',
-    'order' => 'asc'
+    'order' => 'asc',
+    'posts_per_page' => '99999'
   );
  
 
@@ -117,7 +119,9 @@ function my_populate_checkbox( $form ) {
     'post_type' => 'nsm_additional_items',
     'post_status' => 'publish',
     'orderby' => 'title',
-    'order' => 'asc'
+    'order' => 'asc',
+    'posts_per_page' => '99999'
+
   );
  
   $the_query = new WP_Query( $args );
@@ -188,7 +192,8 @@ function populate_fields( $value, $field, $name ) {
       'order_name' => isset($_COOKIE["gf_order_name"]) ? $_COOKIE["gf_order_name"] : '',
       'order_email' => isset($_COOKIE["gf_order_email"]) ? $_COOKIE["gf_order_email"] : '',
       'order_phone' => isset($_COOKIE["gf_order_phone"]) ? $_COOKIE["gf_order_phone"] : '',
-      'order_postcode' => isset($_COOKIE["gf_order_postcode"]) ? $_COOKIE["gf_order_postcode"] : ''
+      'order_postcode' => isset($_COOKIE["gf_order_postcode"]) ? $_COOKIE["gf_order_postcode"] : '',
+      'order_address' => isset($_COOKIE["gf_order_address"]) ? $_COOKIE["gf_order_address"] : ''
     );
  
     return isset( $values[ $name ] ) ? $values[ $name ] : $value;
@@ -205,6 +210,7 @@ function set_form_cookies( $entry, $form ) {
     setcookie('gf_order_email', $entry['16'], time() + 1209600, '/' );
     setcookie('gf_order_phone', $entry['17'], time() + 1209600, '/' );
     setcookie('gf_order_postcode', $entry['18'], time() + 1209600, '/' );
+    setcookie('gf_order_address', $entry['25'], time() + 1209600, '/' );
 }
 
 
@@ -240,12 +246,12 @@ function custom_confirmation_message( $confirmation, $form, $entry, $ajax ) {
       
       if($additional_items!='')
       {
-        $additional_items = '<p class="heading">Additional Items</p>' . $additional_items;
+        $additional_items = '<p class="heading">YesChef Junior Items</p>' . $additional_items;
       }
 
       $html .= $additional_items;
 
-       $html .= '<p class="heading">Contact Details</p><p>' . $entry['15'] . '</p><p>' . $entry['16'] . '</p><p>' . $entry['17'] . '</p><p>' . $entry['18'] . '</p>';
+       $html .= '<p class="heading">Contact Details</p><p>' . $entry['15'] . '</p><p>' . $entry['16'] . '</p><p>' . $entry['17'] . '</p><p>' . $entry['25'] . '</p><p>' . $entry['18'] . '</p><p>' . $entry['26'] . '</p>';
 
 
     return str_replace("XXX", $html, $confirmation);
@@ -258,48 +264,6 @@ function change_message( $message, $form ) {
 }
 
 
-// Includes
-
-
-// if (!class_exists('DownloadCSV')) {
-
-  
-
-//   class DownloadCSV {
-//     static function on_load() {
-//       add_action('plugins_loaded',array(__CLASS__,'plugins_loaded'));
-//       add_action('admin_menu',array(__CLASS__,'admin_menu'));
-//       register_activation_hook(__FILE__,array(__CLASS__,'activate'));
-
-//     }
-//     static function activate() {
-//       $role = get_role('administrator');
-//       $role->add_cap('download_csv');
-//     }
-//     static function admin_menu() {
-//       add_submenu_page('tools.php',    // Parent Menu
-//         'Download CSV',                // Page Title
-//         'Download CSV',                // Menu Option Label
-//         'download_csv',                // Capability
-//         'tools.php?download=data.csv');// Option URL relative to /wp-admin/
-//     }
-//     static function plugins_loaded() {
-//       global $pagenow;
-//       if ($pagenow=='tools.php' && 
-//           current_user_can('download_csv') && 
-//           isset($_GET['download'])  && 
-//           $_GET['download']=='data.csv') {
-//         header("Content-type: application/x-msdownload");
-//         header("Content-Disposition: attachment; filename=data.csv");
-//         header("Pragma: no-cache");
-//         header("Expires: 0");
-//         echo 'data';
-//         exit();
-//       }
-//     }
-//   }
-//   DownloadCSV::on_load();
-// }
 
 
 

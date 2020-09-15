@@ -5,9 +5,9 @@
 		<div class="home-hero-container">
 
 			<div class="home-hero-container__col1">
-				<h1 class="animate">Fresh, local, delicious ingredient boxes</h1>
-				<h2 class="animate">Delivered to your door</h2>
-				<p class="animate">Brought to you buy The Chequers Aylesford.</p>
+				<h1 class="animate"><?php echo get_field('main_heading');?></h1>
+				<h2 class="animate"><?php echo get_field('sub-heading');?></h2>
+				<p class="animate"><?php echo get_field('strapline');?></p>
 			</div>
 
 			<div class="home-hero-container__col2">

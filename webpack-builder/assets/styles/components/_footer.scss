@@ -251,15 +251,15 @@ $footerdetails-snap2: '1170px';
 							}
 
 							&__instagram {
-								flex: 0 0 46%;
+								flex: 0 0 100%;
 								background-image: url('../images/icon-instagram.svg');
 							}
 
-							&__twitter {
-								flex: 0 0 46%;
-								background-image: url('../images/icon-twitter.svg');
+							// &__twitter {
+							// 	flex: 0 0 46%;
+							// 	background-image: url('../images/icon-twitter.svg');
 
-							}
+							// }
 
 						}
 						

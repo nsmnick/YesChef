@@ -140,45 +140,54 @@ function render_meals_report($order_week, $export=false) {
     $meals = array();
     $additional_items = array();
     $orders = 0;
+    $excluded_orders = 0;
     foreach ($entries as $key => $entry) {
         # code...
         // echo print_r($entry);
         // echo '<br/><br/>';
 
-        $orders++;
-    
 
-        $meal_multiplier = 2;
-        if(strpos($entry['2'],'4 people')!=FALSE)
+        // First check to see if order should be included in report
+
+        if($entry['21'] == 'Yes') 
         {
-            $meal_multiplier = 4;
-        }
 
-        // Four standard meals
-        $meals[$entry['5']] = (int) $meals[$entry['5']] + (int) (1 * $meal_multiplier);
-        $meals[$entry['6']] = (int) $meals[$entry['6']] + (int) (1 * $meal_multiplier);
-        $meals[$entry['7']] = (int) $meals[$entry['7']] + (int) (1 * $meal_multiplier);
-        $meals[$entry['8']] = (int) $meals[$entry['8']] + (int) (1 * $meal_multiplier);
-
-        // lazy pies added to normal meals pick list
-
-        if(strpos($entry['10'],'No thanks')!=FALSE)
-            $meals[$entry['10']] = (int) $meals[$entry['10']] + (int) (1 * $meal_multiplier);
+            $orders++;
         
-        if(strpos($entry['11'],'No thanks')!=FALSE)
-            $meals[$entry['11']] = (int) $meals[$entry['11']] + (int) (1 * $meal_multiplier);
 
-
-        // Find additional items
-        foreach( $entry as $key => $value ) {
-      
-            if(substr($key, 0, 3) == '13.') {
-                if($value!='')
-                    $additional_items[$value] = (int) $additional_items[$value] + (int) 1;
+            $meal_multiplier = 2;
+            if(strpos($entry['2'],'4 people')!=FALSE)
+            {
+                $meal_multiplier = 4;
             }
+
+            // Four standard meals
+            $meals[$entry['5']] = (int) $meals[$entry['5']] + (int) (1 * $meal_multiplier);
+            $meals[$entry['6']] = (int) $meals[$entry['6']] + (int) (1 * $meal_multiplier);
+            $meals[$entry['7']] = (int) $meals[$entry['7']] + (int) (1 * $meal_multiplier);
+            $meals[$entry['8']] = (int) $meals[$entry['8']] + (int) (1 * $meal_multiplier);
+
+            // lazy pies added to normal meals pick list
+
+            if(strpos($entry['10'],'No thanks')!=FALSE)
+                $meals[$entry['10']] = (int) $meals[$entry['10']] + (int) (1 * $meal_multiplier);
+            
+            if(strpos($entry['11'],'No thanks')!=FALSE)
+                $meals[$entry['11']] = (int) $meals[$entry['11']] + (int) (1 * $meal_multiplier);
+
+
+            // Find additional items
+            foreach( $entry as $key => $value ) {
+          
+                if(substr($key, 0, 3) == '13.') {
+                    if($value!='')
+                        $additional_items[$value] = (int) $additional_items[$value] + (int) 1;
+                }
+            }
+
+        } else {
+            $excluded_orders++;
         }
-
-
 
     }
 
@@ -192,7 +201,8 @@ function render_meals_report($order_week, $export=false) {
         echo '<div style="background-color: white; padding: 20px;">';
 
         echo '<h1>Order Week: ' . $order_week . '</h1>';
-        echo '<p>Number of orders: #' . $orders . '</p>';
+        echo '<p>Number of orders: #' . $orders . '<br/>';
+        echo 'Number of excluded orders: #' . $excluded_orders . '</p>';
 
         echo '<a class="button" href="/wp-admin/admin.php?page=meals_report&download_meals_report=true&order_week=' . $_POST['order_week'] . '">Download Report</a><br/>';
         
@@ -228,6 +238,8 @@ function render_meals_report($order_week, $export=false) {
         echo '"Order Week: ' . $order_week . '",';
         echo "\r\n";
         echo '"Number of orders: #' . $orders . '",';
+        echo "\r\n";
+        echo '"Number of excluded orders: #' . $excluded_orders . '",';
         echo "\r\n";
         echo "\r\n";
         echo '"Item Ordered","# Ordered",';

@@ -14,6 +14,8 @@ get_header();
 
 	include_once 'partials/_content-three-images-col-panel.php';
 
+	include_once 'partials/_content-promotion-slot.php';
+
 	include_once 'partials/_content-latest-meals.php';
 
 	include_once 'partials/_content-featured-additional-items.php';

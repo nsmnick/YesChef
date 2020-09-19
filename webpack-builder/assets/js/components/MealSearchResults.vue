@@ -24,6 +24,7 @@
 
 	        <div class="meal-panel__image">
 	 			<img v-bind:src="meal.featured_image">
+	 			<div v-if="meal.available_this_week" class="meal-panel__available-tag">Available this week</div>
 	 		</div>
 
 		 		<div class="meal-panel__stats">

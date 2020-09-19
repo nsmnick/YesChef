@@ -8,7 +8,7 @@ define('IMAGES', THEMEROOT.'/assets/images');
 
 // Frontend styles.
 function enqueue_style() {
-	wp_enqueue_style('core', THEMEROOT.'/assets/css/styles.min.css?v6', false);
+	wp_enqueue_style('core', THEMEROOT.'/assets/css/styles.min.css?v7', false);
 }
 add_action('wp_enqueue_scripts', 'enqueue_style');
 
@@ -18,7 +18,7 @@ function enqueue_scripts() {
 	wp_enqueue_script('jquery');
 
   wp_enqueue_script('custom-script1', 'https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.2.5/polyfill.min.js', array( 'jquery' ), false, true);
-	wp_enqueue_script('custom-script', THEMEROOT.'/assets/js/app.bundle.js?v4', array( 'jquery' ), false, true);
+	wp_enqueue_script('custom-script', THEMEROOT.'/assets/js/app.bundle.js?v5', array( 'jquery' ), false, true);
 }
 add_action('wp_enqueue_scripts', 'enqueue_scripts');
 
@@ -39,6 +39,21 @@ add_action('wp_enqueue_scripts', 'enqueue_scripts');
 
 // Enable thumbnail support for this theme.
 add_theme_support('post-thumbnails');
+
+// Add options pages for ACF.
+if ( function_exists('acf_add_options_page') ) {
+
+  acf_add_options_page([
+    'page_title' => 'Theme Settings'
+    , 'menu_title' => 'Theme Settings'
+    , 'menu_slug' => 'theme-general-settings'
+    , 'capability'=> 'edit_posts'
+    , 'redirect' => true
+  ]);
+
+}
+
+
 
 // Post excerpt settings.
 function custom_excerpt_length($length) {
@@ -75,6 +90,41 @@ add_filter( 'register_post_type_args', 'wp1482371_custom_post_type_args', 20, 2 
 
 
 
+add_filter( 'gform_pre_render_1', 'my_populate_promotion' );
+function my_populate_promotion( $form ) {
+
+    $promotion_active = get_field('promotion_active','option');
+    if($promotion_active)
+    {
+
+      $promotion_heading = get_field('order_page_promotion_heading','option');
+      $promotion_subheading = get_field('order_page_promotion_sub-heading','option');
+      $promotion_button_text = get_field('order_page_select_button_text','option');
+
+      foreach( $form['fields'] as &$field ) {    
+
+      // If one of the meal options then set the options to these meals
+        if( 27 === $field->id) {
+
+          $field->content = '<div class="promotion">';
+
+          if($promotion_heading)
+            $field->content .= '<h2>'.$promotion_heading.'</h2>';
+
+          if($promotion_subheading)
+            $field->content .= '<p>'.$promotion_subheading.'</p>';
+
+          $field->content .='<a href="#" class="button button--dark-blue" onclick="populate_promotional_meals();return false;">'.$promotion_button_text.'</a>';
+
+          $field->content .='</div>';
+        }
+      }
+    }
+
+    return $form;
+}
+
+
 add_filter( 'gform_pre_render_1', 'my_populate_checkbox' );
 add_filter( 'gform_admin_pre_render_1', 'my_populate_checkbox' );
 function my_populate_checkbox( $form ) {
@@ -82,13 +132,15 @@ function my_populate_checkbox( $form ) {
   // Loop through form fields
 
 
-  // Get published meals
+  // Get published meals - which are available this week.
   $args = array(
     'post_type' => 'nsm_meals',
     'post_status' => 'publish',
     'orderby' => 'title',
     'order' => 'asc',
-    'posts_per_page' => '99999'
+    'posts_per_page' => '99999',
+    'taxonomy' => 'nsm_meal_order_date',
+    'term' => '2020/09/29'
   );
  
 
@@ -114,7 +166,7 @@ function my_populate_checkbox( $form ) {
 
 
 
-  // Get published meals
+  // Get additional items
   $args = array(
     'post_type' => 'nsm_additional_items',
     'post_status' => 'publish',
@@ -266,7 +318,38 @@ function change_message( $message, $form ) {
 
 
 
+function get_next_order_date()
+{
+  $date = new DateTime();
 
+    // if date is Friday, Saturday, Sunday, Monday we get next tuesday + 1 otherwise get next tuesday.
+    $day = $date->format( 'N' );
+
+
+    if($day ==1 || $day == 5 || $day == 6 || $day ==7) // MON, FRI PM, SAT, SUN
+    {
+      // Check if it is friday AM
+
+      if($day == 5)
+      {
+        $hour = $date->format( 'H' );
+
+
+        if($hour >= 12)
+          $date->modify('next tuesday +1 week');  
+        else
+          $date->modify('next tuesday');      
+      } else {
+        $date->modify('next tuesday +1 week');    
+      }
+
+      
+    } else {
+      $date->modify('next tuesday');  
+    }
+
+    return $date;
+}
 
 
 include_once 'includes/_lockdown.php';

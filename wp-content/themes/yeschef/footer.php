@@ -136,7 +136,32 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'UA-177763557-1');
+  gtag('config', '<?php echo GA_CODE;?>');
+
+
+  jQuery(document).ready(function() {
+    
+    jQuery(document).bind("gform_confirmation_loaded", function(event, formID) {
+    	console.log('form submitted');
+		
+		if (typeof gtag != "undefined") 
+		{
+			gtag('event', 'Submission', {'event_category': 'Form','event_label': 'Order Form'});
+			console.log('ga event submitted');
+		}
+
+		if (typeof fbq != "undefined") 
+		{
+			fbq('track', 'Purchase', {value: 0.00, currency: 'GBP'});
+			console.log('fb event submitted');
+		}
+
+		
+    });
+    
+  });
+
+
 </script>
 
 

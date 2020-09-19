@@ -29,6 +29,9 @@ define('DB_NAME', 'yeschef');
 define('DB_USER', 'root');
 define('DB_PASSWORD', 'root');
 
+// TEST
+define('GA_CODE', 'UA-XXX');
+
 // STG
 // define('DB_NAME', 'nsmdigit_yeschef');
 // define('DB_USER', 'nsmdigit_yeschef');
@@ -39,6 +42,8 @@ define('DB_PASSWORD', 'root');
 // define('DB_USER', 'uqqc5gt7fr433');
 // define('DB_PASSWORD', '1;wNi#34-1m6');
 
+// LIVE
+define('GA_CODE', 'UA-177763557-1');
 
 
 

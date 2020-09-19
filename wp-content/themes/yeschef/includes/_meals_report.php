@@ -137,45 +137,112 @@ function render_meals_report($order_week, $export=false) {
     $entries = GFAPI::get_entries( $form_id, $search_criteria,  $sorting, $paging );
 
 
-    $meals = array();
+    $order_details = array();
+    $meals2 = array();
+    $meals4 = array();
     $additional_items = array();
     $orders = 0;
+    $orders2 = 0;
+    $orders4 = 0;
+
     $excluded_orders = 0;
     foreach ($entries as $key => $entry) {
         # code...
-        // echo print_r($entry);
-        // echo '<br/><br/>';
-
+        
 
         // First check to see if order should be included in report
 
         if($entry['21'] == 'Yes') 
         {
 
+            // echo print_r($entry);
+            // echo '<br/><br/>';
+
+
             $orders++;
-        
+
+            
+            $order_details[$orders]['id'] = $entry['id'];
+            $order_details[$orders]['date'] = $entry['date_created'];
+            $order_details[$orders]['name'] = $entry['15'];
+
+            if(strpos($entry['2'],'4 people')!=FALSE)
+                $order_details[$orders]['people'] = '4 People';
+            else 
+                $order_details[$orders]['people'] = '2 People';
+
+            $order_details[$orders]['meal1'] = $entry['5'];
+            $order_details[$orders]['meal2'] = $entry['6'];
+            $order_details[$orders]['meal3'] = $entry['7'];
+            $order_details[$orders]['meal4'] = $entry['8'];
+            $order_details[$orders]['lazy1'] = $entry['10'];
+            $order_details[$orders]['lazy2'] = $entry['11'];
+                
+
+
+            // echo $entry['2'];
+            // echo strpos($entry['2'],'4 people');
 
             $meal_multiplier = 2;
-            if(strpos($entry['2'],'4 people')!=FALSE)
+            if(strpos($entry['2'],'4 people')!==FALSE)
             {
                 $meal_multiplier = 4;
+                $orders4++;
+
+                // Four standard meals
+                $meals4[$entry['5']] = (int) $meals4[$entry['5']] + 4;
+                $meals4[$entry['6']] = (int) $meals4[$entry['6']] + 4;
+                $meals4[$entry['7']] = (int) $meals4[$entry['7']] + 4;
+                $meals4[$entry['8']] = (int) $meals4[$entry['8']] + 4;
+
+
+                if(strpos($entry['10'],'No thanks')===FALSE)
+                {
+                    $meal = strip_amount($entry['10']);
+                    $meals4[$meal] = (int) $meals4[$meal] + 4;
+                }
+            
+                if(strpos($entry['11'],'No thanks')===FALSE)
+                {
+                    $meal = strip_amount($entry['11']);
+                    $meals4[$meal] = (int) $meals4[$meal] + 4;
+                }
+
+
+                
+            } else {
+               $meal_multiplier = 2;
+                $orders2++;
+
+                 // Four standard meals
+                $meals2[$entry['5']] = (int) $meals2[$entry['5']] + 2;
+                $meals2[$entry['6']] = (int) $meals2[$entry['6']] + 2;
+                $meals2[$entry['7']] = (int) $meals2[$entry['7']] + 2;
+                $meals2[$entry['8']] = (int) $meals2[$entry['8']] + 2;
+
+                // echo 'lazy1:' . $entry['10'] . '<br/>';
+                // echo 'res1:' . strpos($entry['10'],'No thanks');
+
+                if(strpos($entry['10'],'No thanks')===FALSE)
+                {
+                    $meal = strip_amount($entry['10']);
+                    $meals2[$meal] = (int) $meals2[$meal] + 2;
+      //              echo 'lazy1 count:' . $meals2[$meal] . '<br/>';
+                }
+                
+
+
+                if(strpos($entry['11'],'No thanks')===FALSE)
+                {
+                    $meal = strip_amount($entry['11']);
+                    $meals2[$meal] = (int) $meals2[$meal] + 2;
+        //            echo 'lazy2 count:' . $meals2[$meal] . '<br/>';
+                }
+
             }
 
-            // Four standard meals
-            $meals[$entry['5']] = (int) $meals[$entry['5']] + (int) (1 * $meal_multiplier);
-            $meals[$entry['6']] = (int) $meals[$entry['6']] + (int) (1 * $meal_multiplier);
-            $meals[$entry['7']] = (int) $meals[$entry['7']] + (int) (1 * $meal_multiplier);
-            $meals[$entry['8']] = (int) $meals[$entry['8']] + (int) (1 * $meal_multiplier);
-
-            // lazy pies added to normal meals pick list
-
-            if(strpos($entry['10'],'No thanks')!=FALSE)
-                $meals[$entry['10']] = (int) $meals[$entry['10']] + (int) (1 * $meal_multiplier);
             
-            if(strpos($entry['11'],'No thanks')!=FALSE)
-                $meals[$entry['11']] = (int) $meals[$entry['11']] + (int) (1 * $meal_multiplier);
-
-
+          
             // Find additional items
             foreach( $entry as $key => $value ) {
           
@@ -202,23 +269,38 @@ function render_meals_report($order_week, $export=false) {
 
         echo '<h1>Order Week: ' . $order_week . '</h1>';
         echo '<p>Number of orders: #' . $orders . '<br/>';
+        echo 'Boxes for 2 people: #' . $orders2 . '<br/>';
+        echo 'Boxes for 4 people: #' . $orders4 . '<br/>';
         echo 'Number of excluded orders: #' . $excluded_orders . '</p>';
 
         echo '<a class="button" href="/wp-admin/admin.php?page=meals_report&download_meals_report=true&order_week=' . $_POST['order_week'] . '">Download Report</a><br/>';
         
         echo '<br/><hr/><br/>';
 
-        echo '<h2 style="margin-bottom:5px;">Number of each meal ordered</h2>';
-        echo '(Includes Lazy Day additional Pie choices)<br/><br/>';
+        echo '<h2 style="margin-bottom:5px;">Number of each meal ordered for 2 people</h2>';
+        echo '(Includes Lazy Day additional Pie choices)<br/>';
         
         echo '<ul class="styled-list">';
-        foreach( $meals as $meal => $value ) {
+        foreach( $meals2 as $meal => $value ) {
             echo '<li>' . $meal . ': <b>' . $value . '</b></li>';
         }
 
-        echo '</ul>';
+        echo '</ul><br/>';
 
-        echo '<br/>';
+
+        
+        echo '<h2 style="margin-bottom:5px;">Number of each meal ordered for 4 people</h2>';
+        echo '(Includes Lazy Day additional Pie choices)<br/>';
+        
+        echo '<ul class="styled-list">';
+        foreach( $meals4 as $meal => $value ) {
+            echo '<li>' . $meal . ': <b>' . $value . '</b></li>';
+        }
+
+        echo '</ul><br/>';
+
+
+        
         echo '<h2>Number of additional items</h2>';
 
         echo '<ul class="styled-list">';
@@ -226,6 +308,20 @@ function render_meals_report($order_week, $export=false) {
             echo '<li>' . $item . ': <b>' . $value . '</b></li>';
         }
         echo '</ul>';
+
+
+        echo '<br/>';
+        echo '<h2>Order Details</h2>';
+
+        
+
+        echo '<ul class="styled-list">';
+        foreach( $order_details as $order) {
+
+            echo '<li><b>Order #: </b>' . $order['id'] . ' | <b>Date: </b>' . $order['date'] . ' | <b>Name:</b> ' . $order['name'] . ' | <b># People:</b> ' . $order['people'] . ' | <b>Meal1:</b> ' . $order['meal1'] .' | <b>Meal2:</b> ' . $order['meal2'] .' | <b>Meal3:</b> ' . $order['meal3'] .' | <b>Meal4:</b> ' . $order['meal4'] .' | <b>Lazy1:</b> ' . $order['lazy1'] .' | <b>Lazy2:</b> ' . $order['lazy2'] .'</li>'; 
+        }
+        echo '</ul>';
+
       
         echo '<br/>';
 
@@ -237,19 +333,36 @@ function render_meals_report($order_week, $export=false) {
 
         echo '"Order Week: ' . $order_week . '",';
         echo "\r\n";
-        echo '"Number of orders: #' . $orders . '",';
+        echo 'Boxes for 2 people: #' . $orders2 . ',';
+        echo "\r\n";
+        echo 'Boxes for 4 people: #' . $orders4 . ',';
         echo "\r\n";
         echo '"Number of excluded orders: #' . $excluded_orders . '",';
         echo "\r\n";
         echo "\r\n";
-        echo '"Item Ordered","# Ordered",';
+
+        echo '"Number of each meal ordered for 2 people","# Ordered",';
         echo "\r\n";
-        foreach( $meals as $meal => $value ) {
+        foreach( $meals2 as $meal => $value ) {
             echo '"' . $meal . '","' . $value . '",';
             echo "\r\n";
         }
 
         echo "\r\n";
+        echo "\r\n";
+
+
+        echo '"Number of each meal ordered for 4 people","# Ordered",';
+        echo "\r\n";
+        foreach( $meals4 as $meal => $value ) {
+            echo '"' . $meal . '","' . $value . '",';
+            echo "\r\n";
+        }
+
+        echo "\r\n";
+        echo "\r\n";
+
+        echo '"Additional Items","# Ordered",';
         echo "\r\n";
 
         foreach( $additional_items as $item => $value ) {
@@ -258,9 +371,43 @@ function render_meals_report($order_week, $export=false) {
         }
 
 
+
+        echo "\r\n";
+        echo "\r\n";
+
+        echo '"Order Details"';
+        echo "\r\n";
+
+        echo '"Order #","Date","Name","# People","Meal1","Meal2","Meal3","Meal4","Lazy1","Lazy2",';
+        echo "\r\n";
+
+        foreach( $order_details as $order) {
+
+            echo '"'.$order['id'].'","'.$order['date'].'","'.$order['name'].'","'.$order['people'].'","'.$order['meal1'].'","'.$order['meal2'].'","'.$order['meal3'].'","'.$order['meal4'].'","'.$order['lazy1'].'","'.$order['lazy2'].'",';
+
+            echo "\r\n";
+        }
+
+
     }
 
 
+
+
+}
+
+
+function strip_amount($meal) {
+
+    //echo 'meal1:' . $meal . ':' . strpos($meal,'(£') . '<br>';
+
+    if(strpos($meal,'(£') > 0)
+    {
+        $meal = substr($meal, 0, (strpos($meal,'(£'))-2);
+      //  echo 'meal2:' . $meal . '<br>';
+    }
+
+    return $meal;
 
 
 }

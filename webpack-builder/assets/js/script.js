@@ -8,6 +8,9 @@ jQuery(window).ready(function($) {
 
 
 
+	
+
+
 	$('.mobile-toggle-menu').click (function(e){
 		$('.mobile-toggle-menu').css('opacity',0);
 		$('.mobile-toggle-menu-close').fadeIn();
@@ -107,3 +110,4 @@ jQuery(window).ready(function($) {
 
 
 });
+

@@ -39,6 +39,12 @@ export default {
 		, MealSearchResults
 		, Pagination
 	}
+	, props: {
+		order_date: {
+			type: String
+			, default: ''
+		}
+	}
 	, data() {
 		return {
 			meals: []

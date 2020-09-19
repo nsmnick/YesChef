@@ -28,9 +28,11 @@
 		</div>
 	</section>
 
-	<div id="meal-search">
+
+	<div id="meal-search" data-order-date="<?php echo get_next_order_date()->format('Y/m/d');?>">
 	</div>
 
+	
 
 	<?php include_once 'partials/_content-order-first.php'; ?>
 

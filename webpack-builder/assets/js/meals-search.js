@@ -12,8 +12,21 @@ if (document.getElementById('meal-search') !== null)
 
 	const meal_search = new Vue({
 		el: '#meal-search'
+
 		, render(h) {
-			return h(MealSearch);
+
+			let props = {};
+		
+			if (this.$el.attributes['data-order-date'])
+			{
+				props.order_date = this.$el.attributes['data-order-date'].value		
+				console.log(props.order_date);
+			}
+
+
+			return h(MealSearch, {
+				props: props
+			});
 		}
 	});
 }

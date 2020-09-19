@@ -1,0 +1,63 @@
+$four-column-snap1: 1390px;
+$four-column-snap2: 600px;
+
+
+.four-cols-recipe-container {
+
+	display: block;
+	width: 100%;
+	height: 100%;
+
+
+	@include bp($four-column-snap2) {
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+
+		max-width: 650px;
+		margin: 0 auto;
+	
+
+	}
+
+	@include bp($four-column-snap1) {
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: nowrap;
+
+		max-width: 1400px;
+		height: auto;
+	}
+
+	&__col {
+
+		display: block;
+		width: 100%;
+		margin-bottom: 15px;
+
+
+		@include bp($four-column-snap2) {
+
+			flex: 0 0  49%;
+			margin-bottom: 15px;
+			
+		}
+
+		@include bp($four-column-snap1) {
+			flex: 0 0 24%;
+			margin-bottom: 15px;
+		
+		}
+		
+
+		
+		
+
+	
+
+	}
+
+
+	
+	
+}

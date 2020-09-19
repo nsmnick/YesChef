@@ -49,8 +49,6 @@ while ( have_posts() ) : the_post();
 
 	<?php 
 
-
-
 		$lazy_meal = true;
 		
 		$ingredients_for_two = get_field('ingredients')[0];
@@ -58,7 +56,6 @@ while ( have_posts() ) : the_post();
 
 		if($ingredients_for_two || $ingredients_for_four)
 			$lazy_meal=false;
-
 
 	?>
 

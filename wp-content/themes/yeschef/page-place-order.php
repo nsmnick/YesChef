@@ -20,38 +20,38 @@
 	<?php 
 
 		
-		$date = new DateTime();
+		// $date = new DateTime();
 
-		//$datenow = $date;
-
-
-		// if date is Friday, Saturday, Sunday, Monday we get next tuesday + 1 otherwise get next tuesday.
-		$day = $date->format( 'N' );
+		// //$datenow = $date;
 
 
-		if($day ==1 || $day == 5 || $day == 6 || $day ==7) // MON, FRI PM, SAT, SUN
-		{
-			// Check if it is friday AM
-
-			if($day == 5)
-			{
-				$hour = $date->format( 'H' );
+		// // if date is Friday, Saturday, Sunday, Monday we get next tuesday + 1 otherwise get next tuesday.
+		// $day = $date->format( 'N' );
 
 
-				if($hour >= 12)
-					$date->modify('next tuesday +1 week');	
-				else
-					$date->modify('next tuesday');			
-			} else {
-				$date->modify('next tuesday +1 week');		
-			}
+		// if($day ==1 || $day == 5 || $day == 6 || $day ==7) // MON, FRI PM, SAT, SUN
+		// {
+		// 	// Check if it is friday AM
+
+		// 	if($day == 5)
+		// 	{
+		// 		$hour = $date->format( 'H' );
+
+
+		// 		if($hour >= 12)
+		// 			$date->modify('next tuesday +1 week');	
+		// 		else
+		// 			$date->modify('next tuesday');			
+		// 	} else {
+		// 		$date->modify('next tuesday +1 week');		
+		// 	}
 
 			
-		} else {
-			$date->modify('next tuesday');	
-		}
+		// } else {
+		// 	$date->modify('next tuesday');	
+		// }
 
-
+		$date = get_next_order_date();
 
 		$heading = 'To be delivered ' . $date->format('l dS F');
 	?>
@@ -104,7 +104,70 @@
 	include_once 'partials/_content-how-it-works.php'; 
 	?>
 
+	
+
+	<script>
+
+
+		if (typeof fbq != "undefined") 
+		{
+			fbq('track', 'InitiateCheckout');
+			console.log('fb event submitted');
+		}
+	
+
+		<?php 
+
+		$promotion_active = get_field('promotion_active','option');
+		if($promotion_active)
+		{
+			$promotion_meals = get_field('promotion_meals','option');
+			
+			if($promotion_meals)
+			{
+
+		?>
+
+				function populate_promotional_meals() 
+				{
+					console.log('pop meals');
+
+					jQuery(function($) {
+
+						<?php
+						$count = 1;
+						foreach ($promotion_meals as $promotion_meal) {
+							$meal = $promotion_meal['promotion_meal'];
+							
+							echo "$('#input_1_".($count+4)."').val('".$meal->post_title."');";
+
+							//echo "$('#input_1_".($count+4)."').hide();";
+
+							$count++;
+
+							?>
+								console.log('<?php echo $meal->post_title;?>');
+							<?php
+
+						}
+						?>
+					});
+				}
+
+		<?php 
+			}
+		}
+		?>
+
+
+	</script>
+
+
+
 <?php
+
+	
+
 	get_footer();
 ?>
 

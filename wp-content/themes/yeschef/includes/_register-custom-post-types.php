@@ -133,6 +133,33 @@
 	));
 
 
+	register_taxonomy('nsm_meal_order_date', 'nsm_meals', array(
+		'hierarchical' => true
+		, 'labels' => array(
+			'name' => _x( 'Order Date Available', 'taxonomy general name' )
+			, 'singular_name' => _x( 'Calorie', 'taxonomy singular name' )
+			, 'search_items' =>  __( 'Search Order Dates' )
+			, 'popular_items' => __( 'Popular Order Dates' )
+			, 'all_items' => __( 'All Order Dates' )
+			, 'parent_item' => null
+			, 'parent_item_colon' => null
+			, 'edit_item' => __( 'Edit Order Date' )
+			, 'update_item' => __( 'Update Order Date' )
+			, 'add_new_item' => __( 'Add New Order Date' )
+			, 'new_item_name' => __( 'New Type Name' )
+			, 'separate_items_with_commas' => __( 'Separate Order Dates with commas' )
+			, 'add_or_remove_items' => __( 'Add or remove Order Dates' )
+			, 'choose_from_most_used' => __( 'Choose from the most used Order Dates' )
+			, 'menu_name' => __( 'Order Dates' )
+		)
+		, 'show_ui' => true
+		, 'show_admin_column' => true
+		, 'update_count_callback' => '_update_post_term_count'
+		, 'query_var' => true
+		, 'show_in_rest' => true
+	));
+
+
 
 
 
@@ -250,8 +277,9 @@
 	}
 
 
-
-
+	function is_available_this_week($post_id) {
+		return has_term(get_next_order_date()->format('Y/m/d'), 'nsm_meal_order_date',$post_id);
+	}
 
 
 

@@ -1,5 +1,14 @@
+<?php
 
-<section class="panel content content__panel content__panel--blue">
+	$panel_class='';
+	$promotion_active = get_field('promotion_active','option');
+	if(!$promotion_active)
+		$panel_class=' top-blue';
+
+?>
+
+
+<section class="panel content content__panel content__panel--blue<?php echo $panel_class;?>">
 
 	<div class="container">
 

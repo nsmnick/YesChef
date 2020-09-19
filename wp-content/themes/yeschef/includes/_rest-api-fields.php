@@ -15,6 +15,7 @@ function register_custom_rest_fields() {
 			,'summary' => 'nsm_meal_get_summary'
 			,'cook_time' => 'nsm_meal_get_cook_time'
 			,'prep_time' => 'nsm_meal_get_prep_time'
+			,'available_this_week' => 'nsm_meal_get_available_this_week'
 		],
 		'nsm_additional_items' => [
 			'price' => 'nsm_additionalitem_get_price'
@@ -97,6 +98,10 @@ function nsm_meal_get_cook_time(  $object, $field_name, $request) {
 function nsm_additionalitem_get_price(  $object, $field_name, $request) {
 	
 	return get_post_meta($object['id'],'price')[0];
+}
+
+function nsm_meal_get_available_this_week(  $object, $field_name, $request) {
+	return has_term(get_next_order_date()->format('Y/m/d'), 'nsm_meal_order_date',$object['id']);
 }
 
 

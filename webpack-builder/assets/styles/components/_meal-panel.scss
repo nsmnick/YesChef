@@ -13,7 +13,8 @@
 	&__image {
 		
 		flex: 0 0 auto;
-		//height: 175px;
+		position: relative;
+		overflow: hidden;
 
 
 		img {
@@ -26,6 +27,21 @@
 		}
 
 		
+	}
+
+	&__available-tag {
+		background-color: red;
+	    position: absolute;
+	    top: -45px;
+	    right: -95px;
+	    padding: 70px 60px 0px;
+	    font-size: 11px;
+	    text-transform: uppercase;
+	    font-weight: bold;
+	    transform: rotate(45deg);
+	    height: 100px;
+	    width: 200px;
+	    line-height: 1.2;
 	}
 
 	&__stats {
@@ -173,5 +189,87 @@
 	}
 
 
+
+	// Variations for small meal panel
+
+	&--small {
+
+		//background-color: red;
+		//border: solid 1px red;
+		
+		.meal-panel__content {
+
+			h2 {
+				font-size: 22px;
+			}
+
+			.summary {
+				font-size: 15px;
+				line-height: 1.3;
+			}
+
+		}
+
+
+		.m-stats {
+
+
+			&__col {
+
+				.stat-container {
+
+					&__col1 {
+						flex: 0 0 25px;
+					}
+
+					&__col2 {
+
+						.stat-info-container {
+
+							&__col1 {
+
+								font-size: 10px;
+								@include bp(400px) {
+									font-size: 9px;
+								}
+
+							}
+
+							&__col2 {
+								
+
+								font-size: 12px;
+
+								@include bp(400px) {
+									font-size: 12px;
+								}
+
+								@include bp(600px) {
+									font-size: 12px;
+								}
+
+								@include bp(1200px) {
+									font-size: 12px;
+								}
+								
+
+								@include bp(1300px) {
+									font-size: 12px;
+								}
+							}
+
+						}
+
+					}
+
+				}
+
+			}
+
+
+		}
+
+
+	}
 
 }

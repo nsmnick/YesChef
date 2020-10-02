@@ -131,6 +131,7 @@ function my_populate_checkbox( $form ) {
   
   // Loop through form fields
 
+  $next_order_date = get_next_order_date()->format('Y/m/d');
 
   // Get published meals - which are available this week.
   $args = array(
@@ -140,7 +141,7 @@ function my_populate_checkbox( $form ) {
     'order' => 'asc',
     'posts_per_page' => '99999',
     'taxonomy' => 'nsm_meal_order_date',
-    'term' => '2020/09/29'
+    'term' => $next_order_date
   );
  
 
@@ -150,9 +151,16 @@ function my_populate_checkbox( $form ) {
 
   while ( $the_query->have_posts() ) : $the_query->the_post();
 
-    $meal_choices[] = array( 'text' => get_the_title(), 'value' => get_the_title() );
+    $supplement_price = get_post_meta(get_the_ID(), 'supplement_price', true);
+    $title = get_the_title();
+    if($supplement_price)
+      $title .= ' ' . $supplement_price;
+
+
+    $meal_choices[] = array( 'text' => $title, 'value' => get_the_title() );
 
     $pie_option = get_post_meta(get_the_ID(), 'lazy_day_pie_option');
+
     
 
 
@@ -320,10 +328,17 @@ function change_message( $message, $form ) {
 
 function get_next_order_date()
 {
-  $date = new DateTime();
+
+    date_default_timezone_set('Europe/London');
+    $date = new DateTime();
 
     // if date is Friday, Saturday, Sunday, Monday we get next tuesday + 1 otherwise get next tuesday.
     $day = $date->format( 'N' );
+
+    // echo'<br/><br/>';
+    // $test = $date->format( 'H' );
+    // echo "DAY: " . $day . '<br/>';
+    // echo "HOUR: " . $test . '<br/>';
 
 
     if($day ==1 || $day == 5 || $day == 6 || $day ==7) // MON, FRI PM, SAT, SUN

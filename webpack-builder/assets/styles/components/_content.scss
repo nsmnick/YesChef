@@ -85,10 +85,21 @@
 			display: block;
 		}
 
+
 		&.large-bottom {
 			margin-bottom: 40px;
 		}
+
+
+		&.sub-heading {
+			font-weight: bold;
+			font-size: 22px;
+			margin-bottom: 30px;
+		}
 	}
+
+
+
 
 
 
@@ -440,6 +451,11 @@
 				color: $light_green;
 			}
 		}
+	}
+
+	.courier_notice {
+		padding-top: 40px;
+		color: $teal;
 	}
 
 	

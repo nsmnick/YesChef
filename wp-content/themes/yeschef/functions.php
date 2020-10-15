@@ -8,7 +8,7 @@ define('IMAGES', THEMEROOT.'/assets/images');
 
 // Frontend styles.
 function enqueue_style() {
-	wp_enqueue_style('core', THEMEROOT.'/assets/css/styles.min.css?v7', false);
+	wp_enqueue_style('core', THEMEROOT.'/assets/css/styles.min.css?v9', false);
 }
 add_action('wp_enqueue_scripts', 'enqueue_style');
 
@@ -45,7 +45,7 @@ if ( function_exists('acf_add_options_page') ) {
 
   acf_add_options_page([
     'page_title' => 'Theme Settings'
-    , 'menu_title' => 'Theme Settings'
+    , 'menu_title' => 'Promotions'
     , 'menu_slug' => 'theme-general-settings'
     , 'capability'=> 'edit_posts'
     , 'redirect' => true

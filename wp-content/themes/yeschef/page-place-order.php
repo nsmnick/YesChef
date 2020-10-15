@@ -5,6 +5,8 @@
     */
 
 	get_header();
+
+	$courier_notice = get_field('courier_notice');
 ?>
 	
 	
@@ -17,7 +19,11 @@
 		</div>
 	</section>
 
+
+
+
 	<?php 
+
 
 		
 		// $date = new DateTime();
@@ -60,6 +66,9 @@
 		<div class="container">
 
 
+
+
+
 			<h2 id="page-subheading" class="with-green-stars animate-fade"><?php echo $heading; ?></h2>
 
 			<div class="form-container">
@@ -72,9 +81,19 @@
 
 				?>
 
-		
+				
 
 			</div>
+
+
+
+			<?php 
+
+	
+				if($courier_notice){
+					echo '<p class="courier_notice">' . $courier_notice . '</p>';
+				}
+			?>
 			
 
 			
@@ -89,6 +108,8 @@
 		
 	</section>
 
+
+	<?php include_once 'partials/_content-promotion-generic-slot-small.php'; ?>
 	
 	<section id="order-by-phone" class="panel content content__panel">
 		<div class="container">

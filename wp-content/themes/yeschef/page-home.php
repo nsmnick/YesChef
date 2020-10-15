@@ -16,6 +16,8 @@ get_header();
 
 	include_once 'partials/_content-promotion-slot.php';
 
+	include_once 'partials/_content-promotion-generic-slot.php';
+
 	include_once 'partials/_content-latest-meals.php';
 
 	include_once 'partials/_content-featured-additional-items.php';

@@ -203,6 +203,50 @@
 			text-transform: uppercase !important;
 		}
 
+		.gfield_price {
+
+			> .gfield_label {
+
+					width: calc(50%+10px) !important;
+
+					@media only screen and (max-width: 641px)
+					{
+						width: 100% !important;
+					}
+			}
+				
+		
+			
+
+				
+		}
+
+		.gfield_shipping {
+
+			.gfield_label {
+				display: inline-block !important; 
+				width: auto !important;
+				padding-right: 5px !important;
+			}
+		}
+
+		.ginput_container_singleshipping {
+			display: inline-block !important; 
+			font-size: 14px !important;	
+			font-weight: bold !important;	
+			color: #274f6b !important;
+ 
+		}
+
+		.ginput_container_total {
+
+			.ginput_total{
+				color: #274f6b !important;
+				font-weight: bold !important;
+				font-size: 24px !important;
+			}
+		}
+
 
 		.gfield
 		{
@@ -214,6 +258,8 @@
 				font-weight: 600 !important;
 				font-size: 14px !important;
 			}
+
+
 
 			.ginput_container {
 				margin-top: 2px !important;
@@ -232,8 +278,22 @@
 
 			.gfield_description {
 				padding-top: 0 !important;
-				color: $white !important;
+				color: #274f6b !important;
 			}
+
+
+			&.gfield_total {
+
+				background-color: #f6f9ec!important;
+				border-radius: 2px;
+				text-align: center !important;
+				padding: 10px !important;
+
+			}
+			
+			 
+		
+
 
 
 			.ginput_container_fileupload {
@@ -278,6 +338,10 @@
 				font-weight: 400 !important;
 				width: 100% !important;
 				border-radius: 6px !important; 
+
+				&.gf_coupon_code {
+					width: 200px !important;
+				}
 			}
 
 			select {
@@ -311,6 +375,8 @@
 				font-size: 17px !important;
 				color: #333 !important;
 				font-weight: 500 !important;
+				vertical-align: top !important;
+				margin-top: 10px !important;
 			}
 
 			input[type=checkbox] {
@@ -329,12 +395,116 @@
 
 
 
+
+
+
+			.ginput_container_singleproduct {
+
+				display: inline-block !important;
+
+
+				@media only screen and (max-width: 641px) {
+					display: inline-block !important;
+					width: 100% !important;
+				}
+				
+
+				@media only screen and (max-width: 641px)
+				{
+					span:not(.ginput_price) {
+						display: inline-block !important;
+					}	
+				}
+				
+
+				.ginput_product_price_label {
+					font-size: 14px !important;	
+					color: #274f6b !important;
+					
+				}
+
+				.ginput_product_price {
+					font-size: 14px !important;	
+					color: #274f6b !important;	
+					font-weight: bold !important;	
+				}
+
+				.ginput_quantity_label
+				{
+					font-size: 14px !important;	
+					color: #274f6b !important;
+				}
+
+				.ginput_quantity {
+					display: inline-block !important;
+					width: 30px !important;
+				}
+
+				input:not([type=radio]):not([type=checkbox]):not([type=submit]):not([type=button]):not([type=image]):not([type=file]) 
+				{
+						background-color: $light_green !important;
+						border: solid 1px $teal !important;
+						padding: 5px 10px !important;
+						font-size: 15px !important;
+						color: $darker_blue !important;
+						font-weight: 400 !important;
+						width: 40px !important;
+						border-radius: 6px !important; 
+					}
+
+			}
+
+			
+
+
+			#gf_coupon_button {
+
+				display: inline-block;
+				text-align: center;
+
+				line-height: 1em;
+				padding: 10px 18px;
+				white-space: nowrap;	
+				text-decoration: none;
+				user-select: none;
+				transition: all .3s ease-in-out;
+
+				background-color: $soft_green;
+				border: 3px solid $blue;
+				box-sizing: border-box;
+				box-shadow: 0px 2px 0px $blue;
+				border-radius: 6px;
+				color: $blue;
+				text-transform: uppercase;
+				font-weight: 600;
+				cursor: pointer;
+				font-size: 15px;
+				position: relative;
+				margin-bottom: 3px;
+
+				
+				&:hover {
+					
+					box-shadow: 0px 2px 0px $blue;
+					background: $blue;
+					border: solid 3px $blue;
+					color: $white;
+					transition: all .2s ease-in-out;
+				}
+
+				&:focus {
+					outline: 0;
+				}
+
+			}
 			
 
 		}
 
 
-
+		.gf_coupon_name, .gf_coupon_discount {
+			color: $teal !important;
+		}
 		
 		input[type=radio] + label { font-size: 14px; padding-top: 3px !important; color: $dark_blue !important;}
 		input[type=checkbox] + label { font-weight: bold; font-size: 14px; padding-top: 5px !important; color: $dark_blue !important;}

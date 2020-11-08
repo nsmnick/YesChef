@@ -13,9 +13,7 @@
 	<section class="panel content content__panel no-bottom bottom-green">
 		<div class="container container--narrow-1000">
 			<h2 id="page-heading" class="animate-fade"><?php echo get_field('heading');?></h2>
-
 			<p id="page-intro" class="intro animate"><?php echo get_field('intro');?></p>
-
 		</div>
 	</section>
 
@@ -24,42 +22,10 @@
 
 	<?php 
 
-
-		
-		// $date = new DateTime();
-
-		// //$datenow = $date;
-
-
-		// // if date is Friday, Saturday, Sunday, Monday we get next tuesday + 1 otherwise get next tuesday.
-		// $day = $date->format( 'N' );
-
-
-		// if($day ==1 || $day == 5 || $day == 6 || $day ==7) // MON, FRI PM, SAT, SUN
-		// {
-		// 	// Check if it is friday AM
-
-		// 	if($day == 5)
-		// 	{
-		// 		$hour = $date->format( 'H' );
-
-
-		// 		if($hour >= 12)
-		// 			$date->modify('next tuesday +1 week');	
-		// 		else
-		// 			$date->modify('next tuesday');			
-		// 	} else {
-		// 		$date->modify('next tuesday +1 week');		
-		// 	}
-
-			
-		// } else {
-		// 	$date->modify('next tuesday');	
-		// }
-
 		$date = get_next_order_date();
+		$next_date = get_next_order_second_date();
 
-		$heading = 'To be delivered ' . $date->format('l dS F');
+		$heading = 'To be delivered<br/><small>' . $date->format('l dS M') . ' or ' . $next_date->format('l dS M') . '</small>';
 	?>
 
 	<section class="panel content content__panel--white">
@@ -75,9 +41,9 @@
 				<?php
 				//$simple_locations = get_custom_post_terms_simple(get_the_ID(), 'nsm_job_locations','');
 				
-				$field_values = array('order_date'=>$date->format('Y/m/d'));
+				$field_values = NULL; //array('order_date'=>$date->format('Y/m/d'));
 				
-				gravity_form( 1, false, false, false, $field_values , true );
+				gravity_form( 5, false, false, false, $field_values , true );
 
 				?>
 
@@ -88,8 +54,6 @@
 
 
 			<?php 
-
-	
 				if($courier_notice){
 					echo '<p class="courier_notice">' . $courier_notice . '</p>';
 				}
@@ -132,6 +96,7 @@
 
 		if (typeof fbq != "undefined") 
 		{
+
 			fbq('track', 'InitiateCheckout');
 			console.log('fb event submitted');
 		}

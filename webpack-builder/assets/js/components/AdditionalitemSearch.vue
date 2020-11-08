@@ -96,6 +96,9 @@ export default {
 		search(params) {
 			
 
+			this.params.orderby = 'menu_order';
+			this.params.order = 'asc';
+
 			if (params !== undefined) {
 				// Merge params from search form to app params.
 				this.params = {...this.params, ...params};

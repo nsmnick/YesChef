@@ -42,6 +42,14 @@ function register_custom_rest_fields() {
 add_action( 'rest_api_init', 'register_custom_rest_fields' );
 
 
+add_filter( 'rest_nsm_additional_items_collection_params', 'filter_add_rest_orderby_params', 10, 1 );
+function filter_add_rest_orderby_params( $params ) {
+	$params['orderby']['enum'][] = 'menu_order';
+	return $params;
+}
+
+
+
 // function nsm_job_post_get_published_date(  $object, $field_name, $request) {
 
 // 	$date = date_create($object['date']);

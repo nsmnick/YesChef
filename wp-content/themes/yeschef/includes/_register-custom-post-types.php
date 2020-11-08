@@ -137,7 +137,7 @@
 		'hierarchical' => true
 		, 'labels' => array(
 			'name' => _x( 'Order Date Available', 'taxonomy general name' )
-			, 'singular_name' => _x( 'Calorie', 'taxonomy singular name' )
+			, 'singular_name' => _x( 'Order Date', 'taxonomy singular name' )
 			, 'search_items' =>  __( 'Search Order Dates' )
 			, 'popular_items' => __( 'Popular Order Dates' )
 			, 'all_items' => __( 'All Order Dates' )
@@ -165,25 +165,52 @@
 
 	register_post_type(
 		
-			'nsm_additional_items'
-			, [
-				'labels' => [
-					'name' => __( 'Additional Items' )
-					, 'singular_name' => __( 'Additional Item' )
-				]
-				, 'public' => true
-				, 'has_archive' => false
-				, 'show_in_rest' => true
-				, 'rewrite' => [
-					'slug' => __( 'jobs' ),
-					'with_front' => false
-				]
-				, 'supports' => ['title','thumbnail','editor']
-				, 'extras' => [
-					'auto_excerpt' => false
-				]
+		'nsm_additional_items'
+		, [
+			'labels' => [
+				'name' => __( 'Additional Items' )
+				, 'singular_name' => __( 'Additional Item' )
 			]
-		);
+			, 'public' => true
+			, 'has_archive' => false
+			, 'show_in_rest' => true
+			, 'rewrite' => [
+				'slug' => __( 'jobs' ),
+				'with_front' => false
+			]
+			, 'supports' => ['title','thumbnail','editor']
+			, 'extras' => [
+				'auto_excerpt' => false
+			]
+		]
+	);
+
+
+	register_taxonomy('nsm_additional_items_categories', 'nsm_additional_items', array(
+		'hierarchical' => true
+		, 'labels' => array(
+			'name' => _x( 'Categories', 'taxonomy general name' )
+			, 'singular_name' => _x( 'Category', 'taxonomy singular name' )
+			, 'search_items' =>  __( 'Search Categories' )
+			, 'popular_items' => __( 'Popular Categories' )
+			, 'all_items' => __( 'All Categories' )
+			, 'parent_item' => null
+			, 'parent_item_colon' => null
+			, 'edit_item' => __( 'Edit Category' )
+			, 'update_item' => __( 'Update Category' )
+			, 'add_new_item' => __( 'Add New Category' )
+			, 'new_item_name' => __( 'New Type Name' )
+			, 'separate_items_with_commas' => __( 'Separate Categories with commas' )
+			, 'add_or_remove_items' => __( 'Add or remove Categories' )
+			, 'choose_from_most_used' => __( 'Choose from the most used Categories' )
+			, 'menu_name' => __( 'Categories' )
+		)
+		, 'show_ui' => true
+		, 'show_admin_column' => true
+		, 'update_count_callback' => '_update_post_term_count'
+		, 'query_var' => true
+		, 'show_in_rest' => true
+	));
 
 
 

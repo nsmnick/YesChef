@@ -25,12 +25,14 @@ define( 'DISALLOW_FILE_EDIT', true ); // Disable File Editor - Security > Settin
  */
 
 
-define('DB_NAME', 'yeschef');
+define('DB_NAME', 'yeschefv2');
 define('DB_USER', 'root');
 define('DB_PASSWORD', 'root');
 
 // TEST
 define('GA_CODE', 'UA-XXX');
+define('LOG_EVENTS', false);
+
 
 // STG
 // define('DB_NAME', 'nsmdigit_yeschef');
@@ -43,8 +45,8 @@ define('GA_CODE', 'UA-XXX');
 // define('DB_PASSWORD', '1;wNi#34-1m6');
 
 // LIVE
-define('GA_CODE', 'UA-177763557-1');
-
+//define('GA_CODE', 'UA-177763557-1');
+//define('LOG_EVENTS', true);
 
 
 

@@ -38,6 +38,20 @@ function check_download_file(){
       exit();
 
   }
+
+  if( isset( $_GET['download_meals_report_v5'] ) ) {
+      
+
+    header('Content-Type: application/csv');
+    header('Content-Disposition: attachment; filename=example.csv');
+    header('Pragma: no-cache');
+      
+      render_meals_report_v5($_GET['order_week'],true);
+      exit();
+
+  }
+
+
 }
 add_action('admin_init','check_download_file');
 
@@ -410,6 +424,475 @@ function strip_amount($meal) {
     return $meal;
 
 
+}
+
+
+
+
+// V% Report
+
+
+add_action('admin_menu', 'pick_list_report_create_v5');
+function pick_list_report_create_v5() {
+    $page_title = 'Reports';
+    $menu_title = 'Reports V5';
+    $capability = 'edit_posts';
+    $menu_slug = 'meals_report_v5';
+    $function = 'my_meal_picking_list_report_v5';
+    $icon_url = '';
+    $position = 25;
+
+    if( current_user_can('editor') || current_user_can('administrator') ) {
+        add_menu_page( $page_title, $menu_title, $capability, $menu_slug, $function, $icon_url, $position );
+    }
+}
+
+
+
+function my_meal_picking_list_report_v5() {
+    
+    
+
+    if( !current_user_can('editor') && !current_user_can('administrator') ) {  
+        wp_die('Unauthorized user');
+    }
+
+
+
+    echo '<div class="wrap">';
+    echo '<h1 style="font-size: 23px;font-weight: 400;margin: 0;padding: 5px 0px 4px;line-height: 29px;">Order Picking List Report</h1>';
+    echo '<hr/>';
+    
+
+    
+    $form_id = '5';
+    $delivery_date_field_id = '58';
+
+    $search_criteria['status'] = 'active';
+
+
+    $validation_message = '';
+    // Check submitted date
+    if ( ! empty( $_POST ) && check_admin_referer( 'wpshout_option_page_footer_action', 'wpshout_option_page_footer_action' ) ) 
+    {        
+
+        $order_date = $_POST['order_week'];
+
+        if(!verifyDate($order_date)) 
+        {
+            $validation_message = 'Please enter a valid date';
+        }
+
+    }
+
+
+
+    if ( empty( $_POST ) || $validation_message!='' )
+    {
+        
+        if(isset($order_date))
+            $display_date = $order_date;
+        else
+            $display_date = get_next_order_date()->format('Y/m/d');
+
+        echo '<br/><form method="post" action="">';
+
+        echo '<label>Enter Order Date: </label>';
+    
+        echo '<input type="text"  name="order_week" value="'.$display_date.'">';
+        echo '<input type="submit" value="Submit" class="button">';
+        echo '<p><small>Date Format: YYYY/MM/DD</small></p>';
+
+        if($validation_message!='')
+            echo '<p><b>' . $validation_message . '</b></p>';
+
+        wp_nonce_field( 'wpshout_option_page_footer_action', 'wpshout_option_page_footer_action' );
+
+        
+        echo '</form>';
+
+
+    } else {
+
+
+        if ( ! empty( $_POST ) && check_admin_referer( 'wpshout_option_page_footer_action', 'wpshout_option_page_footer_action' ) ) 
+        {
+
+            render_meals_report_v5($order_date);
+
+           // download_url('/wp-admin/admin.php?page=meals_report');
+
+           
+        }
+    }
+
+
+    echo '</div>';  // Wrap
+ 
+
+}
+
+
+
+
+function render_meals_report_v5($order_week, $export=false) {
+    
+
+    $form_id = 5;
+    $delivery_date_field_id = 58;
+    $box_options_field_id = 58;
+    $coupon_field_id = 32;
+
+
+    // Key IDs
+    $include_in_report_field_id = '59';
+
+    $search_criteria['status'] = 'active';
+    $search_criteria['field_filters'][] = array( 'key' => $delivery_date_field_id, 'value' => $order_week );
+
+    // First Date
+    $paging = array( 'offset' => 0, 'page_size' => 999999999 );
+    $sorting = array( 'key' => 'id', 'direction' => 'ASC', 'is_numeric' => true );
+    $entries = GFAPI::get_entries( $form_id, $search_criteria,  $sorting, $paging );
+
+
+    // Setup arrays to store data.
+
+    $order_details = array();
+    $meals2 = array();
+    $meals4 = array();
+    $box_options = array();
+    $additional_items = array();
+    $orders = 0;
+    $coupons = 0;
+
+    $excluded_orders = 0;
+
+
+    foreach ($entries as $key => $entry) {
+    
+        // First check to see if order should be included in report
+
+        if($entry[$include_in_report_field_id] == 'Yes') 
+        {
+
+            //echo print_r($entry);
+            // echo '<br/><br/>';
+            $orders++;
+
+
+            $box_option_value = stripPriceFromValue($entry['37']);
+
+            if($box_option_value=='')
+                $box_option_value = 'Additional Items Only';
+
+            if($entry[$coupon_field_id] != '') 
+            {
+                $coupons++;
+            }
+
+
+            // Data for listing at end   
+
+            $order_details[$orders]['id'] = $entry['id'];
+            $order_details[$orders]['date'] = $entry['date_created'];
+            $order_details[$orders]['name'] = $entry['15'];
+            $order_details[$orders]['box_option'] = $box_option_value;
+            $order_details[$orders]['email'] = $entry['16'];
+            $order_details[$orders]['phone'] = $entry['17'];
+            $order_details[$orders]['address'] = $entry['25'];
+            $order_details[$orders]['postcode'] = $entry['18'];
+            $order_details[$orders]['delivery_charge'] = $entry['34'];
+            $order_details[$orders]['total_order'] = number_format($entry[30],2);
+            $order_details[$orders]['coupon'] =  $entry['32'];
+
+
+            $meal_1_2 = stripPriceFromValue($entry['38']);
+            $meal_2_2 = stripPriceFromValue($entry['40']);
+            $meal_3_2 = stripPriceFromValue($entry['41']);
+            $meal_4_2 = stripPriceFromValue($entry['42']);
+
+            $meal_1_4 = stripPriceFromValue($entry['44']);
+            $meal_2_4 = stripPriceFromValue($entry['46']);
+            $meal_3_4 = stripPriceFromValue($entry['47']);
+            $meal_4_4 = stripPriceFromValue($entry['45']);
+
+            if($box_option_value == '1 weekly box for 2 people')
+            {
+                $order_details[$orders]['meal1'] = $meal_1_2;
+                $order_details[$orders]['meal2'] = $meal_2_2;
+                $order_details[$orders]['meal3'] = $meal_3_2;
+                $order_details[$orders]['meal4'] = $meal_4_2;
+            }
+
+            if($box_option_value == '1 weekly box for 4 people')
+            {
+                $order_details[$orders]['meal1'] = $meal_1_4;
+                $order_details[$orders]['meal2'] = $meal_2_4;
+                $order_details[$orders]['meal3'] = $meal_3_4;
+                $order_details[$orders]['meal4'] = $meal_4_4;
+
+            }
+
+
+            // Keep a count of each box_options Type
+
+            $box_options[$box_option_value] = (int) $box_options[$box_option_value] + 1;
+
+
+            // Calculate the actual number of meals for 2 people and for 4 people
+            
+            if($box_option_value == '1 weekly box for 2 people')
+            {
+
+                // Four standard meals
+                $meals2[$meal_1_2] = (int) $meals2[$meal_1_2] + 2;
+                $meals2[$meal_2_2] = (int) $meals2[$meal_2_2] + 2;
+                $meals2[$meal_3_2] = (int) $meals2[$meal_3_2] + 2;
+                $meals2[$meal_4_2] = (int) $meals2[$meal_4_2] + 2;
+
+            } 
+            
+            if($box_option_value == '1 weekly box for 4 people')
+            {
+
+                $meals4[$meal_1_4] = (int) $meals4[$meal_1_4] + 4;
+                $meals4[$meal_2_4] = (int) $meals4[$meal_2_4] + 4;
+                $meals4[$meal_3_4] = (int) $meals4[$meal_3_4] + 4;
+                $meals4[$meal_4_4] = (int) $meals4[$meal_4_4] + 4;
+
+            }
+
+ 
+
+             // Loop through all entries.  If they have a . in the key we know they are a product, create an array of product IDs
+     
+            $product_ids = array();
+            foreach( $entry as $key => $value ) {
+               
+              $pos = strpos($key,'.');
+
+              if($pos!=false)
+              {
+                $id=substr($key,0,$pos);
+                // we have a product field
+                if(!in_array($id, $product_ids))
+                  $product_ids[] = $id;
+              }
+
+            }
+
+    
+            // Add list if Products
+            if(count($product_ids) > 0)
+            {
+              
+                foreach ($product_ids as $key) {
+                  
+                  // Check for an order quantity for each item
+                  if($entry[$key.'.3']!='')
+                  {
+                      $qty = (int) $entry[$key.'.3'];
+                      $item = $entry[$key.'.1'];
+                      $additional_items[$item] = (int) $additional_items[$item] + ((int) 1 * (int)$qty);
+                  }
+                }
+            }
+
+
+        } else 
+        {
+            $excluded_orders++;
+        }
+
+    }
+
+
+    if(!$export) {
+
+
+        echo '<div class="wrap">';
+        echo '<br/><hr/><br/>';
+
+        echo '<div style="background-color: white; padding: 20px;">';
+
+        echo '<h1>Order Week: ' . $order_week . '</h1>';
+        echo '<p>Number of orders: #' . $orders . '<br/>';
+
+        foreach ($box_options as $key => $boxoption) {
+            
+            echo $key . ': #' . $boxoption . '<br/>';    
+
+        }
+        echo '</p>';
+
+        echo '<p>Number of orders: #' . $orders . '<br/>';
+        echo 'Number of coupons used: #' . $coupons . '<br/>';
+        echo 'Number of excluded orders: #' . $excluded_orders . '</p>';
+
+        echo '<a class="button" href="/wp-admin/admin.php?page=meals_report&download_meals_report_v5=true&order_week=' . $order_week . '">Download Report</a><br/>';
+        
+        echo '<br/><hr/><br/>';
+
+        echo '<h2 style="margin-bottom:5px;">Number of each meal ordered for 2 people (1 week only)</h2>';
+        
+        echo '<ul class="styled-list">';
+        foreach( $meals2 as $meal => $value ) {
+            echo '<li>' . $meal . ': <b>' . $value . '</b></li>';
+        }
+
+        echo '</ul><br/>';
+
+
+        
+        echo '<h2 style="margin-bottom:5px;">Number of each meal ordered for 4 people (1 week only)</h2>';
+        
+        echo '<ul class="styled-list">';
+        foreach( $meals4 as $meal => $value ) {
+            echo '<li>' . $meal . ': <b>' . $value . '</b></li>';
+        }
+
+        echo '</ul><br/>';
+
+
+        
+        echo '<h2>Number of additional items</h2>';
+
+        echo '<ul class="styled-list">';
+        foreach( $additional_items as $item => $value ) {
+            echo '<li>' . $item . ': <b>' . $value . '</b></li>';
+        }
+        echo '</ul>';
+
+
+        echo '<br/>';
+        echo '<h2>Order Details</h2>';
+
+        
+
+        echo '<ul class="styled-list">';
+        foreach( $order_details as $order) {
+
+            echo '<li><b>Order #: </b>' 
+                    . $order['id'] 
+                    . ' | <b>Date: </b>' . $order['date'] 
+                    . ' | <b>Name:</b> ' . $order['name'] 
+                    . ' | <b>Box Option:</b> ' . $order['box_option'] ;
+
+                    if($order['box_option'] == '1 weekly box for 2 people' || $order['box_option'] == '1 weekly box for 4 people' )
+                    {
+                        echo ' | <b>Meal1:</b> ' . $order['meal1']
+                        . ' | <b>Meal2:</b> ' . $order['meal2']
+                        . ' | <b>Meal3:</b> ' . $order['meal3']
+                        . ' | <b>Meal4:</b> ' . $order['meal4'];
+                    }
+
+                    echo ' | <b>Coupon Used: </b>' . $order['coupon']; 
+                    echo ' | <b>Order Value: </b>' . $order['total_order'];  
+                    echo '</li>'; 
+        }
+        echo '</ul>';
+
+      
+        echo '<br/>';
+
+        echo '</div>';
+        echo '</div>';
+
+    } else {
+
+
+        echo '"Order Week: ' . $order_week . '",';
+        echo "\r\n";
+
+        echo '"Number of orders: #' . $orders . '",';
+        echo "\r\n";
+        echo "\r\n";
+
+
+        foreach ($box_options as $key => $boxoption) {
+            
+            echo '"' . $key . ': #' . $boxoption . '",';
+            echo "\r\n";
+
+        }
+        echo "\r\n";
+        
+        echo '"Number of coupons used: #' . $coupons . '",';
+        echo "\r\n";
+
+        echo '"Number of excluded orders: #' . $excluded_orders . '",';
+        echo "\r\n";
+        echo "\r\n";
+
+
+        echo '"Number of each meal ordered for 2 people (1 week only)","# Ordered",';
+        echo "\r\n";
+        foreach( $meals2 as $meal => $value ) {
+            echo '"' . $meal . '","' . $value . '",';
+            echo "\r\n";
+        }
+
+        echo "\r\n";
+        echo "\r\n";
+
+
+        echo '"Number of each meal ordered for 4 people (1 week only)","# Ordered",';
+        echo "\r\n";
+        foreach( $meals4 as $meal => $value ) {
+            echo '"' . $meal . '","' . $value . '",';
+            echo "\r\n";
+        }
+
+        echo "\r\n";
+        echo "\r\n";
+
+        echo '"Additional Items","# Ordered",';
+        echo "\r\n";
+
+        foreach( $additional_items as $item => $value ) {
+            echo '"' . $item . '","' . $value . '",';
+            echo "\r\n";
+        }
+
+
+
+        echo "\r\n";
+        echo "\r\n";
+
+        echo '"Order Details"';
+        echo "\r\n";
+
+        echo '"Order #","Date","Name","Box Option","Meal1","Meal2","Meal3","Meal4","Delivery Charge","Order Total","Coupon","Email","Phone","Address","Postcode"';
+        echo "\r\n";
+
+        foreach( $order_details as $order) {
+
+            echo '"'.$order['id'].'","'.$order['date'].'","'.$order['name'].'","'.$order['box_option'].'","'.$order['meal1'].'","'.$order['meal2'].'","'.$order['meal3'].'","'.$order['meal4'].'","'.$order['delivery_charge'].'","'.$order['total_order'].'","'.$order['coupon'].'","'.$order['email'].'","'.$order['phone'].'","'.$order['address'].'","'.$order['postcode'].'",';
+
+            echo "\r\n";
+        }
+
+
+    }
+
+
+
+
+}
+
+
+
+function verifyDate($date, $strict = true)
+{
+    $dateTime = DateTime::createFromFormat('Y/m/d', $date);
+    if ($strict) {
+        $errors = DateTime::getLastErrors();
+        if (!empty($errors['warning_count'])) {
+            return false;
+        }
+    }
+    return $dateTime !== false;
 }
 
 

@@ -86,8 +86,10 @@ jQuery(window).ready(function($) {
   	$(document).bind("gform_confirmation_loaded", function (e, form_id) {
 	
   		$('#page-heading').text('Thankyou');
-  		$('#page-intro').html('We have your order and will call you soon to confirm your choices and arrange payment.<br/>We have included a summary of your order below.');
+  		$('#page-intro').html('We have received your order. It will be delivered on the date below. Please print out a copy for your records.');
 
+
+  		$('#page-subheading').hide();
   		$('#order-by-phone').hide();
   		$('#how-it-works').hide();
  
@@ -106,6 +108,7 @@ jQuery(window).ready(function($) {
   		
 
 	});
+
 
 
 

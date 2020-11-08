@@ -71,8 +71,8 @@
 		<br/>
 
 
-		<a href="<?php echo get_field('general_promotion_url_link','option'); ?>" class="button<?php echo $button_bg;?>"><?php echo get_field('general_order_page_select_button_text','option'); ?></a>
-
+<!-- 		<a href="<?php //echo get_field('general_promotion_url_link','option'); ?>" class="button<?php //echo $button_bg;?>"><?php //echo get_field('general_order_page_select_button_text','option'); ?></a>
+ -->
 
 		
 

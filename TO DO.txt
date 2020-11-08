@@ -3,32 +3,32 @@ TO DO
 DESIGNS
 https://www.figma.com/file/8KQzOhmu1Mn47VvZzqE6XT/Yes-Chef---v2?node-id=0%3A1
 
+Coupon Code Promo on home page
+Warning text on specials promo for 2 people / 4 people or add text automatically.
+Accordions on pie section (if possible)
+Enter postcodes list for Delivery
 
-DONE: Detail Page
-DONE: Navigation hovers
-DONE: Home Page Hero resize
-DONE: resolve modal popup on additional items page
-DONE: Form Colours for icons
+Add Pie Bundles to meals and recipies with new category Lazy Meal Deals
+Add additional Item Categories - xmas and allow them to be re-ordered.
 
-DONE: Form Page - auto populate fields from database
-DONE: fades and transitions
-DONE: Form validation
-DONE: Form Thank you page.
-DONE: Emails
-DONE: Link up all links
-DONE: remove all old code
-DONE: Browser Testing
-DONE: CMS Login Logo
+Pull out configurable list of additional items with a label on order form
 
-DONE: Next Delivery Date.
-DONE: Order report.  Check if Bee is happy to sign off an extra day for this.
+Next Tuesday and thursday delivery dates
+
+
+Embed Payment Form
+Notification Screen
+Order Report
 
 
 
 
-GO LIVE 
+DONE: Hide unpublished Additional items
+DONE: Meals as Product Options with variants (CHECK)
+DONE: Hide Lazy Pies items if unpublished.
 
-- Change forms delivery email
-- Clear down existing orders
-- Add recaptcha form
-- GA
+TO GO LIVE
+
+Promotion Fields
+Supplement Price Label and value
+End of week swith time reset to 10.

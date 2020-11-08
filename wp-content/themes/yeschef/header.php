@@ -20,6 +20,8 @@
 	
 	<?php wp_head(); ?>
 
+
+	<?php if(LOG_EVENTS){ ?>
 	<!-- Facebook Pixel Code -->
 		<script>
 		!function(f,b,e,v,n,t,s)
@@ -39,7 +41,9 @@
 		&noscript=1"/>
 		</noscript>
 		<!-- End Facebook Pixel Code -->
-		
+	<?php } ?>
+
+	
 </head>
 
 <body <?php body_class(); ?>>

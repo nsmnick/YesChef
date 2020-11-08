@@ -78,7 +78,8 @@
 			<p class="narrow--800 large-bottom animate-fade-up"><?php echo get_field('generic_home_page_footer_content','option'); ?></p>
 		<?php } ?>
 		<br/>
-		<a href="<?php echo get_field('general_promotion_url_link','option'); ?>" class="button<?php echo $button_bg;?>"><?php echo get_field('general_promotion_cta_button_text','option'); ?></a>
+		
+		<a href="/place-your-order/" class="button<?php echo $button_bg;?>"><?php echo get_field('general_promotion_cta_button_text','option'); ?></a>
 
 
 		

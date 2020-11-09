@@ -8,7 +8,7 @@ define('IMAGES', THEMEROOT.'/assets/images');
 
 // Frontend styles.
 function enqueue_style() {
-	wp_enqueue_style('core', THEMEROOT.'/assets/css/styles.min.css?v9', false);
+	wp_enqueue_style('core', THEMEROOT.'/assets/css/styles.min.css?v11', false);
 }
 add_action('wp_enqueue_scripts', 'enqueue_style');
 
@@ -95,214 +95,217 @@ add_filter( 'register_post_type_args', 'wp1482371_custom_post_type_args', 20, 2 
 // Order Form Fields Form 1 
 
 
-// add_filter( 'gform_pre_render_1', 'my_populate_promotion' );
-// function my_populate_promotion( $form ) {
+add_filter( 'gform_pre_render_1', 'my_populate_promotion' );
+function my_populate_promotion( $form ) {
 
-//     $promotion_active = get_field('promotion_active','option');
-//     if($promotion_active)
-//     {
+    $promotion_active = get_field('promotion_active','option');
+    if($promotion_active)
+    {
 
-//       $promotion_heading = get_field('order_page_promotion_heading','option');
-//       $promotion_subheading = get_field('order_page_promotion_sub-heading','option');
-//       $promotion_button_text = get_field('order_page_select_button_text','option');
+      $promotion_heading = get_field('order_page_promotion_heading','option');
+      $promotion_subheading = get_field('order_page_promotion_sub-heading','option');
+      $promotion_button_text = get_field('order_page_select_button_text','option');
 
-//       foreach( $form['fields'] as &$field ) {    
+      foreach( $form['fields'] as &$field ) {    
 
-//       // If one of the meal options then set the options to these meals
-//         if( 27 === $field->id) {
+      // If one of the meal options then set the options to these meals
+        if( 27 === $field->id) {
 
-//           $field->content = '<div class="promotion">';
+          $field->content = '<div class="promotion">';
 
-//           if($promotion_heading)
-//             $field->content .= '<h2>'.$promotion_heading.'</h2>';
+          if($promotion_heading)
+            $field->content .= '<h2>'.$promotion_heading.'</h2>';
 
-//           if($promotion_subheading)
-//             $field->content .= '<p>'.$promotion_subheading.'</p>';
+          if($promotion_subheading)
+            $field->content .= '<p>'.$promotion_subheading.'</p>';
 
-//           $field->content .='<a href="#" class="button button--dark-blue" onclick="populate_promotional_meals();return false;">'.$promotion_button_text.'</a>';
+          $field->content .='<a href="#" class="button button--dark-blue" onclick="populate_promotional_meals();return false;">'.$promotion_button_text.'</a>';
 
-//           $field->content .='</div>';
-//         }
-//       }
-//     }
+          $field->content .='</div>';
+        }
+      }
+    }
 
-//     return $form;
-// }
+    return $form;
+}
 
 
-// add_filter( 'gform_pre_render_1', 'my_populate_checkbox' );
-// add_filter( 'gform_admin_pre_render_1', 'my_populate_checkbox' );
-// function my_populate_checkbox( $form ) {
+add_filter( 'gform_pre_render_1', 'my_populate_checkbox' );
+add_filter( 'gform_admin_pre_render_1', 'my_populate_checkbox' );
+function my_populate_checkbox( $form ) {
   
   
-//   // Loop through form fields
+  // Loop through form fields
 
-//   $next_order_date = get_next_order_date()->format('Y/m/d');
+  $next_order_date = get_next_order_date()->format('Y/m/d');
 
-//   // Get published meals - which are available this week.
-//   $args = array(
-//     'post_type' => 'nsm_meals',
-//     'post_status' => 'publish',
-//     'orderby' => 'title',
-//     'order' => 'asc',
-//     'posts_per_page' => '99999',
-//     'taxonomy' => 'nsm_meal_order_date',
-//     'term' => $next_order_date
-//   );
+  // Get published meals - which are available this week.
+  $args = array(
+    'post_type' => 'nsm_meals',
+    'post_status' => 'publish',
+    'orderby' => 'title',
+    'order' => 'asc',
+    'posts_per_page' => '99999',
+    'taxonomy' => 'nsm_meal_order_date',
+    'term' => $next_order_date
+  );
  
 
-//   $pie_choices[] = array( 'text' => "No thanks, not this week", 'value' => "No thanks, not this week" );
+  $pie_choices[] = array( 'text' => "No thanks, not this week", 'value' => "No thanks, not this week" );
 
-//   $the_query = new WP_Query( $args );
+  $the_query = new WP_Query( $args );
 
-//   while ( $the_query->have_posts() ) : $the_query->the_post();
+  while ( $the_query->have_posts() ) : $the_query->the_post();
 
-//     $supplement_price = get_post_meta(get_the_ID(), 'supplement_price', true);
-//     $title = get_the_title();
-//     if($supplement_price)
-//       $title .= ' ' . $supplement_price;
+    $supplement_price = get_post_meta(get_the_ID(), 'supplement_price', true);
+    $title = get_the_title();
+    if($supplement_price)
+      $title .= ' ' . $supplement_price;
 
 
-//     $meal_choices[] = array( 'text' => $title, 'value' => get_the_title() );
+    $meal_choices[] = array( 'text' => $title, 'value' => get_the_title() );
 
-//     $pie_option = get_post_meta(get_the_ID(), 'lazy_day_pie_option');
+    $pie_option = get_post_meta(get_the_ID(), 'lazy_day_pie_option');
 
     
 
 
-//     if(isset($pie_option ) && $pie_option[0] == 'Yes') {
-//       $content = get_the_title() . '  (' . get_post_meta(get_the_ID(), 'lay_day_pie_option_price', true) .')';
-//       $pie_choices[] = array( 'text' => $content, 'value' => $content );
-//     }
+    if(isset($pie_option ) && $pie_option[0] == 'Yes') {
+      $content = get_the_title() . '  (' . get_post_meta(get_the_ID(), 'lay_day_pie_option_price', true) .')';
+      $pie_choices[] = array( 'text' => $content, 'value' => $content );
+    }
 
-//   endwhile; 
-
-
+  endwhile; 
 
 
-//   // Get additional items
-//   $args = array(
-//     'post_type' => 'nsm_additional_items',
-//     'post_status' => 'publish',
-//     'orderby' => 'title',
-//     'order' => 'asc',
-//     'posts_per_page' => '99999'
 
-//   );
+
+  // Get additional items
+  $args = array(
+    'post_type' => 'nsm_additional_items',
+    'post_status' => 'publish',
+    'orderby' => 'title',
+    'order' => 'asc',
+    'posts_per_page' => '99999'
+
+  );
  
-//   $the_query = new WP_Query( $args );
+  $the_query = new WP_Query( $args );
 
-//   while ( $the_query->have_posts() ) : $the_query->the_post();
+  while ( $the_query->have_posts() ) : $the_query->the_post();
 
-//     $content = get_the_title() . '  (' . get_post_meta(get_the_ID(), 'price', true) .')';
-//     $additional_items[] = array( 'text' => $content, 'value' => $content );
+    $content = get_the_title() . '  (' . get_post_meta(get_the_ID(), 'price', true) .')';
+    $additional_items[] = array( 'text' => $content, 'value' => $content );
 
-//   endwhile; 
+  endwhile; 
 
      
 
 
-//   foreach( $form['fields'] as &$field ) {    
+  foreach( $form['fields'] as &$field ) {    
 
 
-//     // If one of the meal options then set the options to these meals
-//     if( 5 === $field->id || 6 === $field->id || 7 === $field->id || 8 === $field->id) {
+    // If one of the meal options then set the options to these meals
+    if( 5 === $field->id || 6 === $field->id || 7 === $field->id || 8 === $field->id) {
       
-//       $field->choices = $meal_choices;
+      $field->choices = $meal_choices;
       
-//     }
+    }
 
-//     if( 10 === $field->id || 11 === $field->id) {
+    if( 10 === $field->id || 11 === $field->id) {
       
-//       $field->choices = $pie_choices;
+      $field->choices = $pie_choices;
       
-//     }
+    }
 
-//     if( 13 === $field->id) {
+    if( 13 === $field->id) {
       
-//       $field->choices = $additional_items;
+      $field->choices = $additional_items;
       
-//     } 
+    } 
 
 
 
-//   } 
+  } 
   
-//   return $form;
+  return $form;
 
-// } 
-
-
+} 
 
 
-// add_action( 'gform_after_submission_1', 'set_form_cookies', 10, 2 );
-// function set_form_cookies( $entry, $form ) {
+
+
+add_action( 'gform_after_submission_1', 'set_form_cookies', 10, 2 );
+function set_form_cookies( $entry, $form ) {
   
-//     setcookie('gf_order_name', $entry['15'], time() + 1209600, '/' );
-//     setcookie('gf_order_email', $entry['16'], time() + 1209600, '/' );
-//     setcookie('gf_order_phone', $entry['17'], time() + 1209600, '/' );
-//     setcookie('gf_order_postcode', $entry['18'], time() + 1209600, '/' );
-//     setcookie('gf_order_address', $entry['25'], time() + 1209600, '/' );
-// }
+    setcookie('gf_order_name', $entry['15'], time() + 1209600, '/' );
+    setcookie('gf_order_email', $entry['16'], time() + 1209600, '/' );
+    setcookie('gf_order_phone', $entry['17'], time() + 1209600, '/' );
+    setcookie('gf_order_postcode', $entry['18'], time() + 1209600, '/' );
+    setcookie('gf_order_address', $entry['25'], time() + 1209600, '/' );
+}
 
 
-// add_filter( 'gform_confirmation_1', 'custom_confirmation_message', 10, 4 );
-// function custom_confirmation_message( $confirmation, $form, $entry, $ajax ) {
+add_filter( 'gform_confirmation_1', 'custom_confirmation_message', 10, 4 );
+function custom_confirmation_message( $confirmation, $form, $entry, $ajax ) {
     
    
 
 
-//     $html = '<p class="heading">Order Number: ' . $entry['id'] . '</p>';
+    $html = '<p class="heading">Order Number: ' . $entry['id'] . '</p>';
 
-//     $html .= '<p class="heading">Box size:</p><p>' . $entry['2'] . '</p>';
+    $html .= '<p class="heading">Box size:</p><p>' . $entry['2'] . '</p>';
 
-//     $html .= '<p class="heading">4 meal choices:</p><p>' . $entry['5'] . '</p><p>' . $entry['6'] . '</p><p>' . $entry['7'] . '</p><p>' . $entry['8'] . '</p>';
+    $html .= '<p class="heading">4 meal choices:</p><p>' . $entry['5'] . '</p><p>' . $entry['6'] . '</p><p>' . $entry['7'] . '</p><p>' . $entry['8'] . '</p>';
 
-//     if($entry['10'] != 'No thanks, not this week' || $entry['11'] != 'No thanks, not this week')
-//     { 
-//       $html .= '<p class="heading">Extra Lazy Day pies</p><p>Pie 1: ' . $entry['10'] . '</p><p>Pie 2: ' . $entry['11'] . '</p>';
-//     }
+    if($entry['10'] != 'No thanks, not this week' || $entry['11'] != 'No thanks, not this week')
+    { 
+      $html .= '<p class="heading">Extra Lazy Day pies</p><p>Pie 1: ' . $entry['10'] . '</p><p>Pie 2: ' . $entry['11'] . '</p>';
+    }
 
 
    
     
     
-//       $additional_items = '';
-//      foreach( $entry as $key => $value ) {
+      $additional_items = '';
+     foreach( $entry as $key => $value ) {
       
-//         if(substr($key, 0, 3) == '13.')
-//           if($value!='')
-//             $additional_items .= '<p>' . $value . '</p>';      
-//       }
+        if(substr($key, 0, 3) == '13.')
+          if($value!='')
+            $additional_items .= '<p>' . $value . '</p>';      
+      }
 
       
-//       if($additional_items!='')
-//       {
-//         $additional_items = '<p class="heading">YesChef Junior Items</p>' . $additional_items;
-//       }
+      if($additional_items!='')
+      {
+        $additional_items = '<p class="heading">YesChef Junior Items</p>' . $additional_items;
+      }
 
-//       $html .= $additional_items;
+      $html .= $additional_items;
 
-//        $html .= '<p class="heading">Contact Details</p><p>' . $entry['15'] . '</p><p>' . $entry['16'] . '</p><p>' . $entry['17'] . '</p><p>' . $entry['25'] . '</p><p>' . $entry['18'] . '</p><p>' . $entry['26'] . '</p>';
-
-
-//     return str_replace("XXX", $html, $confirmation);
-// }
+       $html .= '<p class="heading">Contact Details</p><p>' . $entry['15'] . '</p><p>' . $entry['16'] . '</p><p>' . $entry['17'] . '</p><p>' . $entry['25'] . '</p><p>' . $entry['18'] . '</p><p>' . $entry['26'] . '</p>';
 
 
-// add_filter( 'gform_validation_message_1', 'change_message', 10, 2 );
-// function change_message( $message, $form ) {
-//     return '<div class="validation_error">There was a problem with your order.  Please review the highlighted fields.</div>';
-// }
+    return str_replace("XXX", $html, $confirmation);
+}
 
 
+add_filter( 'gform_validation_message_1', 'change_message', 10, 2 );
+function change_message( $message, $form ) {
+    return '<div class="validation_error">There was a problem with your order.  Please review the highlighted fields.</div>';
+}
 
 
 
 
+
+//
 //
 //Order Form Fields Form 5
 //
+//
+
+
 
 
 
@@ -433,6 +436,8 @@ function my_populate_promotion2( $form ) {
     if($general_promotion_active)
     {
 
+      $formfieldkey = getKeyFromFieldID($form['fields'], $form_field_box_sizes_id);
+
       $general_order_order_option_text_for_2_people = '4 weeks of set boxes for 2 people';
       $general_order_order_option_text_for_2_people_caption = $general_order_order_option_text_for_2_people.'<span class="radio-lb">' . get_field('general_order_order_option_text_for_2_people','option') . '</span>';
 
@@ -453,6 +458,8 @@ function my_populate_promotion2( $form ) {
 
       }
 
+
+
     }
 
 
@@ -460,60 +467,68 @@ function my_populate_promotion2( $form ) {
 
     // Populate for promotion messages
 
-    if($promotion_active || $general_promotion_active) {
-    
+    if($promotion_active)
+    {
       // Website Promotion Single Week
       $promotion_heading = get_field('order_page_promotion_heading','option');
       $promotion_subheading = get_field('order_page_promotion_sub-heading','option');
-      // $promotion_button_text = get_field('order_page_select_button_text','option');
+      
+      $formfieldkey = getKeyFromFieldID($form['fields'], $form_field_promotion_single_week);
 
+
+      $content = '<div class="promotion">';
+
+      if($promotion_heading)
+        $content .= '<h2>'.$promotion_heading.'</h2>';
+
+      if($promotion_subheading)
+        $content .= '<p>'.$promotion_subheading.'</p>';
+
+      $content .='</div>';
+
+      $form['fields'][$formfieldkey]->content = $content;
+
+
+    } else {
+
+        $formfieldkey = getKeyFromFieldID($form['fields'], $form_field_promotion_single_week);
+        unset($form['fields'][$formfieldkey]); 
+    }
+
+
+    // TEST AND DO THE SAME FOR GENERAL PROMOTIONS
+
+
+    if($general_promotion_active) {
+    
       // Website promotion - 4 weeks
       $general_order_page_promotion_heading = get_field('general_order_page_promotion_heading','option');
       $general_order_page_promotion_sub_heading = get_field('general_order_page_promotion_sub_heading','option');
       $general_order_page_promotion_content = get_field('general_order_page_promotion_content','option');
-      // $promotion_button_text = get_field('order_page_select_button_text','option');
+        
+      $formfieldkey = getKeyFromFieldID($form['fields'], $form_field_promotion_four_week);
 
 
-      foreach( $form['fields'] as &$field ) {    
+      $content = '<div class="promotion">';
 
-        // If one of the meal options then set the options to these meals
+      if($general_order_page_promotion_heading)
+        $content .= '<h2>'.$general_order_page_promotion_heading.'</h2>';
+
+      if($general_order_page_promotion_sub_heading)
+        $content .= '<p>'.$general_order_page_promotion_sub_heading.'</p>';
+
+      if($general_order_page_promotion_content)
+        $content .= '<p>'.$general_order_page_promotion_content.'</p>';
+
+      $content .='</div>';
+
+
+      $form['fields'][$formfieldkey]->content = $content;
+
+    } else {
        
-        if( $form_field_promotion_single_week === $field->id) {
-
-          $field->content = '<div class="promotion">';
-
-          if($promotion_heading)
-            $field->content .= '<h2>'.$promotion_heading.'</h2>';
-
-          if($promotion_subheading)
-            $field->content .= '<p>'.$promotion_subheading.'</p>';
-
-         // $field->content .='<a href="#" class="button button--dark-blue" onclick="populate_promotional_meals();return false;">'.$promotion_button_text.'</a>';
-
-          $field->content .='</div>';
-        }
-
-
-        if( $form_field_promotion_four_week === $field->id) {
-
-          $field->content = '<div class="promotion">';
-
-          if($general_order_page_promotion_heading)
-            $field->content .= '<h2>'.$general_order_page_promotion_heading.'</h2>';
-
-          if($general_order_page_promotion_sub_heading)
-            $field->content .= '<p>'.$general_order_page_promotion_sub_heading.'</p>';
-
-          if($general_order_page_promotion_content)
-            $field->content .= '<p>'.$general_order_page_promotion_content.'</p>';
-
-         // $field->content .='<a href="#" class="button button--dark-blue" onclick="populate_promotional_meals();return false;">'.$promotion_button_text.'</a>';
-
-          $field->content .='</div>';
-        }
-
-
-      }
+        $formfieldkey = getKeyFromFieldID($form['fields'], $form_field_promotion_four_week);
+        unset($form['fields'][$formfieldkey]); 
 
     }
   
@@ -654,6 +669,10 @@ function my_populate_promotion2( $form ) {
 
         }
 
+      } else {
+        // Unset seasonal heading.
+         if($field['id'] == $form_field_seasonal_heading_id)
+          unset($form['fields'][$k]); 
       }
 
 
@@ -732,7 +751,8 @@ function change_field_value( $value, $entry, $field ){
 add_action( 'gform_after_submission_5', 'set_form_cookies2', 10, 2 );
 function set_form_cookies2( $entry, $form ) {
   
-    setcookie('gf_order_name', $entry['15'], time() + 1209600, '/' );
+    setcookie('gf_order_fname', $entry['15'], time() + 1209600, '/' );
+    setcookie('gf_order_lname', $entry['91'], time() + 1209600, '/' );
     setcookie('gf_order_email', $entry['16'], time() + 1209600, '/' );
     setcookie('gf_order_phone', $entry['17'], time() + 1209600, '/' );
     setcookie('gf_order_postcode', $entry['18'], time() + 1209600, '/' );
@@ -814,7 +834,7 @@ function custom_confirmation_message2( $confirmation, $form, $entry, $ajax ) {
     
 
     $html .= '<p class="heading">Order Total</p>';
-    $html .= '<p>£ '.number_format($entry[30],2).'</p>';
+    $html .= '<p>£ '.number_format($entry[82],2).'</p>';
                  
       
      //  if($additional_items!='')
@@ -824,7 +844,7 @@ function custom_confirmation_message2( $confirmation, $form, $entry, $ajax ) {
 
      //  $html .= $additional_items;
 
-       $html .= '<p class="heading">Contact Details</p><p>' . $entry['15'] . '</p><p>' . $entry['16'] . '</p><p>' . $entry['17'] . '</p><p>' . $entry['25'] . '</p><p>' . $entry['18'] . '</p><p>' . $entry['26'] . '</p>';
+       $html .= '<p class="heading">Contact Details</p><p>' . $entry['15'] . ' ' .  $entry['91'] .'</p><p>' . $entry['16'] . '</p><p>' . $entry['17'] . '</p><p>' . $entry['25'] . '</p><p>' . $entry['18'] . '</p><p>' . $entry['26'] . '</p>';
 
 
     return str_replace("XXX", $html, $confirmation);
@@ -862,7 +882,8 @@ function populate_fields( $value, $field, $name ) {
   // Populating fields from cookies if they exist for 
 
   $values = array(
-    'order_name' => isset($_COOKIE["gf_order_name"]) ? $_COOKIE["gf_order_name"] : '',
+    'order_fname' => isset($_COOKIE["gf_order_fname"]) ? $_COOKIE["gf_order_fname"] : '',
+    'order_lname' => isset($_COOKIE["gf_order_lname"]) ? $_COOKIE["gf_order_lname"] : '',
     'order_email' => isset($_COOKIE["gf_order_email"]) ? $_COOKIE["gf_order_email"] : '',
     'order_phone' => isset($_COOKIE["gf_order_phone"]) ? $_COOKIE["gf_order_phone"] : '',
     'order_postcode' => isset($_COOKIE["gf_order_postcode"]) ? $_COOKIE["gf_order_postcode"] : '',

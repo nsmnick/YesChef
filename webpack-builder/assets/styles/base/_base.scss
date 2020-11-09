@@ -6,7 +6,7 @@ html {
 	line-height: $line-height;
 	min-height: 100%;
 	height: 100%;
-	color: $soft_green;
+	color: $teal;
 
 	@include bp(lap) {
 		font-size: $font-size;

@@ -18,13 +18,19 @@ get_header();
 
 	include_once 'partials/_content-promotion-generic-slot.php';
 
-	include_once 'partials/_content-promotion-offer-code.php';
 
 	include_once 'partials/_content-latest-meals.php';
 
 	include_once 'partials/_content-featured-additional-items.php';
 
-	$top='green';
+	include_once 'partials/_content-promotion-offer-code.php';
+
+	$promotion_active = get_field('oc_promotion_active','option');
+	if($promotion_active)
+		$top='purple';
+	else
+		$top='green';
+	
 	$bottom='green';
 	include_once 'partials/_content-how-it-works.php';
 

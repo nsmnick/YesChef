@@ -302,6 +302,9 @@
 
 			.gfield_radio {
 				> li {
+
+					
+
 					width: 50%;
 					display: block !important; 
 					width: 100%;
@@ -310,6 +313,10 @@
 						display: inline-block !important; 
 						width: 50%;
 					}
+				}
+
+				li:first-child {
+					display: block !important;
 				}
 			}
 
@@ -559,6 +566,7 @@
 			outline: 0 !important;
 			box-shadow: none !important;
 			border: none !important;
+			margin-top: 8px !important;
 
 			&:before {
 				content: "";

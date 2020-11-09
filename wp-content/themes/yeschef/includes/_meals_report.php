@@ -8,7 +8,7 @@
 add_action('admin_menu', 'pick_list_report_create');
 function pick_list_report_create() {
     $page_title = 'Reports';
-    $menu_title = 'Reports';
+    $menu_title = 'Report (Old)';
     $capability = 'edit_posts';
     $menu_slug = 'meals_report';
     $function = 'my_meal_picking_list_report';
@@ -178,7 +178,8 @@ function render_meals_report($order_week, $export=false) {
             
             $order_details[$orders]['id'] = $entry['id'];
             $order_details[$orders]['date'] = $entry['date_created'];
-            $order_details[$orders]['name'] = $entry['15'];
+            $order_details[$orders]['fname'] = $entry['15'];
+            $order_details[$orders]['lname'] = $entry['91'];
 
             if(strpos($entry['2'],'4 people')!=FALSE)
                 $order_details[$orders]['people'] = '4 People';
@@ -332,7 +333,7 @@ function render_meals_report($order_week, $export=false) {
         echo '<ul class="styled-list">';
         foreach( $order_details as $order) {
 
-            echo '<li><b>Order #: </b>' . $order['id'] . ' | <b>Date: </b>' . $order['date'] . ' | <b>Name:</b> ' . $order['name'] . ' | <b># People:</b> ' . $order['people'] . ' | <b>Meal1:</b> ' . $order['meal1'] .' | <b>Meal2:</b> ' . $order['meal2'] .' | <b>Meal3:</b> ' . $order['meal3'] .' | <b>Meal4:</b> ' . $order['meal4'] .' | <b>Lazy1:</b> ' . $order['lazy1'] .' | <b>Lazy2:</b> ' . $order['lazy2'] .'</li>'; 
+            echo '<li><b>Order #: </b>' . $order['id'] . ' | <b>Date: </b>' . $order['date'] . ' | <b>First Name:</b> '. ' | <b>Last Name:</b> ' . $order['name'] . ' | <b># People:</b> ' . $order['people'] . ' | <b>Meal1:</b> ' . $order['meal1'] .' | <b>Meal2:</b> ' . $order['meal2'] .' | <b>Meal3:</b> ' . $order['meal3'] .' | <b>Meal4:</b> ' . $order['meal4'] .' | <b>Lazy1:</b> ' . $order['lazy1'] .' | <b>Lazy2:</b> ' . $order['lazy2'] .'</li>'; 
         }
         echo '</ul>';
 
@@ -397,7 +398,7 @@ function render_meals_report($order_week, $export=false) {
 
         foreach( $order_details as $order) {
 
-            echo '"'.$order['id'].'","'.$order['date'].'","'.$order['name'].'","'.$order['people'].'","'.$order['meal1'].'","'.$order['meal2'].'","'.$order['meal3'].'","'.$order['meal4'].'","'.$order['lazy1'].'","'.$order['lazy2'].'",';
+            echo '"'.$order['id'].'","'.$order['date'].'","'.$order['fname'].'","'.$order['lname'].'","'.$order['people'].'","'.$order['meal1'].'","'.$order['meal2'].'","'.$order['meal3'].'","'.$order['meal4'].'","'.$order['lazy1'].'","'.$order['lazy2'].'",';
 
             echo "\r\n";
         }
@@ -429,13 +430,13 @@ function strip_amount($meal) {
 
 
 
-// V% Report
+// V5 Report
 
 
 add_action('admin_menu', 'pick_list_report_create_v5');
 function pick_list_report_create_v5() {
     $page_title = 'Reports';
-    $menu_title = 'Reports V5';
+    $menu_title = 'Report (New)';
     $capability = 'edit_posts';
     $menu_slug = 'meals_report_v5';
     $function = 'my_meal_picking_list_report_v5';
@@ -545,7 +546,7 @@ function render_meals_report_v5($order_week, $export=false) {
 
 
     // Key IDs
-    $include_in_report_field_id = '59';
+    $include_in_report_field_id = '88';
 
     $search_criteria['status'] = 'active';
     $search_criteria['field_filters'][] = array( 'key' => $delivery_date_field_id, 'value' => $order_week );
@@ -584,7 +585,7 @@ function render_meals_report_v5($order_week, $export=false) {
             $box_option_value = stripPriceFromValue($entry['37']);
 
             if($box_option_value=='')
-                $box_option_value = 'Additional Items Only';
+                $box_option_value = 'No Box Option';
 
             if($entry[$coupon_field_id] != '') 
             {
@@ -596,14 +597,15 @@ function render_meals_report_v5($order_week, $export=false) {
 
             $order_details[$orders]['id'] = $entry['id'];
             $order_details[$orders]['date'] = $entry['date_created'];
-            $order_details[$orders]['name'] = $entry['15'];
+            $order_details[$orders]['fname'] = $entry['15'];
+            $order_details[$orders]['lname'] = $entry['91'];
             $order_details[$orders]['box_option'] = $box_option_value;
             $order_details[$orders]['email'] = $entry['16'];
             $order_details[$orders]['phone'] = $entry['17'];
             $order_details[$orders]['address'] = $entry['25'];
             $order_details[$orders]['postcode'] = $entry['18'];
             $order_details[$orders]['delivery_charge'] = $entry['34'];
-            $order_details[$orders]['total_order'] = number_format($entry[30],2);
+            $order_details[$orders]['total_order'] = number_format($entry[82],2);
             $order_details[$orders]['coupon'] =  $entry['32'];
 
 
@@ -776,7 +778,8 @@ function render_meals_report_v5($order_week, $export=false) {
             echo '<li><b>Order #: </b>' 
                     . $order['id'] 
                     . ' | <b>Date: </b>' . $order['date'] 
-                    . ' | <b>Name:</b> ' . $order['name'] 
+                    . ' | <b>First Name:</b> ' . $order['fname'] 
+                    . ' | <b>Last Name:</b> ' . $order['lname'] 
                     . ' | <b>Box Option:</b> ' . $order['box_option'] ;
 
                     if($order['box_option'] == '1 weekly box for 2 people' || $order['box_option'] == '1 weekly box for 4 people' )
@@ -863,12 +866,12 @@ function render_meals_report_v5($order_week, $export=false) {
         echo '"Order Details"';
         echo "\r\n";
 
-        echo '"Order #","Date","Name","Box Option","Meal1","Meal2","Meal3","Meal4","Delivery Charge","Order Total","Coupon","Email","Phone","Address","Postcode"';
+        echo '"Order #","Date","First Name","Last Name","Box Option","Meal1","Meal2","Meal3","Meal4","Delivery Charge","Order Total","Coupon","Email","Phone","Address","Postcode"';
         echo "\r\n";
 
         foreach( $order_details as $order) {
 
-            echo '"'.$order['id'].'","'.$order['date'].'","'.$order['name'].'","'.$order['box_option'].'","'.$order['meal1'].'","'.$order['meal2'].'","'.$order['meal3'].'","'.$order['meal4'].'","'.$order['delivery_charge'].'","'.$order['total_order'].'","'.$order['coupon'].'","'.$order['email'].'","'.$order['phone'].'","'.$order['address'].'","'.$order['postcode'].'",';
+            echo '"'.$order['id'].'","'.$order['date'].'","'.$order['fname'].'","'.$order['lname'].'","'.$order['box_option'].'","'.$order['meal1'].'","'.$order['meal2'].'","'.$order['meal3'].'","'.$order['meal4'].'","'.$order['delivery_charge'].'","'.$order['total_order'].'","'.$order['coupon'].'","'.$order['email'].'","'.$order['phone'].'","'.$order['address'].'","'.$order['postcode'].'",';
 
             echo "\r\n";
         }

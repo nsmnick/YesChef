@@ -2,33 +2,48 @@ TO DO
 
 DESIGNS
 https://www.figma.com/file/8KQzOhmu1Mn47VvZzqE6XT/Yes-Chef---v2?node-id=0%3A1
+Work out what to do with set box offer and whether this now updates the order or not. (Wait until after Report)
 
-Coupon Code Promo on home page
-Warning text on specials promo for 2 people / 4 people or add text automatically.
-Accordions on pie section (if possible)
-Enter postcodes list for Delivery
-
-Add Pie Bundles to meals and recipies with new category Lazy Meal Deals
-Add additional Item Categories - xmas and allow them to be re-ordered.
-
-Pull out configurable list of additional items with a label on order form
-
-Next Tuesday and thursday delivery dates
+Order Report
 
 
 Embed Payment Form
 Notification Screen
-Order Report
+
+Stop them changing key words in promo box text.
+
+Documenation
+
+Accordions on pie section (if possible)
 
 
-
-
+DONE: Pull out configurable list of additional items with a label on order form
 DONE: Hide unpublished Additional items
 DONE: Meals as Product Options with variants (CHECK)
 DONE: Hide Lazy Pies items if unpublished.
+DONE: Coupon Code Promo on home page
+DONE: Warning text on specials promo for 2 people / 4 people or add text automatically.
+DONE: Enter postcodes list for Delivery
+DONE: Add Pie Bundles to meals and recipies with new category Lazy Meal Deals
+DONE: Add additional Item Categories - xmas and allow them to be re-ordered.
+DONE: Update prices of additional items or lazy pies if they are already on order form
+DONE: Config Box for 4 weekly set meals and hide these if not valid: Added to existing set meal generic promotion
+DONE: Next Tuesday and thursday delivery dates
+DONE: Add xmas meals
+DONE: Add sunday roasts as new box type
+
+
+
 
 TO GO LIVE
 
-Promotion Fields
-Supplement Price Label and value
+OrderForm v3
+Promotion Fields - Offer code
+Promotion Fields - Set Meal - Order Form Fields
+Supplement Price Label and value in meals
+Meal Categories - lazy Meal Bundles
+Additional Item Cateories - xmas
+Simpe Post order - additional items
+LOG EVENTS in WP-config
+
 End of week swith time reset to 10.

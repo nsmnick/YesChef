@@ -181,6 +181,18 @@ while ( have_posts() ) : the_post();
 
 				<?php 
 				}
+				
+
+				if($lazy_meal)
+				{
+				?>
+
+					<p>
+						<a href="/place-your-order/" class="button<?php echo $button_bg;?>">Buy Now</a>
+					</p>
+
+				<?php 
+				}
 				?>
 
 		</div>

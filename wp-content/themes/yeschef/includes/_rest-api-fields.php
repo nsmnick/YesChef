@@ -109,7 +109,9 @@ function nsm_additionalitem_get_price(  $object, $field_name, $request) {
 }
 
 function nsm_meal_get_available_this_week(  $object, $field_name, $request) {
-	return has_term(get_next_order_date()->format('Y/m/d'), 'nsm_meal_order_date',$object['id']);
+
+	$lazy_pie_option = get_post_meta($object['id'], 'lazy_day_pie_option', true);
+	return $lazy_pie_option == 'Yes' || has_term(get_next_order_date()->format('Y/m/d'), 'nsm_meal_order_date',$object['id']);
 }
 
 

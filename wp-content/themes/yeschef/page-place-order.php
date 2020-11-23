@@ -94,14 +94,6 @@
 	<script>
 
 
-		if (typeof fbq != "undefined") 
-		{
-
-			fbq('track', 'InitiateCheckout');
-			console.log('fb event submitted');
-		}
-	
-
 		<?php 
 
 		$promotion_active = get_field('promotion_active','option');
@@ -155,7 +147,33 @@
 	
 
 	get_footer();
+
 ?>
+
+	<?php if(LOG_EVENTS){ ?>
+	<script>
+
+
+		jQuery(document).ready(function() {
+		
+		if (typeof fbq != "undefined") 
+		{
+			fbq('track', 'InitiateCheckout');
+			console.log('fb event submitted');
+		}
+
+		if (typeof gtag != "undefined") 
+		{
+			gtag('event', 'Conversion Started', {'event_category': 'Form','event_label': 'Order Form'});
+			console.log('ga ads conversion started');
+		}
+
+		});
+
+	</script>
+
+	<?php } ?>
+
 
 
 

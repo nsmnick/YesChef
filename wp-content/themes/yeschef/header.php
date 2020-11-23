@@ -21,6 +21,7 @@
 	<?php wp_head(); ?>
 
 
+	
 	<?php if(LOG_EVENTS){ ?>
 	<!-- Facebook Pixel Code -->
 		<script>
@@ -109,7 +110,7 @@
 									]);
 								?>
 
-								<li class="menu-item mobile"><a href="<?php echo site_url(); ?>/place-your-order">Order your box</a></li>
+								<li class="menu-item mobile"><a href="<?php echo site_url(); ?>/place-your-order">Place your order</a></li>
 
 							</ul>
 
@@ -122,7 +123,7 @@
 
 					<div class="header-container__right">					
 						
-						<a class="button place-order-button" href="/place-your-order">Order your box</a>
+						<a class="button place-order-button" href="/place-your-order">Place your order</a>
 
 
 						<a class="button mobile-toggle-menu" href="#">Menu</a>

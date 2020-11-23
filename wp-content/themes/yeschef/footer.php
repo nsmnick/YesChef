@@ -130,6 +130,7 @@
 
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-473315826"></script> 
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-177763557-1"></script>
 <script type="text/plain" cookie-accept>
   window.dataLayer = window.dataLayer || [];
@@ -137,7 +138,10 @@
   gtag('js', new Date());
 
   gtag('config', '<?php echo GA_CODE;?>');
+  gtag('config', '<?php echo GA_ADSCODE;?>');
 
+
+  <?php if(LOG_EVENTS){ ?>
 
   jQuery(document).ready(function() {
     
@@ -146,8 +150,8 @@
 		
 		if (typeof gtag != "undefined") 
 		{
-			gtag('event', 'Submission', {'event_category': 'Form','event_label': 'Order Form'});
-			console.log('ga event submitted');
+			gtag('event', 'Conversion Complete', {'event_category': 'Form','event_label': 'Order Form'});
+			console.log('ga ads conversion completed');
 		}
 
 		if (typeof fbq != "undefined") 
@@ -161,8 +165,11 @@
     
   });
 
+<?php } ?>
 
 </script>
+
+
 
 
 

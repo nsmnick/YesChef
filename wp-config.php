@@ -30,8 +30,10 @@ define('DB_USER', 'root');
 define('DB_PASSWORD', 'root');
 
 // TEST
-define('GA_CODE', 'UA-XXX');
-define('LOG_EVENTS', false);
+define('GA_CODE', 'UA-177763557-1');
+define('GA_ADSCODE', 'AW-473315826');
+
+define('LOG_EVENTS', true);
 
 
 // STG

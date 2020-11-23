@@ -23,33 +23,34 @@ function pick_list_report_create() {
 
 function check_download_file(){
 
- if( !current_user_can('editor') && !current_user_can('administrator') ) {  
-        wp_die('Unauthorized user');
+ if( current_user_can('editor') || current_user_can('administrator') ) {  
+     
+
+      if( isset( $_GET['download_meals_report'] ) ) {
+          
+
+        header('Content-Type: application/csv');
+        header('Content-Disposition: attachment; filename=example.csv');
+        header('Pragma: no-cache');
+          
+          render_meals_report($_GET['order_week'],true);
+          exit();
+
+      }
+
+      if( isset( $_GET['download_meals_report_v5'] ) ) {
+          
+
+        header('Content-Type: application/csv');
+        header('Content-Disposition: attachment; filename=example.csv');
+        header('Pragma: no-cache');
+          
+          render_meals_report_v5($_GET['order_week'],true);
+          exit();
+
+      }
+
     }
-
-  if( isset( $_GET['download_meals_report'] ) ) {
-      
-
-    header('Content-Type: application/csv');
-    header('Content-Disposition: attachment; filename=example.csv');
-    header('Pragma: no-cache');
-      
-      render_meals_report($_GET['order_week'],true);
-      exit();
-
-  }
-
-  if( isset( $_GET['download_meals_report_v5'] ) ) {
-      
-
-    header('Content-Type: application/csv');
-    header('Content-Disposition: attachment; filename=example.csv');
-    header('Pragma: no-cache');
-      
-      render_meals_report_v5($_GET['order_week'],true);
-      exit();
-
-  }
 
 
 }
@@ -164,6 +165,9 @@ function render_meals_report($order_week, $export=false) {
         # code...
         
 
+        
+        // echo print_r($entry);
+        // echo '<br/><br/>';
         // First check to see if order should be included in report
 
         if($entry['21'] == 'Yes') 
@@ -577,8 +581,10 @@ function render_meals_report_v5($order_week, $export=false) {
         if($entry[$include_in_report_field_id] == 'Yes') 
         {
 
-            //echo print_r($entry);
+            // echo print_r($entry);
             // echo '<br/><br/>';
+
+
             $orders++;
 
 
@@ -607,6 +613,12 @@ function render_meals_report_v5($order_week, $export=false) {
             $order_details[$orders]['delivery_charge'] = $entry['34'];
             $order_details[$orders]['total_order'] = number_format($entry[82],2);
             $order_details[$orders]['coupon'] =  $entry['32'];
+
+            $order_details[$orders]['paymentstatus'] =  $entry['payment_status'];
+            $order_details[$orders]['paymentdate'] =  $entry['payment_date'];
+            $order_details[$orders]['paymentamount'] =  $entry['payment_amount'];
+            $order_details[$orders]['paymentmethod'] =  $entry['payment_method'];
+            $order_details[$orders]['paymenttransID'] =  $entry['transaction_id'];
 
 
             $meal_1_2 = stripPriceFromValue($entry['38']);
@@ -792,6 +804,7 @@ function render_meals_report_v5($order_week, $export=false) {
 
                     echo ' | <b>Coupon Used: </b>' . $order['coupon']; 
                     echo ' | <b>Order Value: </b>' . $order['total_order'];  
+                    echo ' | <b>Payment Status: </b>' . $order['paymentstatus'];  
                     echo '</li>'; 
         }
         echo '</ul>';
@@ -866,12 +879,14 @@ function render_meals_report_v5($order_week, $export=false) {
         echo '"Order Details"';
         echo "\r\n";
 
-        echo '"Order #","Date","First Name","Last Name","Box Option","Meal1","Meal2","Meal3","Meal4","Delivery Charge","Order Total","Coupon","Email","Phone","Address","Postcode"';
+        echo '"Order #","Date","First Name","Last Name","Box Option","Meal1","Meal2","Meal3","Meal4","Delivery Charge","Order Total","Coupon","Email","Phone","Address","Postcode","Payment Status","Payment Amount","Payment Method","Trans ID"';
+
+
         echo "\r\n";
 
         foreach( $order_details as $order) {
 
-            echo '"'.$order['id'].'","'.$order['date'].'","'.$order['fname'].'","'.$order['lname'].'","'.$order['box_option'].'","'.$order['meal1'].'","'.$order['meal2'].'","'.$order['meal3'].'","'.$order['meal4'].'","'.$order['delivery_charge'].'","'.$order['total_order'].'","'.$order['coupon'].'","'.$order['email'].'","'.$order['phone'].'","'.$order['address'].'","'.$order['postcode'].'",';
+            echo '"'.$order['id'].'","'.$order['date'].'","'.$order['fname'].'","'.$order['lname'].'","'.$order['box_option'].'","'.$order['meal1'].'","'.$order['meal2'].'","'.$order['meal3'].'","'.$order['meal4'].'","'.$order['delivery_charge'].'","'.$order['total_order'].'","'.$order['coupon'].'","'.$order['email'].'","'.$order['phone'].'","'.$order['address'].'","'.$order['postcode'].'","'.$order['paymentstatus'].'","'.$order['paymentamount'].'","'.$order['paymentmethod'].'","'.$order['paymenttransID'].'",';
 
             echo "\r\n";
         }

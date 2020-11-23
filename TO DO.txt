@@ -38,12 +38,30 @@ DONE: Add sunday roasts as new box type
 TO GO LIVE
 
 OrderForm v3
-Promotion Fields - Offer code
-Promotion Fields - Set Meal - Order Form Fields
-Supplement Price Label and value in meals
-Meal Categories - lazy Meal Bundles
-Additional Item Cateories - xmas
-Simpe Post order - additional items
+
+DONE: Promotion Fields - Offer code
+DONE: Promotion Fields - Set Meal - Order Form Fields
+DONE: New Promotion Sections
+DONE: upload coupons and commerce platform to live
+
+
+Supplement Price Label and value in meals - Add in values for meals with supplementary price
+DONE: Meal Categories - lazy Meal Bundles
+
+DONE: Additional Item Cateories - xmas
+DONE: Simpe Post order - additional items
+
 LOG EVENTS in WP-config
 
+
+
+
 End of week swith time reset to 10.
+
+
+4 Meals Promotion
+
+Remove fields
+- Promotion URL Link
+- Order Page Footer Content
+- Order Page Select Button Text

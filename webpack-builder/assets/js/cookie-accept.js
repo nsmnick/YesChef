@@ -197,6 +197,7 @@
 	CookieAccept.prototype.enableCookies = function()
 	{
 		this.enableScripts();
+		
 	};
 
 	CookieAccept.prototype.enableScripts = function()

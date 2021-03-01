@@ -591,7 +591,7 @@ function render_meals_report_v5($order_week, $export=false) {
             $box_option_value = stripPriceFromValue($entry['37']);
 
             if($box_option_value=='')
-                $box_option_value = 'No Box Option';
+                $box_option_value = 'Lazy Day Range Only';
 
             if($entry[$coupon_field_id] != '') 
             {

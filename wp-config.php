@@ -25,6 +25,9 @@ define( 'DISALLOW_FILE_EDIT', true ); // Disable File Editor - Security > Settin
  */
 
 
+define('DISALLOW_FILE_MODS', true);
+
+
 define('DB_NAME', 'yeschefv2');
 define('DB_USER', 'root');
 define('DB_PASSWORD', 'root');

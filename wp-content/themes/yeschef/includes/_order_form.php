@@ -566,6 +566,8 @@ function custom_confirmation_message2( $confirmation, $form, $entry, $ajax ) {
        $html .= '<p class="heading">Contact Details</p><p>' . $entry['15'] . ' ' .  $entry['91'] .'</p><p>' . $entry['16'] . '</p><p>' . $entry['17'] . '</p><p>' . $entry['25'] . '</p><p>' . $entry['18'] . '</p><p>' . $entry['26'] . '</p>';
 
 
+       $html .= "<script>if (typeof gtag != 'undefined') { gtag('event', 'Conversion Complete with value', {'event_category': 'Form','event_label': 'Order Form','value': " . number_format($entry[82],2) . "}); console.log('ga ads conversion completed with value'); }</script>";
+
     return str_replace("XXX", $html, $confirmation);
 }
 

@@ -30,7 +30,7 @@
     "imagemin-svgo": "^7.0.0",
     "imagemin-webpack": "^4.1.0",
     "mini-css-extract-plugin": "^0.4.5",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "postcss-cssnext": "^3.1.0",
     "postcss-import": "^11.1.0",
     "postcss-loader": "^2.1.6",
